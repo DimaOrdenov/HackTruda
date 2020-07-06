@@ -3,54 +3,55 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using HackTruda.Models;
-using HackTruda.Services;
-
 namespace HackTruda.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        private bool _isBusy = false;
+        private string _pageTitle = string.Empty;
 
-        bool isBusy = false;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public bool IsBusy
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
-        string title = string.Empty;
-        public string Title
+        public string PageTitle
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get => _pageTitle;
+            set => SetProperty(ref _pageTitle, value);
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
+        protected bool SetProperty<T>(
+            ref T backingStore,
+            T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
+
             return true;
         }
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
+
             if (changed == null)
+            {
                 return;
+            }
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

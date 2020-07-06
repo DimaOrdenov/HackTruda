@@ -1,7 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using HackTruda.Services;
 using HackTruda.Views;
 
 namespace HackTruda
@@ -13,7 +12,6 @@ namespace HackTruda
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 
