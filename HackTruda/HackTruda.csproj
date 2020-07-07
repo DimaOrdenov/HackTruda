@@ -37,6 +37,7 @@
     <PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -44,11 +45,20 @@
     <Folder Include="Containers\" />
     <Folder Include="Definitions\Enums\" />
     <Folder Include="Definitions\PageStacks\" />
-    <Folder Include="DependecyServices\" />
+    <Folder Include="DependencyServices\" />
     <Folder Include="Services\Interfaces\" />
-    <Folder Include="DependecyServices\Interfaces\" />
+    <Folder Include="DependencyServices\Interfaces\" />
     <Folder Include="Extensions\" />
     <Folder Include="Definitions\Exceptions\" />
     <Folder Include="Definitions\Models\" />
+    <Folder Include="Views\Feed\" />
+    <Folder Include="ViewControls\" />
+    <Folder Include="Views\Locations\" />
+    <Folder Include="Views\Messages\" />
+    <Folder Include="Views\Profile\" />
+    <Folder Include="ViewModels\Feed\" />
+    <Folder Include="ViewModels\Locations\" />
+    <Folder Include="ViewModels\Messages\" />
+    <Folder Include="ViewModels\Profile\" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,10 @@ namespace HackTruda.Definitions.Exceptions
 {
     public class LogicException : TypedException
     {
+        public LogicException()
+        {
+        }
+
         public LogicException(LogicExceptionType type)
             : this(type, null, null)
         {

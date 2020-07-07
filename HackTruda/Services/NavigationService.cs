@@ -1,5 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using HackTruda.Definitions.Enums;
+using HackTruda.Services.Interfaces;
+using HackTruda.ViewControls;
+using HackTruda.ViewModels;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace HackTruda.Services
@@ -29,16 +36,12 @@ namespace HackTruda.Services
             {
                 await navigationStack.PopModalAsync(animated);
 
-                TrackCurrentScreen();
-
                 return;
             }
 
             if (navigationStack.NavigationStack.Count > 1)
             {
                 await navigationStack.PopAsync(animated);
-
-                TrackCurrentScreen();
             }
         }
 
@@ -53,8 +56,6 @@ namespace HackTruda.Services
             }
 
             await GetCurrentPage().Navigation.PopToRootAsync(animated);
-
-            TrackCurrentScreen();
         }
 
         /// <inheritdoc />
@@ -70,14 +71,12 @@ namespace HackTruda.Services
 
             NavigationPage.SetHasNavigationBar(page, false);
 
-            if (page?.BindingContext is PageVM viewModel)
+            if (page?.BindingContext is PageViewModel viewModel)
             {
-                viewModel.HasNavigationBarBackButton = false;
+                //viewModel.HasNavigationBarBackButton = false;
             }
 
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
-
-            TrackCurrentScreen();
         }
 
         /// <inheritdoc />
@@ -91,14 +90,12 @@ namespace HackTruda.Services
         {
             NavigationPage.SetHasNavigationBar(page, false);
 
-            if (page?.BindingContext is PageVM viewModel)
+            if (page?.BindingContext is PageViewModel viewModel)
             {
-                viewModel.HasNavigationBarBackButton = false;
+                //viewModel.HasNavigationBarBackButton = false;
             }
 
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
-
-            TrackCurrentScreen();
         }
 
         /// <inheritdoc />
@@ -112,16 +109,14 @@ namespace HackTruda.Services
         {
             Page pageToNavigate = await Task.Run(() => _pageBuilder.BuildPage(pageKey, parameter));
 
-            if (pageToNavigate?.BindingContext is PageVM viewModel)
+            if (pageToNavigate?.BindingContext is PageViewModel viewModel)
             {
-                viewModel.HasNavigationBarBackButton = true;
+                //viewModel.HasNavigationBarBackButton = true;
             }
 
             await (aboveTabs ?
                 GetCurrentNavigationPage(Application.Current.MainPage) :
                 GetCurrentPage()).Navigation.PushAsync(pageToNavigate, animated);
-
-            TrackCurrentScreen();
         }
 
         /// <inheritdoc />
@@ -134,8 +129,6 @@ namespace HackTruda.Services
             PopupPage page = _pageBuilder.BuildPage(pageKey, parameter) as PopupPage;
 
             await PopupNavigation.Instance.PushAsync(page, animated);
-
-            TrackCurrentScreen();
         }
 
         /// <inheritdoc />
@@ -219,21 +212,7 @@ namespace HackTruda.Services
         private void SetMainPage(Page rootPage)
         {
             Device.BeginInvokeOnMainThread(() =>
-            {
-                Application.Current.MainPage = rootPage;
-
-                TrackCurrentScreen();
-            });
-        }
-
-        private void TrackCurrentScreen()
-        {
-            PageVM viewModel = GetCurrentPage().BindingContext as PageVM;
-
-            if (viewModel != null)
-            {
-                _analyticsService.SetCurrentScreen(viewModel.PageTypeValue.ToString(), viewModel.GetType());
-            }
+                Application.Current.MainPage = rootPage);
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using HackTruda.DependecyServices.Interfaces;
+using HackTruda.DependencyServices.Interfaces;
 using HackTruda.Services.Interfaces;
-using Xamarin.Forms;
 
 namespace HackTruda.Services
 {

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Autofac;
 using HackTruda.Containers;
 using HackTruda.Definitions.Enums;
 using HackTruda.Definitions.PageStacks;
 using HackTruda.Services.Interfaces;
+using HackTruda.ViewControls;
 using HackTruda.ViewModels;
 using Xamarin.Forms;
 
@@ -112,7 +114,7 @@ namespace HackTruda.Services
 
             var tabbedPage = pageConstructor.Invoke(new object[] { }) as BaseTabbedPage;
 
-            var viewModel = IocInitializer.Container.Resolve(tabbedPageStack.ViewModelClassType) as TabbedPageVM;
+            var viewModel = IocInitializer.Container.Resolve(tabbedPageStack.ViewModelClassType) as TabbedPageViewModel;
 
             if (viewModel == null)
             {
@@ -177,7 +179,7 @@ namespace HackTruda.Services
 
             var page = pageConstructor?.Invoke(new object[] { }) as Page;
 
-            var viewModel = IocInitializer.Container.Resolve(pageStack.ViewModelClassType) as PageVM;
+            var viewModel = IocInitializer.Container.Resolve(pageStack.ViewModelClassType) as PageViewModel;
 
             if (viewModel == null)
             {

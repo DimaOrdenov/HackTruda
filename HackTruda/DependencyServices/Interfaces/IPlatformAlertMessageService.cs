@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HackTruda.DependecyServices.Interfaces
+namespace HackTruda.DependencyServices.Interfaces
 {
     public interface IPlatformAlertMessageService
     {

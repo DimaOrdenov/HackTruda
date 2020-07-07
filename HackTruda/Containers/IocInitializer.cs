@@ -1,8 +1,8 @@
 ﻿using System;
 using Autofac;
 using AutoMapper;
-using HackTruda.DependecyServices.Interfaces;
 using HackTruda.DependencyServices.Interfaces;
+using HackTruda.Services;
 using HackTruda.Services.Interfaces;
 
 namespace HackTruda.Containers
@@ -27,27 +27,22 @@ namespace HackTruda.Containers
             try
             {
                 _builder = new ContainerBuilder();
-                _debuggerService = Initializer.Properties.DebuggerService;
+                _debuggerService = new DebuggerService();
                 _mapper = new Mapper().Build();
 
-                InitDependecyServices(
+                InitDependencyServices(
                     platformAlertMessageServiceImplementation,
-                    platformPushNotificationServiceImplementation,
-                    _mapper);
+                    platformPushNotificationServiceImplementation);
 
                 InitServices();
-                InitLogicServices();
-                InitPolicies();
-                InitRepositories();
+                InitBLServices();
                 InitViewModels();
-                InitTemplateSelectors();
                 InitHubs();
 
                 Container = _builder.Build();
 
                 _pageBuilder = Container.Resolve<IPageBuilder>();
                 _dialogService = Container.Resolve<IDialogService>();
-                _userContext = Container.Resolve<UserContext>();
 
                 InitPages();
 

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       x:Class="HackTruda.Views.Messages.MessagesPage">
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+            <Label Text="Messages page" />
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

@@ -1,5 +1,6 @@
-﻿using System;
-namespace HackTruda.DependecyServices.Interfaces
+﻿using HackTruda.Definitions.Models;
+
+namespace HackTruda.DependencyServices.Interfaces
 {
     public interface IPlatformPushNotificationService
     {

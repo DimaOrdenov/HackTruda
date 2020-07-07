@@ -4,25 +4,37 @@ using Android.Runtime;
 using Android.OS;
 using Plugin.Permissions;
 using HackTruda.Containers;
+using HackTruda.Droid.DependencyServices;
+using Plugin.CurrentActivity;
+using Android.Content;
 
 namespace HackTruda.Droid
 {
     [Activity(
         Label = "HackTruda",
         Icon = "@mipmap/icon",
+        RoundIcon = "@mipmap/icon_round",
         Theme = "@style/MainTheme",
-        MainLauncher = true,
+        MainLauncher = false,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public static readonly string NotificationChannelId = CrossCurrentActivity.Current.AppContext.PackageName;
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            //ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+            }
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -40,23 +52,45 @@ namespace HackTruda.Droid
 
             IocInitializer.Initialize(
                 new PlatformAlertMessageService(),
-                new PlatformExitService(),
-                new PlatformCalendarService(),
-                new PlatformFileManagerService(),
-                new PlatformPushNotificationService(),
-                new PlatformFirebaseService(),
-                new PlatformAnalyticsService(),
-                new PlatformShareService(),
-                new PlatformAppUpdateService());
+                new PlatformPushNotificationService());
+
+            // Init nugets
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            XamEffects.Droid.Effects.Init();
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+            Plugin.Fingerprint.CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
+
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+            Crashlytics.Crashlytics.HandleManagedExceptions();
 
             LoadApplication(new App());
+
+            CreateNotificationChannel();
         }
 
-        public override void OnBackPressed()
+        private void CreateNotificationChannel()
         {
-            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O)
             {
+                return;
             }
+
+            NotificationManager notificationManager = CrossCurrentActivity.Current.AppContext.GetSystemService(Context.NotificationService) as NotificationManager;
+
+            var channel = new NotificationChannel(
+                NotificationChannelId,
+                $"{ApplicationContext.PackageName} notification channel",
+                NotificationImportance.Default)
+            {
+                Description = "Local and remote push notifications appears in this channel",
+            };
+
+            notificationManager?.CreateNotificationChannel(channel);
         }
     }
 }
