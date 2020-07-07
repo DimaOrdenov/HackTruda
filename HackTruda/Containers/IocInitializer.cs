@@ -32,11 +32,7 @@ namespace HackTruda.Containers
 
                 InitDependecyServices(
                     platformAlertMessageServiceImplementation,
-                    platformExitServiceImplementation,
                     platformPushNotificationServiceImplementation,
-                    platformFirebaseServiceImplementation,
-                    platformAnalyticsServiceImplementation,
-                    platformShareServiceImplementation,
                     _mapper);
 
                 InitServices();
