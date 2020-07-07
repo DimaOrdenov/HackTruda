@@ -5,7 +5,7 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.Services
 {
-    public class DialogService
+    public class DialogService : IDialogService
     {
         private readonly IDebuggerService _debuggerService;
         private readonly IPlatformAlertMessageService _platformAlertMessageService;

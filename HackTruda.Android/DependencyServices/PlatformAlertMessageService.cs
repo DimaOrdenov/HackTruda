@@ -1,5 +1,5 @@
 ﻿using Android.Widget;
-using HackTruda.DependecyServices.Interfaces;
+using HackTruda.DependencyServices.Interfaces;
 
 namespace HackTruda.Droid.DependencyServices
 {

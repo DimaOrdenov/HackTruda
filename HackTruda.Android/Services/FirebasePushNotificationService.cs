@@ -5,7 +5,7 @@ using Autofac;
 using Firebase.Messaging;
 using HackTruda.Containers;
 using HackTruda.Definitions.Models;
-using HackTruda.DependecyServices.Interfaces;
+using HackTruda.DependencyServices.Interfaces;
 using HackTruda.Services;
 using HackTruda.Services.Interfaces;
 using Newtonsoft.Json;

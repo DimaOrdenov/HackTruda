@@ -12,7 +12,7 @@ namespace HackTruda.Services.Interfaces
 
         Task<bool> DisplayAlert(string title, string message, string accept, string cancel);
 
-        Task CustomDisplayAlert(string textLabel, string buttonText = null);
+        //Task CustomDisplayAlert(string textLabel, string buttonText = null);
 
         //void ShowSnackbar(string message, bool showFromTop = false, int millisecondsSnackbarDelay = 5000);
 

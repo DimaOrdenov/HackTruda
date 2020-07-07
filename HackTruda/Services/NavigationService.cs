@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace HackTruda.Services
 {
-    public class NavigationService
+    public class NavigationService : INavigationService
     {
         private readonly IPageBuilder _pageBuilder;
 

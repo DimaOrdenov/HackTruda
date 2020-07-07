@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System.Threading.Tasks;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -7,7 +8,7 @@ namespace HackTruda.Droid
 {
     [Activity(
         Label = "HackTruda",
-        Icon = "@mipmap/ic_launcher",
+        Icon = "@mipmap/icon",
         RoundIcon = "@mipmap/icon_round",
         Theme = "@style/Theme.Splash",
         MainLauncher = true,
@@ -15,11 +16,14 @@ namespace HackTruda.Droid
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : Activity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected async override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
+            await Task.Delay(1500);
+
             var intent = new Intent(this, typeof(MainActivity));
+
             StartActivity(intent);
             Finish();
         }

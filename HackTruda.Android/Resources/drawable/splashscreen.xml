@@ -2,11 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item>
-        <color android:color="@color/launcher_background"/>
+        <color android:color="@color/colorPrimary"/>
     </item>
         
     <item>
-        <bitmap android:layout_height="fill_parent" 
+        <bitmap 
+                android:layout_width="match_parent"
                 android:src="@drawable/xamarin_logo"
                 android:tileMode="disabled"
                 android:gravity="center"/>

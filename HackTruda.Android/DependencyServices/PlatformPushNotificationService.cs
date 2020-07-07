@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Support.V4.App;
 using HackTruda.Definitions.Models;
-using HackTruda.DependecyServices.Interfaces;
+using HackTruda.DependencyServices.Interfaces;
 using Newtonsoft.Json;
 using Plugin.CurrentActivity;
 
