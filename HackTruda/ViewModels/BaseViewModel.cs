@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace HackTruda.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        private bool _isBusy = false;
-        private string _pageTitle = string.Empty;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool IsBusy
+        public List<ValidationResult> ValidationResult { get; private set; }
+
+        public bool IsValid
         {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
+            get
+            {
+                var context = new ValidationContext(this, serviceProvider: null, items: null);
+
+                ValidationResult = new List<ValidationResult>();
+
+                return Validator.TryValidateObject(
+                    this, context, ValidationResult, validateAllProperties: true);
+            }
         }
 
-        public string PageTitle
+        public virtual void Prepare(object parameter)
         {
-            get => _pageTitle;
-            set => SetProperty(ref _pageTitle, value);
         }
 
         protected bool SetProperty<T>(
