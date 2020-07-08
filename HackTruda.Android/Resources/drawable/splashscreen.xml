@@ -6,9 +6,8 @@
     </item>
         
     <item>
-        <bitmap 
-                android:layout_width="match_parent"
-                android:src="@drawable/xamarin_logo"
+        <bitmap android:layout_height="fill_parent"
+                android:src="@mipmap/launcher_foreground"
                 android:tileMode="disabled"
                 android:gravity="center"/>
     </item>

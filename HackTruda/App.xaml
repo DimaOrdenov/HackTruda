@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
              x:Class="HackTruda.App">
 
     <Application.Resources>
@@ -19,6 +20,10 @@
                         Value="0" />
                 <Setter Property="BackgroundColor"
                         Value="Transparent" />
+            </Style>
+            <Style TargetType="viewControls:ShadowFrame">
+                <Setter Property="Padding"
+                        Value="0" />
             </Style>
             <Style TargetType="Grid">
                 <Setter Property="ColumnSpacing"

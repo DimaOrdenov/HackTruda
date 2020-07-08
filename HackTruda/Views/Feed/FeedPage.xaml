@@ -2,11 +2,25 @@
 <viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
-                       x:Class="HackTruda.Views.Feed.FeedPage">
+                       xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+                       x:Class="HackTruda.Views.Feed.FeedPage"
+                       Title="Лента">
 
     <viewControls:BaseLayout>
         <viewControls:BaseLayout.Content>
-            <Label Text="Feed page" />
+            <StackLayout>
+
+                <Label Text="Feed page" />
+
+                <viewControls:ShadowFrame VerticalOptions="EndAndExpand"
+                                          Padding="0"
+                                          CornerRadius="15"
+                                          IsClippedToBounds="True"
+                                          Margin="8,8,8,10">
+                    <skia:SKCanvasView PaintSurface="SKCanvasViewPaintSurface" />
+                </viewControls:ShadowFrame>
+
+            </StackLayout>
         </viewControls:BaseLayout.Content>
     </viewControls:BaseLayout>
 

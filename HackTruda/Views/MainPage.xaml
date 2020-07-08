@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <viewControls:BaseTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:local="clr-namespace:HackTruda"
                              xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
-                             x:Class="HackTruda.Views.MainPage" />
+                             x:Class="HackTruda.Views.MainPage"
+                             SelectedTabColor="{x:Static local:AppColors.Primary}"
+                             UnselectedTabColor="{x:Static local:AppColors.Grey}" />

@@ -18,7 +18,7 @@ namespace HackTruda.Droid
         MainLauncher = false,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static readonly string NotificationChannelId = CrossCurrentActivity.Current.AppContext.PackageName;
 
@@ -46,7 +46,7 @@ namespace HackTruda.Droid
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
