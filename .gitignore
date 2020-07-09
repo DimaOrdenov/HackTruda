@@ -412,3 +412,4 @@ Resource.designer.cs
 
 # mono
 mono_crash.*
+/HackTruda.API/secrets.json

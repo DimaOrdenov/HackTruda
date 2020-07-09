@@ -25,7 +25,7 @@ namespace HackTruda.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(options =>
-                options.UseInMemoryDatabase("HackTruda"));
+                options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
 
             services.AddSwaggerGen(c =>
             {

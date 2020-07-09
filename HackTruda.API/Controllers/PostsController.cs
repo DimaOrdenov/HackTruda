@@ -45,8 +45,13 @@ namespace HackTruda.API.Controllers
             return _mapper.Map<PostResponse>(post);
         }
 
+        /// <summary>
+        /// Возвращает посты пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/Posts/users/5
-        [HttpGet("users/{id}")]
+        [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<PostResponse>>> GetUsersPost(int id)
         {
             var user = await _context.Users

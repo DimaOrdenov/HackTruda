@@ -13,6 +13,7 @@ namespace HackTruda.API.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<Post>().ToTable("Post");
         }
 
         public DbSet<HackTruda.API.Models.Post> Post { get; set; }
