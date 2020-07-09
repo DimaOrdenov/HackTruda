@@ -68,6 +68,7 @@
     <Folder Include="ViewModels\Search\" />
     <Folder Include="Views\Notifications\" />
     <Folder Include="ViewModels\Notifications\" />
+    <Folder Include="ViewControls\State\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="secrets.json">

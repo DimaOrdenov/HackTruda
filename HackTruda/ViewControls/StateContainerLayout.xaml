@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BaseLayout xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:local="clr-namespace:HackTruda"
+                         xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                         xmlns:stateContainer="clr-namespace:HackTruda.ViewControls.State"
+                         xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                         xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                         x:Class="HackTruda.ViewControls.StateContainerLayout">
+
+    <viewControls:BaseLayout.Content>
+        <stateContainer:StateContainer x:Name="stateContainer"
+                                       VerticalOptions="FillAndExpand">
+
+            <stateContainer:StateCondition x:Name="pageContentLayout"
+                                           PageState="Default" />
+
+            <stateContainer:StateCondition PageState="None" />
+
+            <stateContainer:StateCondition PageState="Loading" />
+
+            <stateContainer:StateCondition PageState="NoInternet">
+                <Label Text="Нет интернет соединения" />
+            </stateContainer:StateCondition>
+
+            <stateContainer:StateCondition PageState="Timeout">
+                <Label Text="Таймаут" />
+            </stateContainer:StateCondition>
+
+            <stateContainer:StateCondition PageState="NoData">
+                <Label Text="Нет данных" />
+            </stateContainer:StateCondition>
+
+            <stateContainer:StateCondition PageState="AppError">
+                <Label Text="Ошибка" />
+            </stateContainer:StateCondition>
+
+        </stateContainer:StateContainer>
+    </viewControls:BaseLayout.Content>
+
+</viewControls:BaseLayout>
