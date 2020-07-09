@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace HackTruda.API.Models
+﻿namespace HackTruda.DataModels.Requests
 {
-    public class User
+    public class UserRequest
     {
         public int UserId { get; set; }
+
         public byte[] Image { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -18,10 +17,5 @@ namespace HackTruda.API.Models
         /// родная страна
         /// </summary>
         public string Country { get; set; }
-
-        /// <summary>
-        /// посты пользователя
-        /// </summary>
-        public List<Post> Posts { get; set; }
     }
 }

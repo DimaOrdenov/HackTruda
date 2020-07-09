@@ -14,5 +14,7 @@ namespace HackTruda.API.Models
         {
             modelBuilder.Entity<User>().ToTable("User");
         }
+
+        public DbSet<HackTruda.API.Models.Post> Post { get; set; }
     }
 }

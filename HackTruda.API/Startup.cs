@@ -1,3 +1,4 @@
+using AutoMapper;
 using HackTruda.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,7 @@ namespace HackTruda.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+            services.AddAutoMapper(typeof(Startup));
             services.AddSignalR();
             services.AddControllers();
         }

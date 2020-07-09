@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using HackTruda.API.Models;
+using HackTruda.DataModels.Requests;
+using HackTruda.DataModels.Responses;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using HackTruda.API.Models;
 
 namespace HackTruda.API.Controllers
 {
@@ -14,22 +15,24 @@ namespace HackTruda.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly Context _context;
+        private readonly IMapper _mapper;
 
-        public UsersController(Context context)
+        public UsersController(Context context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return new JsonResult(_mapper.Map<IEnumerable<UserResponse>>(await _context.Users.ToListAsync()));
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UserResponse>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -38,16 +41,16 @@ namespace HackTruda.API.Controllers
                 return NotFound();
             }
 
-            return user;
+            return _mapper.Map < UserResponse > (user);
         }
 
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, UserRequest user)
         {
-            if (id != user.ID)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
@@ -77,17 +80,17 @@ namespace HackTruda.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserResponse>> PostUser(UserRequest user)
         {
-            _context.Users.Add(user);
+            _context.Users.Add(_mapper.Map<User>(user));
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.ID }, user);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<UserResponse>> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
@@ -98,12 +101,12 @@ namespace HackTruda.API.Controllers
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return user;
+            return _mapper.Map<UserResponse>(user);
         }
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.ID == id);
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }
