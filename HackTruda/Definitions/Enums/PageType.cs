@@ -4,11 +4,21 @@
     {
         None,
 
+        // Feed
+
         FeedPage,
 
-        LocationsPage,
+        // Messages
 
         MessagesPage,
+
+        // Search
+
+        SearchPage,
+
+        // Notifications
+
+        NotificationsPage,
 
         // Profile
 

@@ -10,10 +10,6 @@ namespace HackTruda.iOS.CustomRenderers
 {
     public class ExtendedNavigationPageRenderer : NavigationRenderer
     {
-        public ExtendedNavigationPageRenderer()
-        {
-        }
-
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);

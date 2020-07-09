@@ -4,6 +4,7 @@
                              xmlns:local="clr-namespace:HackTruda"
                              xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                              x:Class="HackTruda.Views.MainPage"
+                             BarBackgroundColor="{x:Static local:AppColors.White}"
                              SelectedTabColor="{x:Static local:AppColors.Primary}"
                              UnselectedTabColor="{x:Static local:AppColors.Grey}"
                              NavigationPage.HasNavigationBar="False" />

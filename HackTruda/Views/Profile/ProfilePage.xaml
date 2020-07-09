@@ -71,9 +71,11 @@
                                     <FormattedString>
                                         <Span Text="Москва, из " />
                                         <Span Text="России"
-                                              TextColor="{x:Static local:AppColors.Primary}"
-                                              xameff:Commands.Tap="{Binding CountryTapCommand}"
-                                              xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}" />
+                                              TextColor="{x:Static local:AppColors.Primary}">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CountryTapCommand}" />
+                                            </Span.GestureRecognizers>
+                                        </Span>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -84,12 +86,20 @@
 
                     <viewControls:ShadowFrame Margin="0,30,0,0">
                         <Frame CornerRadius="10">
-                            <FlexLayout JustifyContent="SpaceBetween"
-                                        Padding="32,16"
-                                        BackgroundColor="{x:Static local:AppColors.White}">
+                            <Grid BackgroundColor="{x:Static local:AppColors.White}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                                <StackLayout xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                             xameff:Commands.Tap="{Binding OpenSectionCommand}">
+                                <StackLayout Padding="32,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="0">
 
                                     <Label Text="503"
                                            FontSize="20"
@@ -102,8 +112,11 @@
 
                                 </StackLayout>
 
-                                <StackLayout xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                             xameff:Commands.Tap="{Binding OpenSectionCommand}">
+                                <StackLayout Grid.Column="1"
+                                             Padding="32,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="1">
 
                                     <Label Text="200"
                                            FontSize="20"
@@ -116,8 +129,11 @@
 
                                 </StackLayout>
 
-                                <StackLayout xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                             xameff:Commands.Tap="{Binding OpenSectionCommand}">
+                                <StackLayout Grid.Column="2"
+                                             Padding="0,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="2">
 
                                     <Label Text="100"
                                            FontSize="20"
@@ -130,7 +146,7 @@
 
                                 </StackLayout>
 
-                            </FlexLayout>
+                            </Grid>
                         </Frame>
                     </viewControls:ShadowFrame>
 

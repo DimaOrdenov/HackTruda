@@ -5,7 +5,7 @@ using HackTruda.ViewControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(ShadowFrame), typeof(ShadowFrameRender))]
+//[assembly: ExportRenderer(typeof(ShadowFrame), typeof(ShadowFrameRender))]
 namespace HackTruda.Droid.CustomRenderers
 {
     public class ShadowFrameRender : Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer

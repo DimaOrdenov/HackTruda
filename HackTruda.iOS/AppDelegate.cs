@@ -36,14 +36,14 @@ namespace HackTruda.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             // Styles block
-            UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(90, 136, 255);
+            //UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(90, 136, 255);
 
-            UITabBarItem.Appearance.SetTitleTextAttributes(
-                new UITextAttributes
-                {
-                    TextColor = UIColor.FromRGB(90, 136, 255),
-                },
-                UIControlState.Selected);
+            //UITabBarItem.Appearance.SetTitleTextAttributes(
+            //    new UITextAttributes
+            //    {
+            //        TextColor = UIColor.FromRGB(90, 136, 255),
+            //    },
+            //    UIControlState.Selected);
 
             UINavigationBar.Appearance.TintColor = UIColor.Black;
 

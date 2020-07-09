@@ -7,9 +7,16 @@
                 BackgroundColor="{x:Static local:AppColors.Screen}">
 
     <ContentView x:Name="content"
+                 Padding="0,10,0,0"
                  AbsoluteLayout.LayoutFlags="All"
                  AbsoluteLayout.LayoutBounds="0,0,1,1"
                  VerticalOptions="FillAndExpand" />
+
+    <viewControls:ShadowFrame AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional"
+                              AbsoluteLayout.LayoutBounds="0,0,1,-1">
+        <ContentView HeightRequest="10"
+                     BackgroundColor="{x:Static local:AppColors.Screen}" />
+    </viewControls:ShadowFrame>
 
     <viewControls:AppActivityIndicator AbsoluteLayout.LayoutFlags="PositionProportional"
                                        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />

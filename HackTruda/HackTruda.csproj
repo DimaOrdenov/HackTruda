@@ -57,15 +57,17 @@
     <Folder Include="Definitions\Models\" />
     <Folder Include="Views\Feed\" />
     <Folder Include="ViewControls\" />
-    <Folder Include="Views\Locations\" />
     <Folder Include="Views\Messages\" />
     <Folder Include="Views\Profile\" />
     <Folder Include="ViewModels\Feed\" />
-    <Folder Include="ViewModels\Locations\" />
     <Folder Include="ViewModels\Messages\" />
     <Folder Include="ViewModels\Profile\" />
     <Folder Include="BusinessLogic\" />
     <Folder Include="BusinessLogic\Interfaces\" />
+    <Folder Include="Views\Search\" />
+    <Folder Include="ViewModels\Search\" />
+    <Folder Include="Views\Notifications\" />
+    <Folder Include="ViewModels\Notifications\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="secrets.json">

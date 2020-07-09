@@ -13,7 +13,8 @@
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal"
-                     Spacing="20">
+                     Spacing="20"
+                     BackgroundColor="{x:Static local:AppColors.Screen}">
 
             <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
                          xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}"

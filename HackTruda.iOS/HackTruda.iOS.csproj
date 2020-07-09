@@ -75,6 +75,7 @@
     <Compile Include="CustomRenderers\ExtendedListViewRenderer.cs" />
     <Compile Include="CustomRenderers\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="CustomRenderers\BasePageRenderer.cs" />
+    <Compile Include="CustomRenderers\TabbedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -132,12 +133,21 @@
     <BundleResource Include="Resources\ic_home.png" />
     <BundleResource Include="Resources\ic_home%402x.png" />
     <BundleResource Include="Resources\ic_home%403x.png" />
+    <BundleResource Include="Resources\ic_home_active.png" />
+    <BundleResource Include="Resources\ic_home_active%402x.png" />
+    <BundleResource Include="Resources\ic_home_active%403x.png" />
     <BundleResource Include="Resources\ic_user.png" />
     <BundleResource Include="Resources\ic_user%402x.png" />
     <BundleResource Include="Resources\ic_user%403x.png" />
+    <BundleResource Include="Resources\ic_user_active.png" />
+    <BundleResource Include="Resources\ic_user_active%402x.png" />
+    <BundleResource Include="Resources\ic_user_active%403x.png" />
     <BundleResource Include="Resources\ic_mail.png" />
     <BundleResource Include="Resources\ic_mail%402x.png" />
     <BundleResource Include="Resources\ic_mail%403x.png" />
+    <BundleResource Include="Resources\ic_mail_active.png" />
+    <BundleResource Include="Resources\ic_mail_active%402x.png" />
+    <BundleResource Include="Resources\ic_mail_active%403x.png" />
     <BundleResource Include="Resources\ic_map_pin.png" />
     <BundleResource Include="Resources\ic_map_pin%402x.png" />
     <BundleResource Include="Resources\ic_map_pin%403x.png" />
@@ -147,6 +157,18 @@
     <BundleResource Include="Resources\ic_more_vertical.png" />
     <BundleResource Include="Resources\ic_more_vertical%402x.png" />
     <BundleResource Include="Resources\ic_more_vertical%403x.png" />
+    <BundleResource Include="Resources\ic_search.png" />
+    <BundleResource Include="Resources\ic_search%402x.png" />
+    <BundleResource Include="Resources\ic_search%403x.png" />
+    <BundleResource Include="Resources\ic_search_active.png" />
+    <BundleResource Include="Resources\ic_search_active%402x.png" />
+    <BundleResource Include="Resources\ic_search_active%403x.png" />
+    <BundleResource Include="Resources\ic_bell.png" />
+    <BundleResource Include="Resources\ic_bell%402x.png" />
+    <BundleResource Include="Resources\ic_bell%403x.png" />
+    <BundleResource Include="Resources\ic_bell_active.png" />
+    <BundleResource Include="Resources\ic_bell_active%402x.png" />
+    <BundleResource Include="Resources\ic_bell_active%403x.png" />
     <BundleResource Include="Resources\ic_settings.svg" />
     <BundleResource Include="Resources\ic_camera.svg" />
     <BundleResource Include="Resources\ic_idea.svg" />
