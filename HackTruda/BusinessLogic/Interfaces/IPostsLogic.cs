@@ -3,7 +3,7 @@ using HackTruda.DataModels.Responses;
 
 namespace HackTruda.BusinessLogic.Interfaces
 {
-    public interface IUsersLogic : IBaseLogic<UserResponse>
+    public interface IPostsLogic : IBaseLogic<PostResponse>
     {
     }
 }

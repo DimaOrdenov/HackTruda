@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.Definitions.Enums;
 using HackTruda.Definitions.Exceptions;
 using HackTruda.Services.Interfaces;
@@ -14,7 +15,7 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
-    public abstract class BaseLogic<T>
+    public abstract class BaseLogic<T> : IBaseLogic<T>
     {
         private readonly IRestClient _client;
         private readonly UserContext _userContext;
@@ -67,45 +68,34 @@ namespace HackTruda.BusinessLogic
         protected abstract string Route { get; }
 
         public virtual Task<IEnumerable<T>> Get(CancellationToken token) =>
-            ExecuteAsync<IEnumerable<T>>(new RestRequest(Method.GET), token);
+            ExecuteAsync<IEnumerable<T>>(new RestRequest(Route, Method.GET), token);
 
         public virtual Task<T> Get(int id, CancellationToken token) =>
-            ExecuteAsync<T>(new RestRequest(Method.GET).AddParameter("id", id.ToString()), token);
+            ExecuteAsync<T>(
+                new RestRequest(Route, Method.GET)
+                    .AddParameter("id", id),
+                token);
 
-        //public virtual Task<bool> Post(CancellationToken token) =>
-        //    ExecuteAsync(new RestRequest(Method.POST).AddJsonBody(), token);
+        public virtual Task<bool> Post<TRequest>(TRequest requestModel, CancellationToken token) =>
+            ExecuteAsync(
+                new RestRequest(Route, Method.POST)
+                    .AddJsonBody(requestModel),
+                token);
 
-        //public virtual Task<bool> Put(int id, CancellationToken token) =>
-        //    ExecuteAsync(new RestRequest(Method.PUT).AddJsonBody(), token);
+        public virtual Task<bool> Put<TRequest>(TRequest requestModel, int id, CancellationToken token) =>
+            ExecuteAsync(
+                new RestRequest(Route, Method.PUT)
+                    .AddParameter("id", id)
+                    .AddJsonBody(requestModel),
+                token);
 
-        //public virtual Task<bool> Delete(int id, CancellationToken token) =>
-        //    ExecuteAsync(new RestRequest(Method.DELETE).AddJsonBody(), token);
+        public virtual Task<bool> Delete(int id, CancellationToken token) =>
+            ExecuteAsync(
+                new RestRequest(Route, Method.DELETE)
+                    .AddParameter("id", id),
+                token);
 
-        public virtual void UnauthorizedEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.Unauthorized, response.Content);
-
-        public virtual void TooManyRequestsEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.TooManyRequests, response.Content);
-
-        private void NotFoundEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.NotFound, response.Content);
-
-        public virtual void NoContentEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.NoContent, response.Content);
-
-        public virtual void BadRequestEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.BadRequest, response.Content);
-
-        public virtual void DefaultHttpErrorEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.Unknown, response.Content);
-
-        public virtual void TimeoutRequestEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.Timeout, response.Content);
-
-        public virtual void NetworkUnreachableEventHandler(IRestResponse response) =>
-            throw new BusinessLogicException(LogicExceptionType.NoInternet, response.Content);
-
-        public async Task<bool> ExecuteAsync(RestRequest request, CancellationToken token)
+        protected async Task<bool> ExecuteAsync(IRestRequest request, CancellationToken token)
         {
             //AddDefaultHeader(request);
             request.Timeout = Timeout;
@@ -130,7 +120,7 @@ namespace HackTruda.BusinessLogic
             return response.IsSuccessful;
         }
 
-        public async Task<TOut> ExecuteAsync<TOut>(IRestRequest request, CancellationToken token)
+        protected async Task<TOut> ExecuteAsync<TOut>(IRestRequest request, CancellationToken token)
         {
             //AddDefaultHeader(request);
             request.Timeout = Timeout;
@@ -141,7 +131,7 @@ namespace HackTruda.BusinessLogic
             request.AdvancedResponseWriter = (input, resp) => resp.RawBytes = ReadAsBytes(input);
 #endif
 
-            var response = await _client.ExecuteAsync<T>(request, token);
+            var response = await _client.ExecuteAsync(request, token);
 
 #if DEBUG
             AfterRequest?.Invoke(request, response, guid.ToString());
@@ -154,6 +144,30 @@ namespace HackTruda.BusinessLogic
 
             return JsonConvert.DeserializeObject<TOut>(response.Content);
         }
+
+        private void UnauthorizedEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.Unauthorized, response.Content);
+
+        private void TooManyRequestsEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.TooManyRequests, response.Content);
+
+        private void NotFoundEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.NotFound, response.Content);
+
+        private void NoContentEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.NoContent, response.Content);
+
+        private void BadRequestEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.BadRequest, response.Content);
+
+        private void DefaultHttpErrorEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.Unknown, response.Content);
+
+        private void TimeoutRequestEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.Timeout, response.Content);
+
+        private void NetworkUnreachableEventHandler(IRestResponse response) =>
+            throw new BusinessLogicException(LogicExceptionType.NoInternet, response.Content);
 
         private void AfterRequestEventHandler(IRestRequest request, IRestResponse response, string message) =>
             _debuggerService?.Log(

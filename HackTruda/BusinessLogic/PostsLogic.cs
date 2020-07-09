@@ -6,13 +6,13 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
-    public class UsersLogic : BaseLogic<UserResponse>, IUsersLogic
+    public class PostsLogic : BaseLogic<PostResponse>, IPostsLogic
     {
-        public UsersLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)
+        public PostsLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)
             : base(client, context, debuggerService)
         {
         }
 
-        protected override string Route => "users";
+        protected override string Route => "posts";
     }
 }

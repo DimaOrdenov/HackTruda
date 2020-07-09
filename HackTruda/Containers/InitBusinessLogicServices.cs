@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using HackTruda.BusinessLogic;
+using HackTruda.BusinessLogic.Interfaces;
 using RestSharp;
 
 namespace HackTruda.Containers
@@ -16,9 +17,13 @@ namespace HackTruda.Containers
                     .AsSelf()
                     .SingleInstance();
 
-            //_builder.RegisterType<UsersService>()
-            //        .As<IUsersService>()
-            //        .SingleInstance();
+            _builder.RegisterType<UsersLogic>()
+                    .As<IUsersLogic>()
+                    .SingleInstance();
+
+            _builder.RegisterType<PostsLogic>()
+                    .As<IPostsLogic>()
+                    .SingleInstance();
         }
     }
 }

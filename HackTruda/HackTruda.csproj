@@ -75,4 +75,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HackTruda.DataModels\HackTruda.DataModels.csproj" />
+  </ItemGroup>
 </Project>
