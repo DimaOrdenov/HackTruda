@@ -57,7 +57,7 @@
 
                         <Label Text="Иванов Иван Иванович"
                                FontSize="20"
-                               FontAttributes="Bold" />
+                               FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
 
                         <Label Text="Живем один раз, поехали!"
                                FontSize="16"
@@ -149,26 +149,48 @@
                     </Frame>
                 </viewControls:ShadowFrame>
 
-                <viewControls:ShadowFrame ShadowOffset="0,6"
-                                          ShadowColor="#0D645757"
-                                          Margin="0,26,0,0">
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,26,0,0"
+                             Spacing="24">
 
-                    <Frame CornerRadius="28"
-                           HorizontalOptions="Start"
-                           BorderColor="{x:Static local:AppColors.Primary}"
-                           BackgroundColor="{x:Static local:AppColors.Screen}">
+                    <viewControls:ShadowFrame ShadowOffset="0,6"
+                                              ShadowColor="#0D645757">
 
-                        <ContentView Padding="32,14"
-                                     xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
-                            <svg:SvgCachedImage x:Name="icIdea"
-                                                Source="{x:Static local:AppSvgImages.IcIdea}"
-                                                WidthRequest="28"
-                                                HeightRequest="28" />
-                        </ContentView>
+                        <Frame CornerRadius="28"
+                               BorderColor="{x:Static local:AppColors.Primary}"
+                               BackgroundColor="{x:Static local:AppColors.Screen}">
 
-                    </Frame>
+                            <ContentView Padding="32,14"
+                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                <svg:SvgCachedImage x:Name="icIdea"
+                                                    Source="{x:Static local:AppSvgImages.IcIdea}"
+                                                    WidthRequest="28"
+                                                    HeightRequest="28" />
+                            </ContentView>
 
-                </viewControls:ShadowFrame>
+                        </Frame>
+
+                    </viewControls:ShadowFrame>
+
+                    <viewControls:ShadowFrame ShadowOffset="0,6"
+                                              ShadowColor="#0D645757">
+
+                        <Frame CornerRadius="28"
+                               BorderColor="{x:Static local:AppColors.Primary}"
+                               BackgroundColor="{x:Static local:AppColors.Screen}">
+
+                            <ContentView Padding="32,14"
+                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                <Label Text="Избранное"
+                                       TextColor="{x:Static local:AppColors.White}"
+                                       FontSize="18" />
+                            </ContentView>
+
+                        </Frame>
+
+                    </viewControls:ShadowFrame>
+
+                </StackLayout>
 
                 <StackLayout Margin="0,30,0,0"
                              Spacing="24">

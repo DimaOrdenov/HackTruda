@@ -30,6 +30,8 @@ namespace HackTruda.ViewModels.Profile
             IUsersLogic usersLogic)
             : base(navigationService, dialogService, debuggerService)
         {
+            State = PageStateType.Default;
+
             _usersLogic = usersLogic;
 
             ChooseAvatarCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Выбираю фото", "Ок"));
@@ -70,27 +72,27 @@ namespace HackTruda.ViewModels.Profile
             };
         }
 
-        public override async Task OnAppearing()
-        {
-            if (PageDidAppear)
-            {
-                return;
-            }
+        //public override async Task OnAppearing()
+        //{
+        //    if (PageDidAppear)
+        //    {
+        //        return;
+        //    }
 
-            State = PageStateType.Loading;
+        //    State = PageStateType.Loading;
 
-            IEnumerable<UserResponse> users = null;
+        //    IEnumerable<UserResponse> users = null;
 
-            await ExceptionHandler.PerformCatchableTask(
-                new ViewModelPerformableAction(
-                    async () =>
-                    {
-                        users = await _usersLogic.Get(CancellationToken);
-                    }));
+        //    await ExceptionHandler.PerformCatchableTask(
+        //        new ViewModelPerformableAction(
+        //            async () =>
+        //            {
+        //                users = await _usersLogic.Get(CancellationToken);
+        //            }));
 
-            State = PageStateType.Default;
+        //    State = PageStateType.Default;
 
-            await base.OnAppearing();
-        }
+        //    await base.OnAppearing();
+        //}
     }
 }

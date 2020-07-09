@@ -176,6 +176,11 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Nunito-Bold.ttf" />
+    <AndroidAsset Include="Assets\Nunito-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\Nunito-Regular.ttf" />
+    <AndroidAsset Include="Assets\Nunito-ExtraBold.ttf" />
+
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
