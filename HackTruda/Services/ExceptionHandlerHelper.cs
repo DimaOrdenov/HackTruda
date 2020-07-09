@@ -21,13 +21,13 @@ namespace HackTruda.Services
             _navigationExtensions = navigationExtensions;
         }
 
-        internal void HandleLogicException(PageViewModel pageVm, LogicException logicException, bool changePageState, bool showSnackbar)
+        internal void HandleLogicException(PageViewModel pageVm, BusinessLogicException logicException, bool changePageState, bool showSnackbar)
         {
             TryToChangePageState(pageVm, logicException, changePageState);
             //TryToShowSnackbar(logicException, showSnackbar);
         }
 
-        private void TryToChangePageState(PageViewModel pageVm, LogicException logicException, bool changePageState)
+        private void TryToChangePageState(PageViewModel pageVm, BusinessLogicException logicException, bool changePageState)
         {
             PageStateType pageState;
 

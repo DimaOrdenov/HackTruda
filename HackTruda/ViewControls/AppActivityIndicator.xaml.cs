@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using HackTruda.ViewModels;
+using Xamarin.Forms;
 
 namespace HackTruda.ViewControls
 {
@@ -7,13 +8,15 @@ namespace HackTruda.ViewControls
         public AppActivityIndicator()
         {
             InitializeComponent();
+
+            SetBinding(IsVisibleProperty, new Binding(nameof(PageViewModel.IsLoading)));
         }
 
         public static readonly BindableProperty IndicatorColorProperty = BindableProperty.Create(
             nameof(IndicatorColor),
             typeof(Color),
             typeof(AppActivityIndicator),
-            ActivityIndicator.ColorProperty.DefaultValue,
+            AppColors.Primary,
             propertyChanged: (sender, oldValue, newValue) =>
             {
                 AppActivityIndicator view = (AppActivityIndicator)sender;

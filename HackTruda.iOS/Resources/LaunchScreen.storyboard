@@ -39,7 +39,7 @@
                             <imageView userInteractionEnabled="NO"
                                        contentMode="scaleToFill"
                                        misplaced="YES"
-                                       image="Icon-60.png"
+                                       image="xamarin_logo.png"
                                        translatesAutoresizingMaskIntoConstraints="NO"
                                        id="23">
                                 <rect key="frame"
@@ -87,7 +87,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60.png"
+        <image name="xamarin_logo.png"
                width="180"
                height="180" />
     </resources>

@@ -1,5 +1,4 @@
-﻿using System;
-namespace HackTruda.Definitions.Enums
+﻿namespace HackTruda.Definitions.Enums
 {
     public enum PageType
     {
@@ -11,6 +10,10 @@ namespace HackTruda.Definitions.Enums
 
         MessagesPage,
 
+        // Profile
+
         ProfilePage,
+
+        ProfileSettingsPage,
     }
 }

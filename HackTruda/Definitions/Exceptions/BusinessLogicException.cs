@@ -3,28 +3,28 @@ using HackTruda.Definitions.Enums;
 
 namespace HackTruda.Definitions.Exceptions
 {
-    public class LogicException : TypedException
+    public class BusinessLogicException : TypedException
     {
-        public LogicException()
+        public BusinessLogicException()
         {
         }
 
-        public LogicException(LogicExceptionType type)
+        public BusinessLogicException(LogicExceptionType type)
             : this(type, null, null)
         {
         }
 
-        public LogicException(LogicExceptionType type, Exception exception)
+        public BusinessLogicException(LogicExceptionType type, Exception exception)
             : this(type, exception, null)
         {
         }
 
-        public LogicException(LogicExceptionType type, string message)
+        public BusinessLogicException(LogicExceptionType type, string message)
             : this(type, null, message)
         {
         }
 
-        public LogicException(LogicExceptionType type, Exception exception, string message)
+        public BusinessLogicException(LogicExceptionType type, Exception exception, string message)
             : base(type, exception, message) =>
             Type = type;
 

@@ -11,6 +11,6 @@ namespace HackTruda.Definitions.PageStacks
             PageKey = pageKey;
         }
 
-        public PageType PageKey { get; set; }
+        public PageType PageKey { get; }
     }
 }

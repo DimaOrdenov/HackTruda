@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:self="clr-namespace:HackTruda.Views.Profile"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.Views.Profile.ProfileSettingsItemSwitchView">
+
+    <viewControls:ShadowFrame>
+        <Frame CornerRadius="10"
+               BackgroundColor="{x:Static local:AppColors.White60}">
+            <Grid Padding="24,16"
+                  xameff:Commands.Tap="{Binding TapCommand}"
+                  xameff:Commands.TapParameter="{Binding .}"
+                  xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding Title}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" />
+
+                <viewControls:BaseSwitch Grid.Column="1"
+                                         IsToggled="{Binding IsToggled}"
+                                         VerticalOptions="Center"
+                                         Scale="0.8"
+                                         OnColor="{x:Static local:AppColors.Primary}" />
+
+            </Grid>
+        </Frame>
+    </viewControls:ShadowFrame>
+
+</ContentView>

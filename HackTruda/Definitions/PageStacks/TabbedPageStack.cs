@@ -12,7 +12,7 @@ namespace HackTruda.Definitions.PageStacks
             Type tabPageType,
             Type tabViewModelType,
             IList<PageType> childrenPageKeys,
-            IDictionary<PageType, string> childrenPageTitles)
+            IDictionary<PageType, string> childrenPageTitles = null)
             : base(tabPageType, tabViewModelType)
         {
             if (childrenPageKeys.Count != childrenPageTitles.Count)
@@ -25,11 +25,11 @@ namespace HackTruda.Definitions.PageStacks
             ChildrenPageTitles = childrenPageTitles;
         }
 
-        public TabbedPageType TabPageKey { get; set; }
+        public TabbedPageType TabPageKey { get; }
 
-        public IList<PageType> ChildrenPageKeys { get; set; }
+        public IList<PageType> ChildrenPageKeys { get; }
 
-        public IDictionary<PageType, string> ChildrenPageTitles { get; set; }
+        public IDictionary<PageType, string> ChildrenPageTitles { get; }
 
         public IDictionary<PageType, FileImageSource> ChildrenPageIcons { get; set; }
     }

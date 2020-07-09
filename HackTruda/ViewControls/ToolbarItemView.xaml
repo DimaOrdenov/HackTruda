@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.ViewControls.ToolbarItemView"
+             xameff:Commands.Tap="{Binding Command}"
+             xameff:Commands.TapParameter="{Binding CommandParameter}"
+             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+
+    <ffimage:CachedImage x:Name="image"
+                         Source="{Binding IconImageSource}"
+                         WidthRequest="28"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center" />
+
+</ContentView>

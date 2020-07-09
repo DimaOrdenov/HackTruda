@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FFImageLoading.Svg.Forms;
 using HackTruda.Definitions.Enums;
 using HackTruda.Services.Interfaces;
 using Xamarin.Forms;
@@ -17,8 +20,8 @@ namespace HackTruda.ViewModels
         private ICommand _pageStateCommand;
         private string _pageTitle;
         //private bool _hasNavigationBar = true;
-        //private bool _hasNavigationBarBackButton;
-        //private ObservableCollection<BaseToolbarItem> _toolbarItems = new ObservableCollection<BaseToolbarItem>();
+        private bool _hasNavigationBarBackButton;
+        private ObservableCollection<ToolbarItem> _toolbarItems;
 
         private readonly CancellationTokenSource _networkTokenSource = new CancellationTokenSource();
 
@@ -34,20 +37,7 @@ namespace HackTruda.ViewModels
             DialogService = dialogService;
             DebuggerService = debuggerService;
 
-            NavigateBackCommand = new Command(
-                async () =>
-                {
-                    if (!NavigateBackCommand.CanExecute(null))
-                    {
-                        return;
-                    }
-
-                    State = PageStateType.Loading;
-
-                    await NavigationService.NavigateBackAsync();
-
-                    State = PageStateType.Default;
-                });
+            NavigateBackCommand = BuildPageVmCommand(() => NavigationService.NavigateBackAsync());
 
             PageStateCommand = new Command(
                 async () =>
@@ -60,7 +50,6 @@ namespace HackTruda.ViewModels
                     PageDidAppear = false;
 
                     await OnAppearing();
-
                 },
                 CommandCanExecute);
         }
@@ -139,27 +128,17 @@ namespace HackTruda.ViewModels
         //    }
         //}
 
-        //public bool HasNavigationBarBackButton
-        //{
-        //    get => _hasNavigationBarBackButton;
-        //    set
-        //    {
-        //        _hasNavigationBarBackButton = value;
+        public bool HasNavigationBarBackButton
+        {
+            get => _hasNavigationBarBackButton;
+            set => SetProperty(ref _hasNavigationBarBackButton, value);
+        }
 
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //public ObservableCollection<BaseToolbarItem> ToolbarItems
-        //{
-        //    get => _toolbarItems;
-        //    set
-        //    {
-        //        _toolbarItems = value;
-
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public ObservableCollection<ToolbarItem> ToolbarItems
+        {
+            get => _toolbarItems;
+            set => SetProperty(ref _toolbarItems, value);
+        }
 
         public CancellationToken CancellationToken => _networkTokenSource?.Token ?? CancellationToken.None;
 
@@ -199,6 +178,62 @@ namespace HackTruda.ViewModels
             GC.SuppressFinalize(this);
 
             return Task.Run(() => { });
+        }
+
+        protected ICommand BuildPageVmCommand(Func<Task> action)
+        {
+            ICommand command = null;
+
+            if (action == null)
+            {
+                return command;
+            }
+
+            command = new Command(
+                async () =>
+                {
+                    if (!command.CanExecute(null))
+                    {
+                        return;
+                    }
+
+                    State = PageStateType.MinorLoading;
+
+                    await action();
+
+                    State = PageStateType.Default;
+                },
+                CommandCanExecute);
+
+            return command;
+        }
+
+        protected ICommand BuildPageVmCommand<T>(Func<T, Task> action)
+        {
+            ICommand command = null;
+
+            if (action == null)
+            {
+                return command;
+            }
+
+            command = new Command<T>(
+                async (item) =>
+                {
+                    if (!command.CanExecute(item))
+                    {
+                        return;
+                    }
+
+                    State = PageStateType.MinorLoading;
+
+                    await action(item);
+
+                    State = PageStateType.Default;
+                },
+                item => CommandCanExecute());
+
+            return command;
         }
     }
 }

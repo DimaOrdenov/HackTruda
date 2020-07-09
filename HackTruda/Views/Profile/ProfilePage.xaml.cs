@@ -1,4 +1,5 @@
-﻿using HackTruda.ViewControls;
+﻿using HackTruda.Extensions;
+using HackTruda.ViewControls;
 
 namespace HackTruda.Views.Profile
 {
@@ -7,6 +8,8 @@ namespace HackTruda.Views.Profile
         public ProfilePage()
         {
             InitializeComponent();
+
+            icIdea.SetTintColor(AppColors.Primary);
         }
     }
 }

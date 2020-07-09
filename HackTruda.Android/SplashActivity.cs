@@ -20,8 +20,6 @@ namespace HackTruda.Droid
         {
             base.OnCreate(bundle);
 
-            await Task.Delay(1500);
-
             var intent = new Intent(this, typeof(MainActivity));
 
             StartActivity(intent);

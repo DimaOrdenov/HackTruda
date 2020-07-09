@@ -73,7 +73,7 @@ namespace HackTruda.Services
 
             if (page?.BindingContext is PageViewModel viewModel)
             {
-                //viewModel.HasNavigationBarBackButton = false;
+                viewModel.HasNavigationBarBackButton = false;
             }
 
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
@@ -92,7 +92,7 @@ namespace HackTruda.Services
 
             if (page?.BindingContext is PageViewModel viewModel)
             {
-                //viewModel.HasNavigationBarBackButton = false;
+                viewModel.HasNavigationBarBackButton = false;
             }
 
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
@@ -111,7 +111,7 @@ namespace HackTruda.Services
 
             if (pageToNavigate?.BindingContext is PageViewModel viewModel)
             {
-                //viewModel.HasNavigationBarBackButton = true;
+                viewModel.HasNavigationBarBackButton = true;
             }
 
             await (aboveTabs ?

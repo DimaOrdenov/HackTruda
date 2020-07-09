@@ -3,14 +3,14 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewControls
 {
-    public class ExtendedNavigationPage : NavigationPage
+    public class ExtendedNavigationPage : Xamarin.Forms.NavigationPage
     {
         public ExtendedNavigationPage()
         {
             Init();
         }
 
-        public ExtendedNavigationPage(Page rootPage)
+        public ExtendedNavigationPage(Xamarin.Forms.Page rootPage)
             : base(rootPage)
         {
             Init();

@@ -44,7 +44,7 @@ namespace HackTruda.Containers
                             return Task.FromResult(1);
                         });
 
-                    pageVm.ExceptionHandler.AddExceptionTypeHandler<LogicException>(
+                    pageVm.ExceptionHandler.AddExceptionTypeHandler<BusinessLogicException>(
                         (ex, action) =>
                         {
                             ViewModelPerformableAction viewModelPerformableAction = action as ViewModelPerformableAction;
@@ -53,7 +53,7 @@ namespace HackTruda.Containers
                             {
                                 Container.Resolve<ExceptionHandlerHelper>().HandleLogicException(
                                     pageVm,
-                                    ex as LogicException,
+                                    ex as BusinessLogicException,
                                     viewModelPerformableAction.ChangePageState,
                                     viewModelPerformableAction.ShowSnackbar);
                             }

@@ -1,10 +1,6 @@
 ﻿using HackTruda.ViewControls;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using SkiaSharp.Views;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using System;
 
 namespace HackTruda.Views.Feed
 {

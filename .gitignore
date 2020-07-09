@@ -404,7 +404,7 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-## Xamarin stuff
+# Xamarin stuff
 Components
 [Pp]ackages
 *.userprefs
@@ -412,3 +412,6 @@ Resource.designer.cs
 
 # mono
 mono_crash.*
+
+# secrets
+secrets.json

@@ -33,6 +33,12 @@ namespace HackTruda.Containers
                     typeof(Views.Profile.ProfilePage),
                     typeof(ViewModels.Profile.ProfileViewModel)));
 
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.ProfileSettingsPage,
+                    typeof(Views.Profile.ProfileSettingsPage),
+                    typeof(ViewModels.Profile.ProfileSettingsViewModel)));
+
             _pageBuilder.ConfigureTabbed(
                 new TabbedPageStack(
                     TabbedPageType.MainPage,
@@ -47,18 +53,18 @@ namespace HackTruda.Containers
                     },
                     new Dictionary<PageType, string>
                     {
-                        { PageType.FeedPage, "Лента" },
-                        { PageType.LocationsPage, "Локации" },
-                        { PageType.MessagesPage, "Сообщения" },
-                        { PageType.ProfilePage, "Профиль" },
+                        { PageType.FeedPage, null },
+                        { PageType.LocationsPage, null },
+                        { PageType.MessagesPage, null },
+                        { PageType.ProfilePage, null },
                     })
                 {
                     ChildrenPageIcons = new Dictionary<PageType, FileImageSource>
                     {
-                        { PageType.FeedPage, AppImages.IcIcon as FileImageSource },
-                        { PageType.LocationsPage, AppImages.IcIcon as FileImageSource },
-                        { PageType.MessagesPage, AppImages.IcIcon as FileImageSource },
-                        { PageType.ProfilePage, AppImages.IcIcon as FileImageSource },
+                        { PageType.FeedPage, AppImages.IcHome as FileImageSource },
+                        { PageType.LocationsPage, AppImages.IcMapPin as FileImageSource },
+                        { PageType.MessagesPage, AppImages.IcMail as FileImageSource },
+                        { PageType.ProfilePage, AppImages.IcUser as FileImageSource },
                     },
                 });
         }

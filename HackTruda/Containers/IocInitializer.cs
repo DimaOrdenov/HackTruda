@@ -35,7 +35,7 @@ namespace HackTruda.Containers
                     platformPushNotificationServiceImplementation);
 
                 InitServices();
-                InitBLServices();
+                InitBusinessLogicServices();
                 InitViewModels();
                 InitHubs();
 

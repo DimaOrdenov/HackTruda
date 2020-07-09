@@ -14,7 +14,7 @@ namespace HackTruda.ViewControls
             nameof(ShadowBlur),
             typeof(float),
             typeof(Frame),
-            defaultValue: 8f);
+            defaultValue: 75f);
 
         public static readonly BindableProperty ShadowSpreadProperty = BindableProperty.Create(
             nameof(ShadowSpread),
@@ -26,13 +26,13 @@ namespace HackTruda.ViewControls
             nameof(ShadowColor),
             typeof(Color),
             typeof(Frame),
-            Color.Gray);
+            Color.FromHex("#12939393"));
 
         public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create(
             nameof(ShadowOffset),
             typeof(Size),
             typeof(Frame),
-            defaultValue: new Size(0f, 2f));
+            defaultValue: new Size(0f, 10f));
 
         public static readonly BindableProperty ShadowOpacityProperty = BindableProperty.Create(
             nameof(ShadowOpacity),

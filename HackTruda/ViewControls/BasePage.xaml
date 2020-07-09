@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.ViewControls.BasePage"
+             IsBusy="{Binding IsBusy}"
+             NavigationPage.BackButtonTitle=""
+             NavigationPage.HasBackButton="False"
+             x:Name="this">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Spacing="20">
+
+            <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}"
+                         IsVisible="{Binding HasNavigationBarBackButton}">
+                <svg:SvgCachedImage x:Name="icArrowBack"
+                                    Source="{x:Static local:AppSvgImages.IcArrowLeft}"
+                                    WidthRequest="28"
+                                    HeightRequest="28" />
+            </ContentView>
+
+            <Label Text="{Binding Title, Source={x:Reference this}}"
+                   FontAttributes="Bold"
+                   FontSize="28"
+                   VerticalTextAlignment="Center" />
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="EndAndExpand"
+                         BindableLayout.ItemsSource="{Binding ToolbarItems}">
+
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness"
+                                Android="0,0,16,0" />
+                </StackLayout.Padding>
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <viewControls:ToolbarItemView BindingContext="{Binding .}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+</ContentPage>

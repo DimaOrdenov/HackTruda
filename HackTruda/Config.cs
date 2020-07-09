@@ -2,6 +2,7 @@
 {
     public static class Config
     {
-        public static string BaseApiUrl => "";
+        public static string BaseApiUrl =>
+            Helpers.Secrets.BaseApiUrl;
     }
 }

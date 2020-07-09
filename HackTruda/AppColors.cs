@@ -73,5 +73,9 @@ namespace HackTruda
         public static Color Screen40 => Color.FromHex("#66FAFAFA");
 
         public static Color Screen20 => Color.FromHex("#33FAFAFA");
+
+        public static Color RippleEffectWhite => Color.FromHex("#52FFFFFF");
+
+        public static Color RippleEffectBlack => Color.FromHex("#52000000");
     }
 }

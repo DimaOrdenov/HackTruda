@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:self="clr-namespace:HackTruda.Views.Profile"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       x:Class="HackTruda.Views.Profile.ProfileSettingsPage"
+                       Title="Настройки">
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+
+            <ScrollView>
+                <StackLayout Padding="24,30,24,40"
+                             Spacing="30"
+                             BindableLayout.ItemsSource="{Binding Settings}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <Label Text="{Binding Header}"
+                                       FontAttributes="Bold"
+                                       FontSize="18" />
+
+                                <StackLayout Spacing="20"
+                                             Margin="0,24,0,0"
+                                             BindableLayout.ItemsSource="{Binding .}">
+
+                                    <BindableLayout.ItemTemplateSelector>
+                                        <self:ProfileSettingsItemTemplateSelector />
+                                    </BindableLayout.ItemTemplateSelector>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+                </StackLayout>
+            </ScrollView>
+
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

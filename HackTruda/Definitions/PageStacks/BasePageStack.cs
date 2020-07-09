@@ -10,8 +10,8 @@ namespace HackTruda.Definitions.PageStacks
             ViewModelClassType = viewModelClassType;
         }
 
-        public Type PageClassType { get; set; }
+        public Type PageClassType { get; }
 
-        public Type ViewModelClassType { get; set; }
+        public Type ViewModelClassType { get; }
     }
 }

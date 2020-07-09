@@ -9,7 +9,7 @@ namespace HackTruda.ViewControls
             nameof(MaxHeightRequest),
             typeof(double),
             typeof(BaseEditor),
-            propertyChanged: (sender, newValue, oldValue) => ((BaseEditor)sender).InvalidateMeasure());
+            propertyChanged: (sender, oldValue, newValue) => ((BaseEditor)sender).InvalidateMeasure());
 
         public double MaxHeightRequest
         {

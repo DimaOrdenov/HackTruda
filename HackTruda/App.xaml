@@ -4,12 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:local="clr-namespace:HackTruda"
              x:Class="HackTruda.App">
 
     <Application.Resources>
         <ResourceDictionary>
-            <Style TargetType="Frame">
+            <Style TargetType="Frame"
+                   ApplyToDerivedTypes="True">
                 <Setter Property="IsClippedToBounds"
                         Value="True" />
                 <Setter Property="HasShadow"
@@ -21,19 +22,22 @@
                 <Setter Property="BackgroundColor"
                         Value="Transparent" />
             </Style>
-            <Style TargetType="viewControls:ShadowFrame">
-                <Setter Property="Padding"
-                        Value="0" />
-            </Style>
-            <Style TargetType="Grid">
+            <Style TargetType="Grid"
+                   ApplyToDerivedTypes="True">
                 <Setter Property="ColumnSpacing"
                         Value="0" />
                 <Setter Property="RowSpacing"
                         Value="0" />
             </Style>
-            <Style TargetType="StackLayout">
+            <Style TargetType="StackLayout"
+                   ApplyToDerivedTypes="True">
                 <Setter Property="Spacing"
                         Value="0" />
+            </Style>
+            <Style TargetType="Label"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="TextColor"
+                        Value="{x:Static local:AppColors.Dark}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

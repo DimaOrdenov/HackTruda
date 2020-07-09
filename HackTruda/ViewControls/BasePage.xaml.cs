@@ -1,4 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
+using HackTruda.Extensions;
 using HackTruda.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -6,20 +10,48 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace HackTruda.ViewControls
 {
-    public abstract class BasePage : ContentPage
+    public partial class BasePage : ContentPage
     {
         public BasePage()
         {
-            SetBinding(IsBusyProperty, new Binding(nameof(PageViewModel.IsBusy)));
+            InitializeComponent();
+
+            icArrowBack.SetStrokeTintColor(Color.Black);
 
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetLargeTitleDisplay(LargeTitleDisplayMode.Never);
 
             SetPaddingForIOS();
 
-            Xamarin.Forms.NavigationPage.SetBackButtonTitle(this, string.Empty);
-            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            //SetBinding(BindableToolbarItemsProperty, new Binding(nameof(PageViewModel.ToolbarItems)));
         }
+
+        //public static readonly BindableProperty BindableToolbarItemsProperty = BindableProperty.Create(
+        //    nameof(BindableToolbarItems),
+        //    typeof(ObservableCollection<ToolbarItem>),
+        //    typeof(BasePage),
+        //    propertyChanged: (sender, oldValue, newValue) =>
+        //    {
+        //        BasePage view = (BasePage)sender;
+
+        //        view.ToolbarItems.Clear();
+
+        //        if (!(newValue is IList<ToolbarItem> newToolbarItems))
+        //        {
+        //            return;
+        //        }
+
+        //        foreach (ToolbarItem toolbarItem in newToolbarItems)
+        //        {
+        //            view.ToolbarItems.Add(toolbarItem);
+        //        }
+        //    });
+
+        //public ObservableCollection<ToolbarItem> BindableToolbarItems
+        //{
+        //    get => (ObservableCollection<ToolbarItem>)GetValue(BindableToolbarItemsProperty);
+        //    set => SetValue(BindableToolbarItemsProperty, value);
+        //}
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
