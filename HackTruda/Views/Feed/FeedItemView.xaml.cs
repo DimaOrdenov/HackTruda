@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FFImageLoading.Forms;
+using HackTruda.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,15 @@ namespace HackTruda.Views.Feed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FeedItemView : ContentView
     {
+
         public FeedItemView()
         {
             InitializeComponent();
+            imageMore.Source = AppImages.IcMoreVertical;
+           
+            imageMore.SetTintColor(Color.Black);
         }
+
+       
     }
 }
