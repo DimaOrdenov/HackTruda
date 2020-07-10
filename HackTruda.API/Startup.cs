@@ -1,5 +1,6 @@
 using AutoMapper;
 using HackTruda.API.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,7 @@ namespace HackTruda.API
                     .AddNewtonsoftJson(options =>
                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+
             services
                 .AddAuthentication(options =>
                 {
@@ -52,12 +54,35 @@ namespace HackTruda.API
                 .AddOAuth("vk", options =>
                 {
                     options.SaveTokens = true;
+
                     options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
                     options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                    //options.UserInformationEndpoint = "https://api.vk.com/method/users.get.json";
+
                     options.ClientId = "7535503";
                     options.ClientSecret = "Y9hC57OxQVRj9ftUZVcJ";
-                    options.CallbackPath = new PathString("/signin-vkontakte");
+                    options.CallbackPath = new PathString("/hacktruda");
                     options.Scope.Add("email");
+
+                    options.Events.OnAccessDenied = async (c) =>
+                    {
+                    };
+
+                    options.Events.OnCreatingTicket = async (c) =>
+                    {
+                    };
+
+                    options.Events.OnRedirectToAuthorizationEndpoint = async (c) =>
+                    {
+                    };
+
+                    options.Events.OnRemoteFailure = async (c) =>
+                    {
+                    };
+
+                    options.Events.OnTicketReceived = async (c) =>
+                    {
+                    };
                 })
                 .AddCookie();
         }
@@ -88,6 +113,7 @@ namespace HackTruda.API
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/chat");
             });
+
         }
     }
 }
