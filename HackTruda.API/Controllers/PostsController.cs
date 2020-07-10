@@ -130,5 +130,39 @@ namespace HackTruda.API.Controllers
         {
             return _context.Post.Any(e => e.PostId == id);
         }
+
+        /// <summary>
+        /// Возвращает ленту пользователя
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <param name="page">страница</param>
+        /// <returns></returns>
+        // GET: api/Posts/users/5
+        [HttpGet("feed/{id}")]
+        public async Task<ActionResult<IEnumerable<FeedResponse>>> GetUserFeed(int id, int page)
+        {
+            // TODO: добавить загрузку постов друзей и подписок
+            var users = await _context.Users
+                .AsNoTracking()
+                .Where(x=>x.UserId==id)
+                .Select(x=>x.UserId)
+                .ToListAsync();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            var posts = await _context.Post
+                   .AsNoTracking()
+                   .Where(x => users.Contains(x.UserId))
+                   .Include(u => u.User)
+                   .OrderByDescending(x=>x.Date)
+                   .Take(10)
+                   .Skip((page - 1) * 10)
+                   .ToListAsync();
+
+            return new JsonResult(_mapper.Map<IEnumerable<FeedResponse>>(posts));
+        }
     }
 }

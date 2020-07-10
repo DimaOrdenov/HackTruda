@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.DataModels.Responses;
 using HackTruda.Services.Interfaces;
@@ -14,5 +17,12 @@ namespace HackTruda.BusinessLogic
         }
 
         protected override string Route => "posts";
+
+        public Task<IEnumerable<FeedResponse>> GetFeed(int id, int page, CancellationToken token) =>
+            ExecuteAsync<IEnumerable<FeedResponse>>(
+            new RestRequest(Route + $"/feed/{id}", Method.GET)
+                  .AddParameter("page", page)
+                  ,token);
+        
     }
 }

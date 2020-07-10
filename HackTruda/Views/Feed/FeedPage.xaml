@@ -4,16 +4,42 @@
                        xmlns:local="clr-namespace:HackTruda"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        x:Class="HackTruda.Views.Feed.FeedPage"
+                       xmlns:self="clr-namespace:HackTruda.Views.Feed"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       x:Name="Feed"
                        Title="Лента">
 
     <viewControls:BaseLayout>
         <viewControls:BaseLayout.Content>
-            <StackLayout>
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+               
+                    <ScrollView>
+                    <StackLayout Spacing="30">
+                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                            <StackLayout Padding="24,0" Spacing="24" Orientation="Horizontal">
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                                <self:StoriesFrameView></self:StoriesFrameView>
+                            </StackLayout>
+                        </ScrollView>
+                        <StackLayout x:Name="feeds" BindableLayout.ItemsSource="{Binding Items}" Padding="24,0" Spacing="24">
+                            
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <self:FeedItemView/>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
 
-                <Label Text="Feed page" />
-
-            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+               
+            </RefreshView>
         </viewControls:BaseLayout.Content>
     </viewControls:BaseLayout>
-
 </viewControls:BasePage>
