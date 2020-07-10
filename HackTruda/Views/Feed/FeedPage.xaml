@@ -8,11 +8,12 @@
 
     <viewControls:BaseLayout>
         <viewControls:BaseLayout.Content>
-            <StackLayout>
-
-                <Label Text="Feed page" />
-
-            </StackLayout>
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+                <ScrollView>
+                    <FlexLayout  />
+                </ScrollView>
+            </RefreshView>
         </viewControls:BaseLayout.Content>
     </viewControls:BaseLayout>
 

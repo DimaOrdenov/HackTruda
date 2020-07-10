@@ -11,6 +11,10 @@ namespace HackTruda.API.AutoMapper
         {
             CreateMap<PostRequest, Post>();
             CreateMap<Post, PostResponse>();
+            CreateMap<Post, FeedResponse>()
+                .ForMember(feedResponse => feedResponse.LastName, expr => expr.MapFrom(post => post.User.LastName))
+                .ForMember(feedResponse => feedResponse.FirstName, expr => expr.MapFrom(post => post.User.FirstName))
+                .ForMember(feedResponse => feedResponse.UserImage, expr => expr.MapFrom(post => post.User.Image));
         }
     }
 }
