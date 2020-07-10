@@ -41,5 +41,18 @@
 		<string>Nunito-Regular.ttf</string>
 		<string>Nunito-ExtraBold.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>hacktruda</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hacktruda</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
 </dict>
 </plist>
