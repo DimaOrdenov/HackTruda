@@ -278,8 +278,14 @@
       <Name>HackTruda</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DependencyServices\" />
-    <Folder Include="CustomRenderers\" />
+    <BundleResource Include="Resources\ic_heart_active.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_heart_inactive.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_message.svg" />
   </ItemGroup>
 </Project>

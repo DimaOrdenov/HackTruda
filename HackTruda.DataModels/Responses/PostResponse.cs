@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HackTruda.DataModels.Responses
 {
@@ -9,5 +10,8 @@ namespace HackTruda.DataModels.Responses
         public byte[] Image { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
+        public List<int> LikedUsersId { get; set; }
+        public int LikedCount => new Random().Next(1,1000);
+        public int CommentsCount => new Random().Next(1, 200);
     }
 }
