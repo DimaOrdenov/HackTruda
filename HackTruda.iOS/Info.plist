@@ -54,5 +54,11 @@
 			<string>Editor</string>
 		</dict>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Приложение запрашивает доступ на постоянное использование вашей локации</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Приложение запрашивает доступ на использование вашей локации при открытом приложении</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Приложение запрашивает доступ на использование вашей локации всегда и при открытом приложении</string>
 </dict>
 </plist>

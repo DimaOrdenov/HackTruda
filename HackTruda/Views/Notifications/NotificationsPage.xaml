@@ -28,9 +28,7 @@
 
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid xameff:Commands.Tap="{Binding TapCommand}"
-                                                  xameff:Commands.TapParameter="{Binding .}"
-                                                  xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                            <Grid>
 
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />

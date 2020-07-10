@@ -7,6 +7,7 @@ using HackTruda.Containers;
 using HackTruda.Droid.DependencyServices;
 using Plugin.CurrentActivity;
 using Android.Content;
+using Android;
 
 namespace HackTruda.Droid
 {
@@ -44,6 +45,13 @@ namespace HackTruda.Droid
             Xamarin.Essentials.Platform.OnResume();
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            //this.ApplicationContext.ApplicationInfo.MetaData
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -74,6 +82,8 @@ namespace HackTruda.Droid
 
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
             Crashlytics.Crashlytics.HandleManagedExceptions();
+
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
 
             LoadApplication(new App());
 

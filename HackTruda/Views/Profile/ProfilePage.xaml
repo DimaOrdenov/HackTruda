@@ -15,7 +15,7 @@
 
             <ScrollView AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <StackLayout Padding="24,36,24,40">
+                <StackLayout Padding="24,36,24,90">
 
                     <StackLayout Orientation="Horizontal"
                                  Spacing="24">

@@ -21,7 +21,7 @@ namespace HackTruda.ViewModels.Authorization
                         {
                             WebAuthenticatorResult result =
                                 await WebAuthenticator.AuthenticateAsync(
-                                    new Uri(Config.BaseApiUrl + "api/auth/vk"),
+                                    new Uri(Config.BaseApiUrl + "api/auth/Vkontakte"),
                                     new Uri("hacktruda://"));
 
                             var accessToken = result?.AccessToken;

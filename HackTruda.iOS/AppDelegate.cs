@@ -73,6 +73,8 @@ namespace HackTruda.iOS
 
             Hackiftekhar.IQKeyboardManager.Xamarin.IQKeyboardManager.SharedManager().Enable = true;
 
+            Xamarin.FormsMaps.Init();
+
             LoadApplication(new App());
 
             //RegisterForNotifications();

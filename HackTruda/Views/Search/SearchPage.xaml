@@ -5,8 +5,11 @@
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                        x:Class="HackTruda.Views.Search.SearchPage"
                        Title="Поиск">
 
-    <ContentPage.Content />
+    <maps:Map x:Name="map"
+              IsShowingUser="{Binding IsShowingUser}" />
+
 </viewControls:BasePage>

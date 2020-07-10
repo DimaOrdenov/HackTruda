@@ -38,8 +38,6 @@ namespace HackTruda.ViewModels.Profile
             IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
-            State = PageStateType.Default;
-
             _usersLogic = usersLogic;
             _postsLogic = postsLogic;
 

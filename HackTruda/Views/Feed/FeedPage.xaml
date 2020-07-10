@@ -6,6 +6,8 @@
                        x:Class="HackTruda.Views.Feed.FeedPage"
                        xmlns:self="clr-namespace:HackTruda.Views.Feed"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                        x:Name="Feed"
                        Title="Лента">
 
@@ -22,6 +24,24 @@
                             <StackLayout Padding="24,24,24,0"
                                          Spacing="24"
                                          Orientation="Horizontal">
+
+                                <pancakeView:PancakeView BorderColor="{x:Static local:AppColors.Primary}"
+                                                         BorderIsDashed="True"
+                                                         BorderDashPattern="8,8"
+                                                         BorderThickness="2"
+                                                         CornerRadius="10"
+                                                         WidthRequest="56"
+                                                         HeightRequest="56">
+                                    <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                        <svg:SvgCachedImage x:Name="icAddStory"
+                                                            Source="{x:Static local:AppSvgImages.IcPlus}"
+                                                            WidthRequest="28"
+                                                            HeightRequest="28"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="Center" />
+                                    </ContentView>
+                                </pancakeView:PancakeView>
+
                                 <self:StoriesFrameView />
                                 <self:StoriesFrameView />
                                 <self:StoriesFrameView />

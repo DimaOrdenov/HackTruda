@@ -15,7 +15,7 @@
 
                 <ScrollView AbsoluteLayout.LayoutFlags="All"
                             AbsoluteLayout.LayoutBounds="0,0,1,1">
-                    <StackLayout Padding="0,10,0,40"
+                    <StackLayout Padding="0,10,0,90"
                                  BindableLayout.ItemsSource="{Binding Dialogs}">
 
                         <BindableLayout.ItemTemplate>
