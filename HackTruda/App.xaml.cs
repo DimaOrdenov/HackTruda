@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 using HackTruda.Definitions.Enums;
 using HackTruda.Containers;
 using Autofac;
+using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace HackTruda
 {
     public partial class App : Application
     {
         private INavigationService _navigationService;
+        private IDebuggerService _debuggerService;
+        private HubConnection _hubConnection;
 
         public App()
         {
@@ -22,9 +26,11 @@ namespace HackTruda
 
         protected override void OnStart()
         {
-            _navigationService = IocInitializer.Container.Resolve<INavigationService>();
+            InitLocalServices();
 
             PushMainPage();
+
+            //SetupHub();
         }
 
         protected override void OnSleep()
@@ -35,9 +41,31 @@ namespace HackTruda
         {
         }
 
+        private void InitLocalServices()
+        {
+            _navigationService = IocInitializer.Container.Resolve<INavigationService>();
+            _debuggerService = IocInitializer.Container.Resolve<IDebuggerService>();
+            _hubConnection = IocInitializer.Container.Resolve<HubConnection>();
+        }
+
         private void PushMainPage()
         {
             _navigationService.SetRootPage(TabbedPageType.MainPage);
         }
+
+        //private void SetupHub()
+        //{
+        //    try
+        //    {
+        //        Task.Run(async () =>
+        //        {
+        //            await _hubConnection.StartAsync();
+        //        });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        _debuggerService.Log(e);
+        //    }
+        //}
     }
 }

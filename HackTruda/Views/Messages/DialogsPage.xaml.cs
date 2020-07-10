@@ -2,9 +2,9 @@
 
 namespace HackTruda.Views.Messages
 {
-    public partial class MessagesPage : BasePage
+    public partial class DialogsPage : BasePage
     {
-        public MessagesPage()
+        public DialogsPage()
         {
             InitializeComponent();
         }

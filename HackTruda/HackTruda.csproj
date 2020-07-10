@@ -68,6 +68,8 @@
     <Folder Include="Views\Notifications\" />
     <Folder Include="ViewModels\Notifications\" />
     <Folder Include="ViewControls\State\" />
+    <Folder Include="Views\Common\" />
+    <Folder Include="Definitions\VmLink\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="secrets.json">

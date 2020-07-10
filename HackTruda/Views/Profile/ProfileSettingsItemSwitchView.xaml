@@ -25,7 +25,7 @@
 
                 <Label Text="{Binding Title}"
                        FontSize="16"
-                       FontAttributes="Bold"
+                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
                        VerticalOptions="Center" />
 
                 <viewControls:BaseSwitch Grid.Column="1"

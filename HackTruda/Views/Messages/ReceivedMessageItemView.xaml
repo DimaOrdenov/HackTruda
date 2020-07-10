@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="HackTruda.Views.Messages.ReceivedMessageItemView">
+
+    <Grid Padding="24,0"
+          HorizontalOptions="Start">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <viewControls:ShadowFrame ShadowOffset="0,7"
+                                  ShadowBlur="45"
+                                  ShadowColor="#0D878787">
+            <pancakeView:PancakeView Padding="20,16"
+                                     BackgroundColor="{x:Static local:AppColors.White}"
+                                     CornerRadius="0,16,16,16">
+                <Label Text="{Binding Text}"
+                       FontSize="14" />
+            </pancakeView:PancakeView>
+        </viewControls:ShadowFrame>
+
+        <Label Grid.Column="1"
+               Text="{Binding MessageTime, StringFormat='{0:HH:mm}'}"
+               FontSize="14"
+               TextColor="{x:Static local:AppColors.Grey60}"
+               Margin="24,0,0,0"
+               VerticalOptions="Center" />
+
+    </Grid>
+
+</ContentView>

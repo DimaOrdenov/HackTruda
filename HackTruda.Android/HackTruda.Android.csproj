@@ -170,6 +170,8 @@
     <Compile Include="CustomRenderers\ExtendedListViewRenderer.cs" />
     <Compile Include="CustomRenderers\ShadowFrameRender.cs" />
     <Compile Include="CustomRenderers\TabbedPageRenderer.cs" />
+    <Compile Include="CustomRenderers\BaseEditorRenderer.cs" />
+    <Compile Include="CustomRenderers\BaseEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -641,6 +643,18 @@
       </SubType>
       <Generator>
       </Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_send.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_message_circle.svg">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_plus.svg">
+      <SubType></SubType>
+      <Generator></Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>

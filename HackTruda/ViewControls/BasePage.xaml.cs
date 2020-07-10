@@ -53,6 +53,12 @@ namespace HackTruda.ViewControls
         //    set => SetValue(BindableToolbarItemsProperty, value);
         //}
 
+        public View TitleViewContent
+        {
+            get => titleViewContent.Content;
+            set => titleViewContent.Content = value;
+        }
+
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);

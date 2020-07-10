@@ -3,9 +3,12 @@ using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.DataModels.Responses;
 using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
+using HackTruda.Extensions;
 using HackTruda.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,15 +19,29 @@ namespace HackTruda.ViewModels.Feed
     {
         public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         private readonly IPostsLogic _postsLogic;
-        private bool isRefreshing;
+        bool isRefreshing;
+        private ObservableCollection<FeedResponse> items;
 
         public FeedViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             _postsLogic = postsLogic;
+
+            IcMore = new CachedImage
+            {
+                Source = AppImages.IcMoreVertical,
+            };
+
+            IcMore.SetTintColor(Color.Black);
         }
 
-        public ObservableCollection<FeedResponse> Items { get; private set; }
+        public ObservableCollection<FeedResponse> Items
+        {
+            get => items;
+            set => SetProperty(ref items, value);
+        }
+
+        public CachedImage IcMore { get; }
 
         public bool IsRefreshing
         {

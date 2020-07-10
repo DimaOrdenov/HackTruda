@@ -10,7 +10,9 @@
 
         // Messages
 
-        MessagesPage,
+        DialogsPage,
+
+        DialogPage,
 
         // Search
 
