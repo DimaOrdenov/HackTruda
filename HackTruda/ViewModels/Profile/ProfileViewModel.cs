@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Forms;
+using HackTruda.BusinessLogic;
 using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.DataModels.Responses;
 using HackTruda.Definitions;
@@ -27,11 +28,13 @@ namespace HackTruda.ViewModels.Profile
 
         public ICommand FabTapCommand { get; }
 
+        private UserContext _userContext { get; set; }
         public ProfileViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
-            IUsersLogic usersLogic)
+            IUsersLogic usersLogic,
+            UserContext userContext)
             : base(navigationService, dialogService, debuggerService)
         {
             State = PageStateType.Default;
@@ -70,10 +73,11 @@ namespace HackTruda.ViewModels.Profile
                         {
                             WebAuthenticatorResult result =
                                 await WebAuthenticator.AuthenticateAsync(
-                                    new Uri("http://hacktrudaapi-env-1.eba-j4m8mgch.us-east-2.elasticbeanstalk.com/api/auth/vk"),
+                                    new Uri("http://hacktrudaapi-env-1.eba-j4m8mgch.us-east-2.elasticbeanstalk.com/api/auth/Vkontakte"),
                                     new Uri("hacktruda://"));
                       
                             var accessToken = result?.AccessToken;
+                            userContext.Token = accessToken;
                         }));
                 });
 

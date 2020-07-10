@@ -107,7 +107,7 @@ namespace HackTruda.API.Controllers
             return notification;
         }
         /// <summary>
-        /// Возвращает ленту пользователя
+        /// Возвращает уведомления пользователя
         /// </summary>
         /// <param name="id">id пользователя</param>
         /// <param name="page">страница</param>

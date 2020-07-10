@@ -14,8 +14,8 @@ namespace HackTruda.API.AutoMapper
         public NotificationProfile()
         {
             CreateMap<Notification, NotificationResponse>()
+                .ForMember(notificationResponse => notificationResponse.Notfication, expr => expr.MapFrom(notification => notification.Content))
                 .ForMember(notificationResponse => notificationResponse.User, expr => expr.MapFrom(notification => notification.Sender));
-              
         }
     }
 }

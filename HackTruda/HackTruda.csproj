@@ -61,7 +61,6 @@
     <Folder Include="ViewModels\Feed\" />
     <Folder Include="ViewModels\Messages\" />
     <Folder Include="ViewModels\Profile\" />
-    <Folder Include="BusinessLogic\" />
     <Folder Include="BusinessLogic\Interfaces\" />
     <Folder Include="Views\Search\" />
     <Folder Include="ViewModels\Search\" />

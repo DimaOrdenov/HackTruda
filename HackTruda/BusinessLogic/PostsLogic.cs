@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using HackTruda.BusinessLogic.Interfaces;
@@ -23,6 +24,11 @@ namespace HackTruda.BusinessLogic
             new RestRequest(Route + $"/feed/{id}", Method.GET)
                   .AddParameter("page", page)
                   ,token);
-        
+
+        public Task<ClaimsPrincipal> GetUser( CancellationToken ctoken) =>
+         ExecuteAsync<ClaimsPrincipal>(
+         new RestRequest("auth/check", Method.GET)
+               , ctoken);
+
     }
 }

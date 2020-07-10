@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HackTruda.API.Controllers
@@ -52,6 +53,13 @@ namespace HackTruda.API.Controllers
                 // Redirect to final url
                 Request.HttpContext.Response.Redirect(url);
             }
+        }
+
+        [Authorize]
+        [HttpGet("check")]
+        public ActionResult Get()
+        {
+            return Ok(User.Identity.Name);
         }
     }
 }
