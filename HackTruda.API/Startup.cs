@@ -1,7 +1,9 @@
 using AutoMapper;
 using HackTruda.API.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,12 +35,31 @@ namespace HackTruda.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
             services.AddAutoMapper(typeof(Startup));
+
             services.AddSignalR();
+
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+                    .AddNewtonsoftJson(options =>
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddOAuth("vk", options =>
+                {
+                    options.SaveTokens = true;
+                    options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                    options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                    options.ClientId = "7535503";
+                    options.ClientSecret = "Y9hC57OxQVRj9ftUZVcJ";
+                    options.CallbackPath = new PathString("/signin-vkontakte");
+                    options.Scope.Add("email");
+                })
+                .AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,11 +69,14 @@ namespace HackTruda.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseSwagger();
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

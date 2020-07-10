@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,6 +10,7 @@ using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
 using HackTruda.Extensions;
 using HackTruda.Services.Interfaces;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Profile
@@ -58,6 +60,20 @@ namespace HackTruda.ViewModels.Profile
             });
 
             FabTapCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Создаю пост", "Ок"));
+
+            // TODO Temp solution to test auth
+            FabTapCommand = BuildPageVmCommand(
+                async () =>
+                {
+                    await ExceptionHandler.PerformCatchableTask(
+                        new ViewModelPerformableAction(async () =>
+                        {
+                            WebAuthenticatorResult result =
+                                await WebAuthenticator.AuthenticateAsync(
+                                    new Uri("https://localhost:63761/api/auth/vk"),
+                                    new Uri("hacktruda://"));
+                        }));
+                });
 
             CachedImage icSettings = new CachedImage
             {
