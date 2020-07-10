@@ -17,8 +17,9 @@ namespace HackTruda.ViewModels.Feed
 {
     public class FeedViewModel : PageViewModel
     {
-        public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         private readonly IPostsLogic _postsLogic;
+
+        public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         bool isRefreshing;
         private ObservableCollection<FeedResponse> items;
 
@@ -45,7 +46,7 @@ namespace HackTruda.ViewModels.Feed
 
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
+            get => isRefreshing;
             set
             {
                 isRefreshing = value;

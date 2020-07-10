@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:HackTruda"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       x:Class="HackTruda.Views.Authorization.AuthPage">
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+
+            <commonViews:FabView Image="{x:Static local:AppSvgImages.IcSettings}"
+                                 TapCommand="{Binding VkAuthCommand}"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center" />
+
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

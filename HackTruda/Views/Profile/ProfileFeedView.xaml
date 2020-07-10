@@ -2,54 +2,14 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HackTruda"
-             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:converters="clr-namespace:HackTruda.Definitions.Converters"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="HackTruda.Views.Feed.FeedItemView">
+             x:Class="HackTruda.Views.Profile.ProfileFeedView">
+
     <Frame BackgroundColor="{x:Static local:AppColors.White}"
            CornerRadius="15"
            Padding="20">
         <StackLayout Spacing="20">
-
-            <StackLayout Orientation="Horizontal">
-
-                <Frame CornerRadius="21"
-                       WidthRequest="42"
-                       HeightRequest="42"
-                       HorizontalOptions="Start"
-                       BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                    <Image Source="{Binding UserImage, Converter={converters:ByteArrayToImageSourceConverter}}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
-
-                </Frame>
-
-                <Label VerticalOptions="Center"
-                       HorizontalOptions="StartAndExpand"
-                       FontSize="20"
-                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
-                       TextColor="{x:Static local:AppColors.Dark80}"
-                       Margin="20,0,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding FirstName}" />
-                            <Span Text=" " />
-                            <Span Text="{Binding LastName}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-
-                <ffimage:CachedImage x:Name="imageMore"
-                                     WidthRequest="28"
-                                     VerticalOptions="Center"
-                                     HorizontalOptions="End" />
-
-            </StackLayout>
-
-            <BoxView Color="{x:Static local:AppColors.Grey20}"
-                     HeightRequest="1" />
 
             <Label Text="{Binding Content}"
                    FontSize="14"
@@ -107,4 +67,5 @@
 
         </StackLayout>
     </Frame>
+
 </ContentView>

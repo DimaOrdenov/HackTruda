@@ -19,7 +19,7 @@
 
                         <ScrollView Orientation="Horizontal"
                                     HorizontalScrollBarVisibility="Never">
-                            <StackLayout Padding="24,0"
+                            <StackLayout Padding="24,24,24,0"
                                          Spacing="24"
                                          Orientation="Horizontal">
                                 <self:StoriesFrameView />
@@ -34,7 +34,7 @@
 
                         <StackLayout x:Name="feeds"
                                      BindableLayout.ItemsSource="{Binding Items}"
-                                     Padding="24,0"
+                                     Padding="24,0,24,40"
                                      Spacing="24">
 
                             <BindableLayout.ItemTemplate>

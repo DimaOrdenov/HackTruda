@@ -18,6 +18,9 @@ namespace HackTruda.ViewModels.Profile
     public class ProfileViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;
+        private readonly IPostsLogic _postsLogic;
+
+        private ObservableCollection<FeedResponse> _feeds;
 
         public ICommand ChooseAvatarCommand { get; }
 
@@ -31,12 +34,14 @@ namespace HackTruda.ViewModels.Profile
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
-            IUsersLogic usersLogic)
+            IUsersLogic usersLogic,
+            IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             State = PageStateType.Default;
 
             _usersLogic = usersLogic;
+            _postsLogic = postsLogic;
 
             ChooseAvatarCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Выбираю фото", "Ок"));
 
@@ -61,22 +66,6 @@ namespace HackTruda.ViewModels.Profile
 
             FabTapCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Создаю пост", "Ок"));
 
-            // TODO Temp solution to test auth
-            FabTapCommand = BuildPageVmCommand(
-                async () =>
-                {
-                    await ExceptionHandler.PerformCatchableTask(
-                        new ViewModelPerformableAction(async () =>
-                        {
-                            WebAuthenticatorResult result =
-                                await WebAuthenticator.AuthenticateAsync(
-                                    new Uri("http://hacktrudaapi-env-1.eba-j4m8mgch.us-east-2.elasticbeanstalk.com/api/auth/vk"),
-                                    new Uri("hacktruda://"));
-                      
-                            var accessToken = result?.AccessToken;
-                        }));
-                });
-
             CachedImage icSettings = new CachedImage
             {
                 Source = AppImages.IcSettings,
@@ -94,27 +83,40 @@ namespace HackTruda.ViewModels.Profile
             };
         }
 
-        //public override async Task OnAppearing()
-        //{
-        //    if (PageDidAppear)
-        //    {
-        //        return;
-        //    }
+        public ObservableCollection<FeedResponse> Feeds
+        {
+            get => _feeds;
+            set => SetProperty(ref _feeds, value);
+        }
 
-        //    State = PageStateType.Loading;
+        public override async Task OnAppearing()
+        {
+            if (PageDidAppear)
+            {
+                return;
+            }
 
-        //    IEnumerable<UserResponse> users = null;
+            State = PageStateType.Loading;
 
-        //    await ExceptionHandler.PerformCatchableTask(
-        //        new ViewModelPerformableAction(
-        //            async () =>
-        //            {
-        //                users = await _usersLogic.Get(CancellationToken);
-        //            }));
+            Feeds = new ObservableCollection<FeedResponse>(await LoadFeed());
 
-        //    State = PageStateType.Default;
+            State = PageStateType.Default;
 
-        //    await base.OnAppearing();
-        //}
+            await base.OnAppearing();
+        }
+
+        private async Task<IEnumerable<FeedResponse>> LoadFeed()
+        {
+            IEnumerable<FeedResponse> result = null;
+
+            await ExceptionHandler.PerformCatchableTask(
+                new ViewModelPerformableAction(
+                    async () =>
+                    {
+                        result = await _postsLogic.GetFeed(2, 1, CancellationToken);
+                    }));
+
+            return result ?? new List<FeedResponse>();
+        }
     }
 }

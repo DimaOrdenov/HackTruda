@@ -172,6 +172,7 @@
     <Compile Include="CustomRenderers\TabbedPageRenderer.cs" />
     <Compile Include="CustomRenderers\BaseEditorRenderer.cs" />
     <Compile Include="CustomRenderers\BaseEntryRenderer.cs" />
+    <Compile Include="WebAuthenticationCallbackActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

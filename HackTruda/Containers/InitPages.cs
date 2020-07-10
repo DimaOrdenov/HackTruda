@@ -9,6 +9,13 @@ namespace HackTruda.Containers
     {
         private static void InitPages()
         {
+            // Auth
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.AuthPage,
+                    typeof(Views.Authorization.AuthPage),
+                    typeof(ViewModels.Authorization.AuthViewModel)));
+
             // Feed
             _pageBuilder.Configure(
                 new PageStack(
