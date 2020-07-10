@@ -13,32 +13,40 @@
         <viewControls:BaseLayout.Content>
             <RefreshView IsRefreshing="{Binding IsRefreshing}"
                          Command="{Binding RefreshCommand}">
-               
-                    <ScrollView>
+
+                <ScrollView>
                     <StackLayout Spacing="30">
-                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-                            <StackLayout Padding="24,0" Spacing="24" Orientation="Horizontal">
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
-                                <self:StoriesFrameView></self:StoriesFrameView>
+
+                        <ScrollView Orientation="Horizontal"
+                                    HorizontalScrollBarVisibility="Never">
+                            <StackLayout Padding="24,0"
+                                         Spacing="24"
+                                         Orientation="Horizontal">
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
+                                <self:StoriesFrameView />
                             </StackLayout>
                         </ScrollView>
-                        <StackLayout x:Name="feeds" BindableLayout.ItemsSource="{Binding Items}" Padding="24,0" Spacing="24">
-                            
+
+                        <StackLayout x:Name="feeds"
+                                     BindableLayout.ItemsSource="{Binding Items}"
+                                     Padding="24,0"
+                                     Spacing="24">
+
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <self:FeedItemView/>
+                                    <self:FeedItemView />
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
 
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
-               
+
             </RefreshView>
         </viewControls:BaseLayout.Content>
     </viewControls:BaseLayout>

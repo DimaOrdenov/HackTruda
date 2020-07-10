@@ -20,23 +20,29 @@ namespace HackTruda.ViewModels.Feed
         public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         private readonly IPostsLogic _postsLogic;
         bool isRefreshing;
+        private ObservableCollection<FeedResponse> items;
 
         public FeedViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             _postsLogic = postsLogic;
+
             IcMore = new CachedImage
             {
                 Source = AppImages.IcMoreVertical,
             };
+
             IcMore.SetTintColor(Color.Black);
         }
 
-        public ObservableCollection<FeedResponse> Items { get; private set; }
+        public ObservableCollection<FeedResponse> Items
+        {
+            get => items;
+            set => SetProperty(ref items, value);
+        }
 
         public CachedImage IcMore { get; }
 
-      
         public bool IsRefreshing
         {
             get { return isRefreshing; }
@@ -46,8 +52,6 @@ namespace HackTruda.ViewModels.Feed
                 OnPropertyChanged();
             }
         }
-
-      
 
         public override async Task OnAppearing()
         {
@@ -72,7 +76,7 @@ namespace HackTruda.ViewModels.Feed
             new ViewModelPerformableAction(
                 async () =>
                 {
-                    result = await _postsLogic.GetFeed(2,1,CancellationToken);
+                    result = await _postsLogic.GetFeed(2, 1, CancellationToken);
                 }));
 
             return result ?? new List<FeedResponse>();
