@@ -20,8 +20,7 @@ namespace HackTruda.BusinessLogic
 
         public Task<IEnumerable<FeedResponse>> GetFeed(int id, int page, CancellationToken token) =>
             ExecuteAsync<IEnumerable<FeedResponse>>(
-            new RestRequest(Route, Method.GET)
-                  .AddParameter("id", id)
+            new RestRequest(Route + $"/feed/{id}", Method.GET)
                   .AddParameter("page", page)
                   ,token);
         

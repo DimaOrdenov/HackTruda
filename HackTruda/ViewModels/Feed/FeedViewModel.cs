@@ -1,11 +1,14 @@
-﻿using HackTruda.BusinessLogic.Interfaces;
+﻿using FFImageLoading.Forms;
+using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.DataModels.Responses;
 using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
+using HackTruda.Extensions;
 using HackTruda.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -22,10 +25,18 @@ namespace HackTruda.ViewModels.Feed
             : base(navigationService, dialogService, debuggerService)
         {
             _postsLogic = postsLogic;
+            IcMore = new CachedImage
+            {
+                Source = AppImages.IcMoreVertical,
+            };
+            IcMore.SetTintColor(Color.Black);
         }
 
-        public ObservableCollection<PostResponse> Items { get; private set; }
+        public ObservableCollection<FeedResponse> Items { get; private set; }
 
+        public CachedImage IcMore { get; }
+
+      
         public bool IsRefreshing
         {
             get { return isRefreshing; }
@@ -47,30 +58,30 @@ namespace HackTruda.ViewModels.Feed
 
             State = PageStateType.Loading;
 
-            Items = new ObservableCollection<PostResponse>(await LoadFeed());
+            Items = new ObservableCollection<FeedResponse>(await LoadFeed());
 
             State = PageStateType.Default;
 
             await base.OnAppearing();
         }
 
-        private async Task<IEnumerable<PostResponse>> LoadFeed()
+        private async Task<IEnumerable<FeedResponse>> LoadFeed()
         {
-            IEnumerable<PostResponse> result = null;
+            IEnumerable<FeedResponse> result = null;
             await ExceptionHandler.PerformCatchableTask(
             new ViewModelPerformableAction(
                 async () =>
                 {
-                    result = await _postsLogic.GetFeed(0,1,CancellationToken);
+                    result = await _postsLogic.GetFeed(2,1,CancellationToken);
                 }));
 
-            return result;
+            return result ?? new List<FeedResponse>();
         }
 
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
-            Items = new ObservableCollection<PostResponse>(await LoadFeed());
+            Items = new ObservableCollection<FeedResponse>(await LoadFeed());
             IsRefreshing = false;
         }
     }

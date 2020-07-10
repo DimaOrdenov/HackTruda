@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:HackTruda"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+              xmlns:converters="clr-namespace:HackTruda.Definitions.Converters"
+                
+                 xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="HackTruda.Views.Feed.FeedItemView">
+  <ContentView.Content>
+        <Frame  BackgroundColor="{x:Static local:AppColors.White}"
+                CornerRadius="15"
+            Padding="20">
+            <StackLayout Spacing="20">
+                <StackLayout Orientation="Horizontal">
+                    <Frame CornerRadius="43"
+                               WidthRequest="42"
+                               HeightRequest="42"
+                            HorizontalOptions="Start"
+                               BackgroundColor="{x:Static local:AppColors.Primary}">
+
+                        <ContentView>
+                            <Image Source="{Binding UserImage, Converter={converters:ByteArrayToImageSourceConverter}}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+                           
+                        </ContentView>
+
+                    </Frame>
+                    <Label  VerticalOptions="Center"
+                                       HorizontalOptions="CenterAndExpand" 
+                     FontSize="20"
+                               FontFamily="{x:Static local:AppFontFamily.NunitoBold}" 
+                         TextColor="{x:Static local:AppColors.Dark80}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding FirstName}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding LastName}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <ContentView>
+                        <ffimage:CachedImage x:Name="image"
+                         Source="{Binding IcMore}"
+                         WidthRequest="28"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center" />
+
+                    </ContentView>
+                </StackLayout>
+                <BoxView Color="{x:Static local:AppColors.Grey20}" HeightRequest="1"/>
+                <Label Text="{Binding Content}" 
+                     FontSize="20"
+                               FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" 
+                         TextColor="{x:Static local:AppColors.Dark80}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+                <Frame CornerRadius="10"
+                              HorizontalOptions="FillAndExpand" >
+
+                    <ContentView>
+                        <Image Source="{Binding Image, Converter={converters:ByteArrayToImageSourceConverter}}"
+                               Aspect="AspectFill"
+                                      />
+
+                    </ContentView>
+
+                </Frame>
+                <StackLayout Orientation="Horizontal">
+                   
+                    <Label  VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand" 
+                            Text="{Binding Date, Converter={converters:DateTimeToStringHumanizeConverter}}"
+                      FontSize="20"
+                               FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" 
+                         TextColor="{x:Static local:AppColors.Grey}">
+                      
+                    </Label>
+                 
+                </StackLayout>
+            </StackLayout>
+          
+        </Frame>
+    </ContentView.Content>
+</ContentView>
