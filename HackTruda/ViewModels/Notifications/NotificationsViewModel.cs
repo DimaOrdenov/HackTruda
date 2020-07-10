@@ -23,7 +23,7 @@ namespace HackTruda.ViewModels.Notifications
                             LastName = "Иванов",
                         },
                         "ответил на ваш комментарий: \"Класс! Мне бы так!\".",
-                        DateTime.Now.AddMinutes(-1)),
+                        "1 мин"),
                     new NotificationItemViewModel(
                         new UserModel
                         {
@@ -31,12 +31,12 @@ namespace HackTruda.ViewModels.Notifications
                             LastName = "Иванова",
                         },
                         "ответила на ваш комментарий: \"Шикарно!!!\".",
-                        DateTime.Now.AddHours(-2)),
+                        "3 часа"),
                     new NotificationItemViewModel(
                         null,
                         "Объявления",
                         "опубликовали 3 новых поста.",
-                        DateTime.Now.AddHours(-2)),
+                        "5 часов"),
                 },
                 new NotificationGroupViewModel("На этой неделе")
                 {
@@ -47,7 +47,7 @@ namespace HackTruda.ViewModels.Notifications
                             LastName = "Иванов",
                         },
                         "ответил на ваш комментарий: \"Может быт да, а может быть и нет...\".",
-                        DateTime.Now.AddDays(-2)),
+                        "Вс"),
                     new NotificationItemViewModel(
                         new UserModel
                         {
@@ -55,12 +55,12 @@ namespace HackTruda.ViewModels.Notifications
                             LastName = "Иванова",
                         },
                         "поделилась вашим постом.",
-                        DateTime.Now.AddDays(-4)),
+                        "Сб"),
                     new NotificationItemViewModel(
                         null,
                         "Подкасты",
                         "добавили новый подкаст \"Праздники\".",
-                        DateTime.Now.AddDays(-5)),
+                        "Пт"),
                 },
             };
         }

@@ -8,6 +8,85 @@
                        x:Class="HackTruda.Views.Notifications.NotificationsPage"
                        Title="Уведомления">
 
-    <ContentPage.Content />
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+            <ScrollView>
+                <StackLayout Padding="24,30,24,40"
+                             BindableLayout.ItemsSource="{Binding NotificationsGroups}"
+                             Spacing="40">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="30">
+
+                                <Label Text="{Binding Header}"
+                                       FontSize="18"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                                <StackLayout Spacing="30"
+                                             BindableLayout.ItemsSource="{Binding .}">
+
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid xameff:Commands.Tap="{Binding TapCommand}"
+                                                  xameff:Commands.TapParameter="{Binding .}"
+                                                  xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="42" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame CornerRadius="21"
+                                                       WidthRequest="42"
+                                                       HeightRequest="42"
+                                                       VerticalOptions="Start"
+                                                       BackgroundColor="{x:Static local:AppColors.Primary}">
+
+                                                    <Image Source="{Binding Image}"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="Center" />
+
+                                                </Frame>
+
+                                                <Label Grid.Column="1"
+                                                       FontSize="14"
+                                                       Margin="30,0,0,0">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding NotificationReporter}"
+                                                                  FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+                                                            <Span Text=" " />
+                                                            <Span Text="{Binding NotificationAction}"
+                                                                  FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                                <Label Grid.Column="2"
+                                                       Text="{Binding NotificatedAt}"
+                                                       TextColor="{x:Static local:AppColors.Grey}"
+                                                       FontSize="14"
+                                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}"
+                                                       Margin="16,0,0,0" />
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+                </StackLayout>
+            </ScrollView>
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
 
 </viewControls:BasePage>

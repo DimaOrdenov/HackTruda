@@ -6,16 +6,17 @@ namespace HackTruda.ViewModels.Notifications
 {
     public class NotificationItemViewModel : BaseViewModel
     {
-        public NotificationItemViewModel(ImageSource image, string notificationReporter, string notificationAction, DateTime notificatedAt)
+        public NotificationItemViewModel(ImageSource image, string notificationReporter, string notificationAction, string notificatedAt)
         {
             Image = image;
             NotificationReporter = notificationReporter;
             NotificationAction = notificationAction;
+
             NotificatedAt = notificatedAt;
         }
 
-        public NotificationItemViewModel(UserModel user, string notificationAction, DateTime notificatedAt)
-            : this(user.ImageSrc?.Value, $"{user.FirstName} + {user.LastName}", notificationAction, notificatedAt)
+        public NotificationItemViewModel(UserModel user, string notificationAction, string notificatedAt)
+            : this(user.ImageSrc?.Value, $"{user.FirstName} {user.LastName}", notificationAction, notificatedAt)
         {
         }
 
@@ -25,6 +26,6 @@ namespace HackTruda.ViewModels.Notifications
 
         public string NotificationAction { get; }
 
-        public DateTime NotificatedAt { get; }
+        public string NotificatedAt { get; }
     }
 }
