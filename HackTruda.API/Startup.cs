@@ -1,4 +1,5 @@
 using AutoMapper;
+
 using HackTruda.API.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -49,16 +50,15 @@ namespace HackTruda.API
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 })
-                .AddOAuth("vk", options =>
-                {
-                    options.SaveTokens = true;
-                    options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
-                    options.TokenEndpoint = "https://oauth.vk.com/access_token";
-                    options.ClientId = "7535503";
-                    options.ClientSecret = "Y9hC57OxQVRj9ftUZVcJ";
-                    options.CallbackPath = new PathString("/signin-vkontakte");
-                    options.Scope.Add("email");
-                })
+                  .AddVkontakte("vk", options=>
+                  {
+                      options.SaveTokens = true;
+                      options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                      options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                      options.ClientId = "7535503";
+                      options.ClientSecret = "Y9hC57OxQVRj9ftUZVcJ";
+                      options.Scope.Add("email");
+                  })
                 .AddCookie();
         }
 
@@ -80,7 +80,7 @@ namespace HackTruda.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

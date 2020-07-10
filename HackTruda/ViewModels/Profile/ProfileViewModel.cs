@@ -70,8 +70,10 @@ namespace HackTruda.ViewModels.Profile
                         {
                             WebAuthenticatorResult result =
                                 await WebAuthenticator.AuthenticateAsync(
-                                    new Uri("https://localhost:63761/api/auth/vk"),
+                                    new Uri("http://hacktrudaapi-env-1.eba-j4m8mgch.us-east-2.elasticbeanstalk.com/api/auth/vk"),
                                     new Uri("hacktruda://"));
+                      
+                            var accessToken = result?.AccessToken;
                         }));
                 });
 
