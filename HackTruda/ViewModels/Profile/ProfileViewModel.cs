@@ -23,6 +23,8 @@ namespace HackTruda.ViewModels.Profile
 
         public ICommand OpenSectionCommand { get; }
 
+        public ICommand FabTapCommand { get; }
+
         public ProfileViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
@@ -54,6 +56,8 @@ namespace HackTruda.ViewModels.Profile
 
                 return DialogService.DisplayAlert(null, $"Открываю {msg}", "Ок");
             });
+
+            FabTapCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Создаю пост", "Ок"));
 
             CachedImage icSettings = new CachedImage
             {

@@ -3,272 +3,281 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:local="clr-namespace:HackTruda"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
                        x:Class="HackTruda.Views.Profile.ProfilePage"
                        Title="Профиль">
 
     <viewControls:StateContainerLayout>
+        <AbsoluteLayout>
 
-        <ScrollView>
-            <StackLayout Padding="24,36,24,40">
+            <ScrollView AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Padding="24,36,24,40">
 
-                <StackLayout Orientation="Horizontal"
-                             Spacing="24">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="24">
 
-                    <Grid>
+                        <Grid>
 
-                        <Frame CornerRadius="43"
-                               WidthRequest="86"
-                               HeightRequest="86"
-                               BackgroundColor="{x:Static local:AppColors.Primary}">
+                            <Frame CornerRadius="43"
+                                   WidthRequest="86"
+                                   HeightRequest="86"
+                                   BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                            <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                         xameff:Commands.Tap="{Binding ChooseAvatarCommand}">
-                                <Image Source=""
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                            </ContentView>
+                                <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding ChooseAvatarCommand}">
+                                    <Image Source=""
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                                </ContentView>
 
+                            </Frame>
+
+                            <Frame CornerRadius="18"
+                                   VerticalOptions="End"
+                                   HorizontalOptions="End"
+                                   BackgroundColor="{x:Static local:AppColors.Primary}"
+                                   BorderColor="{x:Static local:AppColors.White}">
+
+                                <ContentView Padding="6"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding ChooseAvatarCommand}">
+
+                                    <svg:SvgCachedImage Source="{x:Static local:AppSvgImages.IcCamera}"
+                                                        WidthRequest="24"
+                                                        HeightRequest="24"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center" />
+                                </ContentView>
+
+                            </Frame>
+
+                        </Grid>
+
+                        <StackLayout Spacing="8">
+
+                            <Label Text="Иванов Иван Иванович"
+                                   FontSize="20"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                            <Label Text="Живем один раз, поехали!"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark80}" />
+
+                            <Label FontSize="14"
+                                   TextColor="{x:Static local:AppColors.Dark60}">
+
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Москва, из " />
+                                        <Span Text="России"
+                                              TextColor="{x:Static local:AppColors.Primary}">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CountryTapCommand}" />
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <viewControls:ShadowFrame Margin="0,30,0,0">
+                        <Frame CornerRadius="10">
+                            <Grid BackgroundColor="{x:Static local:AppColors.White}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Padding="32,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="0">
+
+                                    <Label Text="503"
+                                           FontSize="20"
+                                           HorizontalOptions="Center"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                                    <Label Text="Лайка"
+                                           FontSize="14"
+                                           HorizontalOptions="Center"
+                                           TextColor="{x:Static local:AppColors.Dark80}"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
+
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="1"
+                                             Padding="32,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="1">
+
+                                    <Label Text="200"
+                                           FontSize="20"
+                                           HorizontalOptions="Center"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                                    <Label Text="Друзей"
+                                           FontSize="14"
+                                           HorizontalOptions="Center"
+                                           TextColor="{x:Static local:AppColors.Dark80}"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
+
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="2"
+                                             Padding="0,16"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
+                                             xameff:Commands.Tap="{Binding OpenSectionCommand}"
+                                             xameff:Commands.TapParameter="2">
+
+                                    <Label Text="100"
+                                           FontSize="20"
+                                           HorizontalOptions="Center"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                                    <Label Text="Подписок"
+                                           FontSize="14"
+                                           HorizontalOptions="Center"
+                                           TextColor="{x:Static local:AppColors.Dark80}"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
+
+                                </StackLayout>
+
+                            </Grid>
                         </Frame>
+                    </viewControls:ShadowFrame>
 
-                        <Frame CornerRadius="18"
-                               VerticalOptions="End"
-                               HorizontalOptions="End"
-                               BackgroundColor="{x:Static local:AppColors.Primary}"
-                               BorderColor="{x:Static local:AppColors.White}">
+                    <Grid Margin="0,26,0,0"
+                          ColumnSpacing="24">
 
-                            <ContentView Padding="6"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                         xameff:Commands.Tap="{Binding ChooseAvatarCommand}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
 
-                                <svg:SvgCachedImage Source="{x:Static local:AppSvgImages.IcCamera}"
-                                                    WidthRequest="24"
-                                                    HeightRequest="24"
-                                                    VerticalOptions="Center"
-                                                    HorizontalOptions="Center" />
-                            </ContentView>
+                        <viewControls:ShadowFrame ShadowOffset="0,6"
+                                                  ShadowColor="#0D645757">
 
-                        </Frame>
+                            <Frame CornerRadius="28"
+                                   BorderColor="{x:Static local:AppColors.Primary}"
+                                   BackgroundColor="{x:Static local:AppColors.Screen}">
+
+                                <ContentView Padding="32,14"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                    <svg:SvgCachedImage x:Name="icIdea"
+                                                        Source="{x:Static local:AppSvgImages.IcIdea}"
+                                                        WidthRequest="28"
+                                                        HeightRequest="28" />
+                                </ContentView>
+
+                            </Frame>
+
+                        </viewControls:ShadowFrame>
+
+                        <viewControls:ShadowFrame Grid.Column="1"
+                                                  ShadowOffset="0,6"
+                                                  ShadowColor="#0D645757"
+                                                  HorizontalOptions="FillAndExpand">
+
+                            <Frame CornerRadius="28"
+                                   BorderColor="{x:Static local:AppColors.Primary}"
+                                   BackgroundColor="{x:Static local:AppColors.Primary}">
+
+                                <ContentView Padding="32,14"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                    <Label Text="Избранное"
+                                           TextColor="{x:Static local:AppColors.White}"
+                                           FontSize="18"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                           HorizontalOptions="Center" />
+                                </ContentView>
+
+                            </Frame>
+
+                        </viewControls:ShadowFrame>
 
                     </Grid>
 
-                    <StackLayout Spacing="8">
+                    <ScrollView Orientation="Horizontal"
+                                Margin="-24,24,-24,0"
+                                HorizontalScrollBarVisibility="Never">
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="24,0"
+                                     Spacing="24">
 
-                        <Label Text="Иванов Иван Иванович"
-                               FontSize="20"
-                               FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+                            <viewControls:ShadowFrame WidthRequest="110"
+                                                      HeightRequest="110">
+                                <Frame CornerRadius="10"
+                                       BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                        <Label Text="Живем один раз, поехали!"
-                               FontSize="16"
-                               TextColor="{x:Static local:AppColors.Dark80}" />
+                                    <Image Source="{x:Static local:AppImages.IcMail}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
 
-                        <Label FontSize="14"
-                               TextColor="{x:Static local:AppColors.Dark60}">
+                                </Frame>
+                            </viewControls:ShadowFrame>
 
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="Москва, из " />
-                                    <Span Text="России"
-                                          TextColor="{x:Static local:AppColors.Primary}">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CountryTapCommand}" />
-                                        </Span.GestureRecognizers>
-                                    </Span>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                            <viewControls:ShadowFrame WidthRequest="110"
+                                                      HeightRequest="110">
+                                <Frame CornerRadius="10"
+                                       BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                    </StackLayout>
+                                    <Image Source="{x:Static local:AppImages.IcMail}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                            <viewControls:ShadowFrame WidthRequest="110"
+                                                      HeightRequest="110">
+                                <Frame CornerRadius="10"
+                                       BackgroundColor="{x:Static local:AppColors.Primary}">
+
+                                    <Image Source="{x:Static local:AppImages.IcMail}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                            <viewControls:ShadowFrame WidthRequest="110"
+                                                      HeightRequest="110">
+                                <Frame CornerRadius="10"
+                                       BackgroundColor="{x:Static local:AppColors.Primary}">
+
+                                    <Image Source="{x:Static local:AppImages.IcMail}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+                    </ScrollView>
 
                 </StackLayout>
+            </ScrollView>
 
-                <viewControls:ShadowFrame Margin="0,30,0,0">
-                    <Frame CornerRadius="10">
-                        <Grid BackgroundColor="{x:Static local:AppColors.White}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+            <commonViews:FabView AbsoluteLayout.LayoutFlags="PositionProportional"
+                                 AbsoluteLayout.LayoutBounds="0.94,0.96,-1,-1"
+                                 TapCommand="{Binding FabTapCommand}"
+                                 Image="{x:Static local:AppSvgImages.IcPlus}" />
 
-                            <StackLayout Padding="32,16"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                         xameff:Commands.Tap="{Binding OpenSectionCommand}"
-                                         xameff:Commands.TapParameter="0">
-
-                                <Label Text="503"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
-
-                                <Label Text="Лайка"
-                                       FontSize="14"
-                                       HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
-
-                            </StackLayout>
-
-                            <StackLayout Grid.Column="1"
-                                         Padding="32,16"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                         xameff:Commands.Tap="{Binding OpenSectionCommand}"
-                                         xameff:Commands.TapParameter="1">
-
-                                <Label Text="200"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
-
-                                <Label Text="Друзей"
-                                       FontSize="14"
-                                       HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
-
-                            </StackLayout>
-
-                            <StackLayout Grid.Column="2"
-                                         Padding="0,16"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
-                                         xameff:Commands.Tap="{Binding OpenSectionCommand}"
-                                         xameff:Commands.TapParameter="2">
-
-                                <Label Text="100"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
-
-                                <Label Text="Подписок"
-                                       FontSize="14"
-                                       HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
-
-                            </StackLayout>
-
-                        </Grid>
-                    </Frame>
-                </viewControls:ShadowFrame>
-
-                <Grid Margin="0,26,0,0"
-                      ColumnSpacing="24">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*" />
-                        <ColumnDefinition Width="7*" />
-                    </Grid.ColumnDefinitions>
-
-                    <viewControls:ShadowFrame ShadowOffset="0,6"
-                                              ShadowColor="#0D645757">
-
-                        <Frame CornerRadius="28"
-                               BorderColor="{x:Static local:AppColors.Primary}"
-                               BackgroundColor="{x:Static local:AppColors.Screen}">
-
-                            <ContentView Padding="32,14"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
-                                <svg:SvgCachedImage x:Name="icIdea"
-                                                    Source="{x:Static local:AppSvgImages.IcIdea}"
-                                                    WidthRequest="28"
-                                                    HeightRequest="28" />
-                            </ContentView>
-
-                        </Frame>
-
-                    </viewControls:ShadowFrame>
-
-                    <viewControls:ShadowFrame Grid.Column="1"
-                                              ShadowOffset="0,6"
-                                              ShadowColor="#0D645757"
-                                              HorizontalOptions="FillAndExpand">
-
-                        <Frame CornerRadius="28"
-                               BorderColor="{x:Static local:AppColors.Primary}"
-                               BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                            <ContentView Padding="32,14"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
-                                <Label Text="Избранное"
-                                       TextColor="{x:Static local:AppColors.White}"
-                                       FontSize="18"
-                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
-                                       HorizontalOptions="Center" />
-                            </ContentView>
-
-                        </Frame>
-
-                    </viewControls:ShadowFrame>
-
-                </Grid>
-
-                <ScrollView Orientation="Horizontal"
-                            Margin="-24,24,-24,0"
-                            HorizontalScrollBarVisibility="Never">
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="24,0"
-                                 Spacing="24">
-
-                        <viewControls:ShadowFrame WidthRequest="110"
-                                                  HeightRequest="110">
-                            <Frame CornerRadius="10"
-                                   BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                <Image Source="{x:Static local:AppImages.IcMail}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-
-                            </Frame>
-                        </viewControls:ShadowFrame>
-
-                        <viewControls:ShadowFrame WidthRequest="110"
-                                                  HeightRequest="110">
-                            <Frame CornerRadius="10"
-                                   BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                <Image Source="{x:Static local:AppImages.IcMail}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-
-                            </Frame>
-                        </viewControls:ShadowFrame>
-
-                        <viewControls:ShadowFrame WidthRequest="110"
-                                                  HeightRequest="110">
-                            <Frame CornerRadius="10"
-                                   BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                <Image Source="{x:Static local:AppImages.IcMail}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-
-                            </Frame>
-                        </viewControls:ShadowFrame>
-
-                        <viewControls:ShadowFrame WidthRequest="110"
-                                                  HeightRequest="110">
-                            <Frame CornerRadius="10"
-                                   BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                <Image Source="{x:Static local:AppImages.IcMail}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-
-                            </Frame>
-                        </viewControls:ShadowFrame>
-
-                    </StackLayout>
-                </ScrollView>
-
-            </StackLayout>
-        </ScrollView>
-
+        </AbsoluteLayout>
     </viewControls:StateContainerLayout>
 </viewControls:BasePage>

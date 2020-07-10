@@ -17,5 +17,7 @@ namespace HackTruda
         public static SvgImageSource IcSend => SvgImageSource.FromFile("ic_send.svg");
 
         public static SvgImageSource IcMessageCircle => SvgImageSource.FromFile("ic_message_circle.svg");
+
+        public static SvgImageSource IcPlus => SvgImageSource.FromFile("ic_plus.svg");
     }
 }
