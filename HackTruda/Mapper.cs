@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HackTruda.DataModels.Responses;
+using HackTruda.Definitions.Models;
 
 namespace HackTruda
 {
@@ -14,7 +16,7 @@ namespace HackTruda
         private MapperConfiguration GetMapperConfiguration() =>
             new MapperConfiguration(cfg =>
             {
-                //cfg.CreateMap<TSource, TDestination>();
+                cfg.CreateMap<UserResponse, UserModel>();
             });
     }
 }

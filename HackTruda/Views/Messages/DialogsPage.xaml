@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:HackTruda"
+                       xmlns:self="clr-namespace:HackTruda.Views.Messages"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       x:Class="HackTruda.Views.Messages.DialogsPage"
+                       Title="Чаты">
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+            <AbsoluteLayout>
+
+                <ScrollView AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout Padding="0,10,0,40"
+                                 BindableLayout.ItemsSource="{Binding Dialogs}">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <self:DialogItemView />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <commonViews:FabView AbsoluteLayout.LayoutFlags="PositionProportional"
+                                     AbsoluteLayout.LayoutBounds="0.94,0.96,-1,-1"
+                                     TapCommand="{Binding CreateDialogCommand}"
+                                     Image="{x:Static local:AppSvgImages.IcMessageCircle}" />
+
+            </AbsoluteLayout>
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

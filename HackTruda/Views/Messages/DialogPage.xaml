@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:HackTruda"
+                       xmlns:self="clr-namespace:HackTruda.Views.Messages"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       x:Class="HackTruda.Views.Messages.DialogPage">
+
+    <viewControls:BasePage.TitleViewContent>
+        <Grid ColumnSpacing="16"
+              VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame CornerRadius="20"
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   BackgroundColor="{x:Static local:AppColors.Primary}">
+                <Image Source="{Binding DialogItem.User.ImageSrc}"
+                       VerticalOptions="Center"
+                       WidthRequest="24" />
+            </Frame>
+
+            <Label Grid.Column="1"
+                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                   FontSize="16"
+                   LineBreakMode="TailTruncation"
+                   VerticalOptions="Center">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding DialogItem.User.FirstName}" />
+                        <Span Text=" " />
+                        <Span Text="{Binding DialogItem.User.LastName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </Grid>
+    </viewControls:BasePage.TitleViewContent>
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+
+            <AbsoluteLayout>
+
+                <StackLayout AbsoluteLayout.LayoutFlags="All"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+                    <ScrollView x:Name="chatMessagesScrollView"
+                                VerticalOptions="EndAndExpand">
+                        <StackLayout x:Name="chatMessagesStackLayout"
+                                     Padding="0,30,0,40"
+                                     BindableLayout.ItemsSource="{Binding DialogItem.Messages}"
+                                     Spacing="30"
+                                     ChildAdded="StackLayoutChildAdded">
+
+                            <BindableLayout.ItemTemplateSelector>
+                                <self:DialogMessageTemplateSelector />
+                            </BindableLayout.ItemTemplateSelector>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                    <commonViews:ChatEditorView SendMessageCommand="{Binding SendMessageCommand}"
+                                                Text="{Binding ChatMessage}"
+                                                Placeholder="Введите сообщение..."
+                                                Padding="24,12,24,16"
+                                                BackgroundColor="{x:Static local:AppColors.Grey20}"
+                                                IsVisible="{Binding IsChatEntryVisible}" />
+
+                </StackLayout>
+            </AbsoluteLayout>
+
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

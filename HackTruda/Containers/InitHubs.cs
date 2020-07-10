@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace HackTruda.Containers
@@ -11,9 +12,10 @@ namespace HackTruda.Containers
                 .Register(c =>
                     new HubConnectionBuilder()
                         .WithUrl($"{Config.BaseApiUrl}chat")
+                        .WithAutomaticReconnect()
                         .Build())
                 .AsSelf()
-                .InstancePerDependency();
+                .SingleInstance();
         }
     }
 }

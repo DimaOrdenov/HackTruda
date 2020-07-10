@@ -9,7 +9,7 @@ namespace HackTruda.Containers
     {
         private static void InitBusinessLogicServices()
         {
-            _builder.Register(c => new RestClient(Config.BaseApiUrl))
+            _builder.Register(c => new RestClient(Config.BaseApiUrl + "api/"))
                 .As<IRestClient>()
                 .SingleInstance();
 

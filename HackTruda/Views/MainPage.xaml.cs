@@ -44,7 +44,7 @@ namespace HackTruda.Views
             {
                 page.IconImageSource = isActive ? AppImages.IcHomeActive : AppImages.IcHome;
             }
-            else if (currentNavPage is MessagesPage)
+            else if (currentNavPage is DialogsPage)
             {
                 page.IconImageSource = isActive ? AppImages.IcMailActive : AppImages.IcMail;
             }

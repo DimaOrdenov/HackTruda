@@ -16,6 +16,11 @@
                      Spacing="20"
                      BackgroundColor="{x:Static local:AppColors.Screen}">
 
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="8,0" />
+            </StackLayout.Padding>
+
             <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
                          xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}"
                          IsVisible="{Binding HasNavigationBarBackButton}">
@@ -25,27 +30,31 @@
                                     HeightRequest="28" />
             </ContentView>
 
-            <Label Text="{Binding Title, Source={x:Reference this}}"
-                   FontAttributes="Bold"
-                   FontSize="28"
-                   VerticalTextAlignment="Center" />
+            <ContentView x:Name="titleViewContent">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Title, Source={x:Reference this}}"
+                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                           FontSize="28"
+                           VerticalTextAlignment="Center" />
 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="EndAndExpand"
-                         BindableLayout.ItemsSource="{Binding ToolbarItems}">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="EndAndExpand"
+                                 BindableLayout.ItemsSource="{Binding ToolbarItems}">
 
-                <StackLayout.Padding>
-                    <OnPlatform x:TypeArguments="Thickness"
-                                Android="0,0,16,0" />
-                </StackLayout.Padding>
+                        <StackLayout.Padding>
+                            <OnPlatform x:TypeArguments="Thickness"
+                                        Android="0,0,16,0" />
+                        </StackLayout.Padding>
 
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <viewControls:ToolbarItemView BindingContext="{Binding .}" />
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <viewControls:ToolbarItemView BindingContext="{Binding .}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
 
-            </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
 
         </StackLayout>
     </NavigationPage.TitleView>

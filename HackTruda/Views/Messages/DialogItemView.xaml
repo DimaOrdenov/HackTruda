@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.Views.Messages.DialogItemView">
+
+    <Grid ColumnSpacing="16"
+          Padding="24,20"
+          xameff:Commands.Tap="{Binding TapCommand}"
+          xameff:Commands.TapParameter="{Binding .}"
+          xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="52" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="24" />
+        </Grid.ColumnDefinitions>
+
+        <Frame CornerRadius="26"
+               WidthRequest="52"
+               HeightRequest="52"
+               VerticalOptions="Center"
+               BackgroundColor="{x:Static local:AppColors.Primary}">
+            <Image Source="{Binding User.ImageSrc}"
+                   VerticalOptions="Center"
+                   WidthRequest="24" />
+        </Frame>
+
+        <StackLayout Grid.Column="1"
+                     VerticalOptions="Center"
+                     HorizontalOptions="FillAndExpand"
+                     Spacing="4">
+
+            <Label FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                   FontSize="16"
+                   LineBreakMode="TailTruncation">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding User.FirstName}" />
+                        <Span Text=" " />
+                        <Span Text="{Binding User.LastName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Text="{Binding LastMessage.Text}"
+                   TextColor="{x:Static local:AppColors.Dark80}"
+                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
+                   FontSize="14"
+                   LineBreakMode="TailTruncation" />
+
+        </StackLayout>
+
+        <Frame Grid.Column="2"
+               CornerRadius="12"
+               WidthRequest="24"
+               HeightRequest="24"
+               BackgroundColor="{x:Static local:AppColors.Primary}"
+               VerticalOptions="Center"
+               HorizontalOptions="End">
+
+            <Frame.Triggers>
+                <DataTrigger TargetType="Frame"
+                             Binding="{Binding NewMessagesCount}"
+                             Value="0">
+                    <Setter Property="IsVisible"
+                            Value="False" />
+                </DataTrigger>
+            </Frame.Triggers>
+
+            <Label Text="{Binding NewMessagesCount}"
+                   TextColor="{x:Static local:AppColors.White}"
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+        </Frame>
+
+    </Grid>
+
+</ContentView>

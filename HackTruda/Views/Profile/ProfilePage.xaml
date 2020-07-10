@@ -102,12 +102,14 @@
 
                                 <Label Text="503"
                                        FontSize="20"
-                                       HorizontalOptions="Center" />
+                                       HorizontalOptions="Center"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
 
                                 <Label Text="Лайка"
                                        FontSize="14"
                                        HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}" />
+                                       TextColor="{x:Static local:AppColors.Dark80}"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
 
                             </StackLayout>
 
@@ -119,12 +121,14 @@
 
                                 <Label Text="200"
                                        FontSize="20"
-                                       HorizontalOptions="Center" />
+                                       HorizontalOptions="Center"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
 
                                 <Label Text="Друзей"
                                        FontSize="14"
                                        HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}" />
+                                       TextColor="{x:Static local:AppColors.Dark80}"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
 
                             </StackLayout>
 
@@ -136,12 +140,14 @@
 
                                 <Label Text="100"
                                        FontSize="20"
-                                       HorizontalOptions="Center" />
+                                       HorizontalOptions="Center"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
 
                                 <Label Text="Подписок"
                                        FontSize="14"
                                        HorizontalOptions="Center"
-                                       TextColor="{x:Static local:AppColors.Dark80}" />
+                                       TextColor="{x:Static local:AppColors.Dark80}"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" />
 
                             </StackLayout>
 
@@ -149,9 +155,16 @@
                     </Frame>
                 </viewControls:ShadowFrame>
 
-                <StackLayout Orientation="Horizontal"
-                             Margin="0,26,0,0"
-                             Spacing="24">
+                <Grid Margin="0,26,0,0"
+                      ColumnSpacing="24">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
 
                     <viewControls:ShadowFrame ShadowOffset="0,6"
                                               ShadowColor="#0D645757">
@@ -172,40 +185,39 @@
 
                     </viewControls:ShadowFrame>
 
-                    <viewControls:ShadowFrame ShadowOffset="0,6"
-                                              ShadowColor="#0D645757">
+                    <viewControls:ShadowFrame Grid.Column="1"
+                                              ShadowOffset="0,6"
+                                              ShadowColor="#0D645757"
+                                              HorizontalOptions="FillAndExpand">
 
                         <Frame CornerRadius="28"
                                BorderColor="{x:Static local:AppColors.Primary}"
-                               BackgroundColor="{x:Static local:AppColors.Screen}">
+                               BackgroundColor="{x:Static local:AppColors.Primary}">
 
                             <ContentView Padding="32,14"
                                          xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
                                 <Label Text="Избранное"
                                        TextColor="{x:Static local:AppColors.White}"
-                                       FontSize="18" />
+                                       FontSize="18"
+                                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                       HorizontalOptions="Center" />
                             </ContentView>
 
                         </Frame>
 
                     </viewControls:ShadowFrame>
 
-                </StackLayout>
+                </Grid>
 
-                <StackLayout Margin="0,30,0,0"
-                             Spacing="24">
+                <ScrollView Orientation="Horizontal"
+                            Margin="-24,24,-24,0"
+                            HorizontalScrollBarVisibility="Never">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="24,0"
+                                 Spacing="24">
 
-                    <Grid ColumnSpacing="24">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <viewControls:ShadowFrame x:Name="elem1"
-                                                  HeightRequest="{Binding Source={x:Reference elem1}, Path=Width}">
+                        <viewControls:ShadowFrame WidthRequest="110"
+                                                  HeightRequest="110">
                             <Frame CornerRadius="10"
                                    BackgroundColor="{x:Static local:AppColors.Primary}">
 
@@ -216,32 +228,8 @@
                             </Frame>
                         </viewControls:ShadowFrame>
 
-                        <viewControls:ShadowFrame x:Name="elem2"
-                                                  HeightRequest="{Binding Source={x:Reference elem2}, Path=Width}"
-                                                  Grid.Column="1">
-                            <Frame CornerRadius="10"
-                                   BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                <Image Source="{x:Static local:AppImages.IcMapPin}"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-
-                            </Frame>
-                        </viewControls:ShadowFrame>
-
-                    </Grid>
-
-                    <Grid ColumnSpacing="24">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <viewControls:ShadowFrame x:Name="elem3"
-                                                  HeightRequest="{Binding Source={x:Reference elem3}, Path=Width}">
+                        <viewControls:ShadowFrame WidthRequest="110"
+                                                  HeightRequest="110">
                             <Frame CornerRadius="10"
                                    BackgroundColor="{x:Static local:AppColors.Primary}">
 
@@ -252,22 +240,32 @@
                             </Frame>
                         </viewControls:ShadowFrame>
 
-                        <viewControls:ShadowFrame x:Name="elem4"
-                                                  HeightRequest="{Binding Source={x:Reference elem4}, Path=Width}"
-                                                  Grid.Column="1">
+                        <viewControls:ShadowFrame WidthRequest="110"
+                                                  HeightRequest="110">
                             <Frame CornerRadius="10"
                                    BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                                <Image Source="{x:Static local:AppImages.IcMapPin}"
+                                <Image Source="{x:Static local:AppImages.IcMail}"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
 
                             </Frame>
                         </viewControls:ShadowFrame>
 
-                    </Grid>
+                        <viewControls:ShadowFrame WidthRequest="110"
+                                                  HeightRequest="110">
+                            <Frame CornerRadius="10"
+                                   BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                </StackLayout>
+                                <Image Source="{x:Static local:AppImages.IcMail}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+
+                            </Frame>
+                        </viewControls:ShadowFrame>
+
+                    </StackLayout>
+                </ScrollView>
 
             </StackLayout>
         </ScrollView>

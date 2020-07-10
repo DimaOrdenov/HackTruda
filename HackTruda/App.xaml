@@ -38,6 +38,18 @@
                    ApplyToDerivedTypes="True">
                 <Setter Property="TextColor"
                         Value="{x:Static local:AppColors.Dark}" />
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamily.NunitoRegular}" />
+            </Style>
+            <Style TargetType="Editor"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamily.NunitoRegular}" />
+            </Style>
+            <Style TargetType="Entry"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamily.NunitoRegular}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

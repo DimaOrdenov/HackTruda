@@ -19,9 +19,15 @@ namespace HackTruda.Containers
             // Messages
             _pageBuilder.Configure(
                 new PageStack(
-                    PageType.MessagesPage,
-                    typeof(Views.Messages.MessagesPage),
-                    typeof(ViewModels.Messages.MessagesViewModel)));
+                    PageType.DialogsPage,
+                    typeof(Views.Messages.DialogsPage),
+                    typeof(ViewModels.Messages.DialogsViewModel)));
+
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.DialogPage,
+                    typeof(Views.Messages.DialogPage),
+                    typeof(ViewModels.Messages.DialogViewModel)));
 
             // Search
             _pageBuilder.Configure(
@@ -59,7 +65,7 @@ namespace HackTruda.Containers
                     new List<PageType>
                     {
                         PageType.FeedPage,
-                        PageType.MessagesPage,
+                        PageType.DialogsPage,
                         PageType.SearchPage,
                         PageType.NotificationsPage,
                         PageType.ProfilePage,
@@ -67,7 +73,7 @@ namespace HackTruda.Containers
                     new Dictionary<PageType, string>
                     {
                         { PageType.FeedPage, null },
-                        { PageType.MessagesPage, null },
+                        { PageType.DialogsPage, null },
                         { PageType.SearchPage, null },
                         { PageType.NotificationsPage, null },
                         { PageType.ProfilePage, null },
@@ -76,7 +82,7 @@ namespace HackTruda.Containers
                     ChildrenPageIcons = new Dictionary<PageType, FileImageSource>
                     {
                         { PageType.FeedPage, AppImages.IcHome as FileImageSource },
-                        { PageType.MessagesPage, AppImages.IcMail as FileImageSource },
+                        { PageType.DialogsPage, AppImages.IcMail as FileImageSource },
                         { PageType.SearchPage, AppImages.IcSearch as FileImageSource },
                         { PageType.NotificationsPage, AppImages.IcBell as FileImageSource },
                         { PageType.ProfilePage, AppImages.IcUser as FileImageSource },

@@ -178,6 +178,8 @@
     <BundleResource Include="Resources\ic_idea.svg" />
     <BundleResource Include="Resources\ic_arrow_left.svg" />
     <BundleResource Include="Resources\ic_chevron_right.svg" />
+    <BundleResource Include="Resources\ic_send.svg" />
+    <BundleResource Include="Resources\ic_message_circle.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

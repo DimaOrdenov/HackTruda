@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:self="clr-namespace:HackTruda.Views.Messages"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+             xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.Views.Common.FabView"
+             x:Name="this">
+
+    <viewControls:ShadowFrame ShadowOffset="0,4"
+                              ShadowBlur="50"
+                              ShadowColor="#26686868">
+        <Frame CornerRadius="27"
+               WidthRequest="54"
+               HeightRequest="54"
+               BackgroundColor="{x:Static local:AppColors.Primary}">
+            <ContentView xameff:Commands.Tap="{Binding TapCommand, Source={x:Reference this}}"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+                <svg:SvgCachedImage Source="{Binding Image, Source={x:Reference this}}"
+                                    WidthRequest="28"
+                                    HeightRequest="28"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center" />
+
+            </ContentView>
+        </Frame>
+    </viewControls:ShadowFrame>
+</ContentView>
