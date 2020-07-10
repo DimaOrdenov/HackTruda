@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using HackTruda.API.Models;
 
 namespace HackTruda.API.Models
 {
@@ -14,8 +15,11 @@ namespace HackTruda.API.Models
         {
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Post>().ToTable("Post");
+            modelBuilder.Entity<Notification>().ToTable("Notification");
         }
 
         public DbSet<HackTruda.API.Models.Post> Post { get; set; }
+
+        public DbSet<HackTruda.API.Models.Notification> Notification { get; set; }
     }
 }
