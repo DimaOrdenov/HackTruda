@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackTruda", "HackTruda\Hack
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackTruda.API", "HackTruda.API\HackTruda.API.csproj", "{F640DB8E-ACDC-4AF2-8DF0-C9C7BED5E9B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackTruda.DataModels", "HackTruda.DataModels\HackTruda.DataModels.csproj", "{0DEE3EEC-DD81-4DA4-86C4-7EE3BDD49F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackTruda.DataModels", "HackTruda.DataModels\HackTruda.DataModels.csproj", "{0DEE3EEC-DD81-4DA4-86C4-7EE3BDD49F6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +24,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{EC6BAD8C-25B4-4B6F-A700-7105324028C7}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU

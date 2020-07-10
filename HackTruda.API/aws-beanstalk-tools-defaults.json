@@ -1,11 +1,12 @@
+
 {
-  "comment": "This file is used to help set default values when using the dotnet CLI extension Amazon.ElasticBeanstalk.Tools. For more information run \"dotnet eb --help\" from the project root.",
-  "profile": "swamp1820",
-  "region": "us-east-2",
-  "application": "HackTrudaAPI",
-  "environment": "Hacktrudaapi-env-1",
-  "solution-stack": "64bit Windows Server 2019 v2.5.7 running IIS 10.0",
-  "iis-website": "Default Web Site",
-  "app-path": "/",
-  "enable-xray": false
+    "comment" : "This file is used to help set default values when using the dotnet CLI extension Amazon.ElasticBeanstalk.Tools. For more information run \"dotnet eb --help\" from the project root.",
+    "profile" : "swamp1820",
+    "region"  : "us-east-2",
+    "application" : "HackTrudaAPI",
+    "environment" : "Hacktrudaapi-env-1",
+    "solution-stack" : "64bit Windows Server 2019 v2.5.7 running IIS 10.0",
+    "iis-website"    : "Default Web Site",
+    "app-path"       : "/",
+    "enable-xray"    : false
 }
