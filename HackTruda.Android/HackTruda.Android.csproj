@@ -670,8 +670,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_heart_inactive.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_message.svg" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Forms;
@@ -20,7 +21,7 @@ namespace HackTruda.ViewModels.Profile
         private readonly IUsersLogic _usersLogic;
         private readonly IPostsLogic _postsLogic;
 
-        private ObservableCollection<FeedResponse> _feeds;
+        private ObservableCollection<ProfileFeedItemViewModel> _feeds;
 
         public ICommand ChooseAvatarCommand { get; }
 
@@ -81,7 +82,7 @@ namespace HackTruda.ViewModels.Profile
             };
         }
 
-        public ObservableCollection<FeedResponse> Feeds
+        public ObservableCollection<ProfileFeedItemViewModel> Feeds
         {
             get => _feeds;
             set => SetProperty(ref _feeds, value);
@@ -96,25 +97,28 @@ namespace HackTruda.ViewModels.Profile
 
             State = PageStateType.Loading;
 
-            Feeds = new ObservableCollection<FeedResponse>(await LoadFeed());
+            Feeds = new ObservableCollection<ProfileFeedItemViewModel>(await LoadFeed());
 
             State = PageStateType.Default;
 
             await base.OnAppearing();
         }
 
-        private async Task<IEnumerable<FeedResponse>> LoadFeed()
+        private async Task<IEnumerable<ProfileFeedItemViewModel>> LoadFeed()
         {
-            IEnumerable<FeedResponse> result = null;
+            IEnumerable<ProfileFeedItemViewModel> result = null;
 
             await ExceptionHandler.PerformCatchableTask(
                 new ViewModelPerformableAction(
                     async () =>
                     {
-                        result = await _postsLogic.GetFeed(2, 1, CancellationToken);
+                        result =
+                            (await _postsLogic.GetFeed(2, 1, CancellationToken))
+                            .ToList()
+                            .Select(x => new ProfileFeedItemViewModel(x));
                     }));
 
-            return result ?? new List<FeedResponse>();
+            return result ?? new List<ProfileFeedItemViewModel>();
         }
     }
 }

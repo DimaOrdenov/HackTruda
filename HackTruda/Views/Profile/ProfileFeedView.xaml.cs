@@ -10,6 +10,8 @@ namespace HackTruda.Views.Profile
         public ProfileFeedView()
         {
             InitializeComponent();
+
+            icMessage.SetStrokeTintColor(AppColors.Dark80);
         }
     }
 }

@@ -289,7 +289,4 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_heart_inactive.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_message.svg" />
-  </ItemGroup>
 </Project>

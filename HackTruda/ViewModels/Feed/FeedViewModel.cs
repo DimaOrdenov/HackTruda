@@ -21,7 +21,7 @@ namespace HackTruda.ViewModels.Feed
 
         public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         bool isRefreshing;
-        private ObservableCollection<FeedResponse> items;
+        private ObservableCollection<FeedItemViewModel> items;
 
         public FeedViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
@@ -36,7 +36,7 @@ namespace HackTruda.ViewModels.Feed
             IcMore.SetTintColor(Color.Black);
         }
 
-        public ObservableCollection<FeedResponse> Items
+        public ObservableCollection<FeedItemViewModel> Items
         {
             get => items;
             set => SetProperty(ref items, value);
@@ -63,30 +63,34 @@ namespace HackTruda.ViewModels.Feed
 
             State = PageStateType.Loading;
 
-            Items = new ObservableCollection<FeedResponse>(await LoadFeed());
+            Items = new ObservableCollection<FeedItemViewModel>(await LoadFeed());
 
             State = PageStateType.Default;
 
             await base.OnAppearing();
         }
 
-        private async Task<IEnumerable<FeedResponse>> LoadFeed()
+        private async Task<IEnumerable<FeedItemViewModel>> LoadFeed()
         {
-            IEnumerable<FeedResponse> result = null;
-            await ExceptionHandler.PerformCatchableTask(
-            new ViewModelPerformableAction(
-                async () =>
-                {
-                    result = await _postsLogic.GetFeed(2, 1, CancellationToken);
-                }));
+            IEnumerable<FeedItemViewModel> result = null;
 
-            return result ?? new List<FeedResponse>();
+            await ExceptionHandler.PerformCatchableTask(
+                new ViewModelPerformableAction(
+                    async () =>
+                    {
+                        result =
+                                (await _postsLogic.GetFeed(2, 1, CancellationToken))
+                                .ToList()
+                                .Select(x => new FeedItemViewModel(x));
+                    }));
+
+            return result ?? new List<FeedItemViewModel>();
         }
 
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
-            Items = new ObservableCollection<FeedResponse>(await LoadFeed());
+            Items = new ObservableCollection<FeedItemViewModel>(await LoadFeed());
             IsRefreshing = false;
         }
     }

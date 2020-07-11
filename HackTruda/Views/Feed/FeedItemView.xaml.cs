@@ -13,6 +13,8 @@ namespace HackTruda.Views.Feed
 
             imageMore.Source = AppImages.IcMoreVertical;
             imageMore.SetTintColor(Color.Black);
+
+            icMessage.SetStrokeTintColor(AppColors.Dark80);
         }
     }
 }
