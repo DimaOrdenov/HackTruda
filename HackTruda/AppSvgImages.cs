@@ -35,5 +35,9 @@ namespace HackTruda
         public static SvgImageSource IcEye => SvgImageSource.FromFile("ic_eye.svg");
 
         public static SvgImageSource IcEyeOff => SvgImageSource.FromFile("ic_eye_off.svg");
+
+        public static SvgImageSource IcSearch => SvgImageSource.FromFile("ic_search.svg");
+
+        public static SvgImageSource IcChevronBottom => SvgImageSource.FromFile("ic_chevron_bottom.svg");
     }
 }

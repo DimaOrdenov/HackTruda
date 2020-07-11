@@ -76,48 +76,14 @@
     <Compile Include="CustomRenderers\ExtendedNavigationPageRenderer.cs" />
     <Compile Include="CustomRenderers\BasePageRenderer.cs" />
     <Compile Include="CustomRenderers\TabbedPageRenderer.cs" />
+    <Compile Include="CustomRenderers\BaseMapRenderer.cs" />
+    <Compile Include="CustomRenderers\CustomMKAnnotationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
     <BundleResource Include="Resources\Nunito-Bold.ttf" />
@@ -179,6 +145,51 @@
     <BundleResource Include="Resources\ic_logo.png" />
     <BundleResource Include="Resources\ic_logo%402x.png" />
     <BundleResource Include="Resources\ic_logo%403x.png" />
+    <BundleResource Include="Resources\image_search_people.png" />
+    <BundleResource Include="Resources\image_search_people%402x.png" />
+    <BundleResource Include="Resources\image_search_people%403x.png" />
+    <BundleResource Include="Resources\image_search_places.png" />
+    <BundleResource Include="Resources\image_search_places%402x.png" />
+    <BundleResource Include="Resources\image_search_places%403x.png" />
+    <BundleResource Include="Resources\image_search_events.png" />
+    <BundleResource Include="Resources\image_search_events%402x.png" />
+    <BundleResource Include="Resources\image_search_events%403x.png" />
+    <BundleResource Include="Resources\image_search_ads.png" />
+    <BundleResource Include="Resources\image_search_ads%402x.png" />
+    <BundleResource Include="Resources\image_search_ads%403x.png" />
+    <BundleResource Include="Resources\image_search_games.png" />
+    <BundleResource Include="Resources\image_search_games%402x.png" />
+    <BundleResource Include="Resources\image_search_games%403x.png" />
+    <BundleResource Include="Resources\image_search_podcasts.png" />
+    <BundleResource Include="Resources\image_search_podcasts%402x.png" />
+    <BundleResource Include="Resources\image_search_podcasts%403x.png" />
+    <BundleResource Include="Resources\image_search_recipes.png" />
+    <BundleResource Include="Resources\image_search_recipes%402x.png" />
+    <BundleResource Include="Resources\image_search_recipes%403x.png" />
+    <BundleResource Include="Resources\placeholder_1.png" />
+    <BundleResource Include="Resources\placeholder_1%402x.png" />
+    <BundleResource Include="Resources\placeholder_1%403x.png" />
+    <BundleResource Include="Resources\placeholder_2.png" />
+    <BundleResource Include="Resources\placeholder_2%402x.png" />
+    <BundleResource Include="Resources\placeholder_2%403x.png" />
+    <BundleResource Include="Resources\placeholder_3.png" />
+    <BundleResource Include="Resources\placeholder_3%402x.png" />
+    <BundleResource Include="Resources\placeholder_3%403x.png" />
+    <BundleResource Include="Resources\placeholder_4.png" />
+    <BundleResource Include="Resources\placeholder_4%402x.png" />
+    <BundleResource Include="Resources\placeholder_4%403x.png" />
+    <BundleResource Include="Resources\placeholder_5.png" />
+    <BundleResource Include="Resources\placeholder_5%402x.png" />
+    <BundleResource Include="Resources\placeholder_5%403x.png" />
+    <BundleResource Include="Resources\placeholder_6.png" />
+    <BundleResource Include="Resources\placeholder_6%402x.png" />
+    <BundleResource Include="Resources\placeholder_6%403x.png" />
+    <BundleResource Include="Resources\map_pin_red.png" />
+    <BundleResource Include="Resources\map_pin_red%402x.png" />
+    <BundleResource Include="Resources\map_pin_red%403x.png" />
+    <BundleResource Include="Resources\map_pin_blue.png" />
+    <BundleResource Include="Resources\map_pin_blue%402x.png" />
+    <BundleResource Include="Resources\map_pin_blue%403x.png" />
     <BundleResource Include="Resources\ic_settings.svg" />
     <BundleResource Include="Resources\ic_camera.svg" />
     <BundleResource Include="Resources\ic_idea.svg" />
@@ -195,6 +206,15 @@
     <BundleResource Include="Resources\ic_google.svg" />
     <BundleResource Include="Resources\ic_eye.svg" />
     <BundleResource Include="Resources\ic_eye_off.svg" />
+    <BundleResource Include="Resources\ic_search.svg" />
+    <BundleResource Include="Resources\ic_chevron_bottom.svg" />
+    <!-- <BundleResource Include="Resources\image_search_people.svg" />
+    <BundleResource Include="Resources\image_search_places.svg" />
+    <BundleResource Include="Resources\image_search_events.svg" />
+    <BundleResource Include="Resources\image_search_ads.svg" />
+    <BundleResource Include="Resources\image_search_games.svg" />
+    <BundleResource Include="Resources\image_search_podcasts.svg" />
+    <BundleResource Include="Resources\image_search_recipes.svg" /> -->
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

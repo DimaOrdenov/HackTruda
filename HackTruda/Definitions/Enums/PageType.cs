@@ -22,6 +22,10 @@
 
         SearchPage,
 
+        CategoryPage,
+
+        MapCategoryPage,
+
         // Notifications
 
         NotificationsPage,

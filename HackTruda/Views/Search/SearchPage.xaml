@@ -7,9 +7,81 @@
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
                        xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                        x:Class="HackTruda.Views.Search.SearchPage"
-                       Title="Поиск">
+                       Title="Поиск"
+                       x:Name="searchPage">
 
-    <maps:Map x:Name="map"
-              IsShowingUser="{Binding IsShowingUser}" />
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Spacing="20"
+                     BackgroundColor="{x:Static local:AppColors.Screen}">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="8,0" />
+            </StackLayout.Padding>
+
+            <Label Text="{Binding Title, Source={x:Reference searchPage}}"
+                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                   FontSize="28"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="StartAndExpand" />
+
+            <ContentView Padding="2"
+                         HorizontalOptions="End"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                <svg:SvgCachedImage x:Name="icSearch"
+                                    Source="{x:Static local:AppSvgImages.IcSearch}"
+                                    WidthRequest="24"
+                                    HeightRequest="24" />
+            </ContentView>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+
+            <ScrollView>
+                <StackLayout x:Name="categories"
+                             Padding="0,30,0,40"
+                             BindableLayout.ItemsSource="{Binding Categories}">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout Padding="24,20"
+                                         Orientation="Horizontal"
+                                         Spacing="24"
+                                         xameff:Commands.Tap="{Binding Source={x:Reference categories}, Path=BindingContext.CategoryTapCommand}"
+                                         xameff:Commands.TapParameter="{Binding .}"
+                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+                                <Image Source="{Binding Image}"
+                                       WidthRequest="82"
+                                       HeightRequest="82" />
+
+                                <StackLayout VerticalOptions="Center"
+                                             Spacing="6">
+
+                                    <Label Text="{Binding Title}"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                           FontSize="16" />
+
+                                    <Label Text="{Binding Description}"
+                                           FontSize="14"
+                                           TextColor="{x:Static local:AppColors.Grey}" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+                </StackLayout>
+            </ScrollView>
+
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
 
 </viewControls:BasePage>

@@ -43,6 +43,18 @@ namespace HackTruda.Containers
                     typeof(Views.Search.SearchPage),
                     typeof(ViewModels.Search.SearchViewModel)));
 
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.CategoryPage,
+                    typeof(Views.Search.CategoryPage),
+                    typeof(ViewModels.Search.CategoryViewModel)));
+
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.MapCategoryPage,
+                    typeof(Views.Search.MapCategoryPage),
+                    typeof(ViewModels.Search.MapCategoryViewModel)));
+
             // Notifications
             _pageBuilder.Configure(
                 new PageStack(

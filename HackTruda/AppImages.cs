@@ -35,5 +35,31 @@ namespace HackTruda
         public static ImageSource IcBellActive => ImageSource.FromFile("ic_bell_active.png");
 
         public static ImageSource IcLogo => ImageSource.FromFile("ic_logo.png");
+
+        public static ImageSource ImageSearchPeople => ImageSource.FromFile("image_search_people.png");
+
+        public static ImageSource ImageSearchPlaces => ImageSource.FromFile("image_search_places.png");
+
+        public static ImageSource ImageSearchEvents => ImageSource.FromFile("image_search_events.png");
+
+        public static ImageSource ImageSearchAds => ImageSource.FromFile("image_search_ads.png");
+
+        public static ImageSource ImageSearchGames => ImageSource.FromFile("image_search_games.png");
+
+        public static ImageSource ImageSearchPodcasts => ImageSource.FromFile("image_search_podcasts.png");
+
+        public static ImageSource ImageSearchRecipes => ImageSource.FromFile("image_search_recipes.png");
+
+        public static ImageSource Placeholder1 => ImageSource.FromFile("placeholder_1.png");
+
+        public static ImageSource Placeholder2 => ImageSource.FromFile("placeholder_2.png");
+
+        public static ImageSource Placeholder3 => ImageSource.FromFile("placeholder_3.png");
+
+        public static ImageSource Placeholder4 => ImageSource.FromFile("placeholder_4.png");
+
+        public static ImageSource Placeholder5 => ImageSource.FromFile("placeholder_5.png");
+
+        public static ImageSource Placeholder6 => ImageSource.FromFile("placeholder_6.png");
     }
 }

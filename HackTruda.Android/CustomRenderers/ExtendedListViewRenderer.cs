@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using Android.Content;
+using HackTruda.Droid.CustomRenderers;
 using HackTruda.ViewControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+[assembly: ExportRenderer(typeof(ExtendedListView), typeof(ExtendedListViewRenderer))]
 namespace HackTruda.Droid.CustomRenderers
 {
     public class ExtendedListViewRenderer : ListViewRenderer
