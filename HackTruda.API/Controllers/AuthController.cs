@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using HackTruda.API.Models;
 using HackTruda.DataModels.Requests;
+using HackTruda.DataModels.Responses;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -68,7 +69,14 @@ namespace HackTruda.API.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize]
+        [HttpGet("check")]
+        public async Task<string> Get()
+        {
+            return User.Identity.Name;
+        }
+
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
             if (ModelState.IsValid)
@@ -80,7 +88,11 @@ namespace HackTruda.API.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
-                
+
+                    var u = _context.Users
+                       .Where(x => x.UserName == request.UserName)
+                       .FirstOrDefault();
+                    return Ok(new AuthResponse() { UserId = u.UserId });
                 }
                 else
                 {
@@ -93,7 +105,7 @@ namespace HackTruda.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginRequest request)
         {
@@ -110,15 +122,16 @@ namespace HackTruda.API.Controllers
 
                 var result =
                     await _signInManager.PasswordSignInAsync(user, request.Password,true, false);
+
                 if (result.Succeeded)
                 {
-                    return Ok();
+                    return Ok(new AuthResponse() { UserId = user.UserId });
                 }
             }
             return BadRequest();
         }
 
-        [HttpPost]
+        [HttpPost("logout")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {

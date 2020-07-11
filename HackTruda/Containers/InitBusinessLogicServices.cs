@@ -24,6 +24,10 @@ namespace HackTruda.Containers
             _builder.RegisterType<PostsLogic>()
                     .As<IPostsLogic>()
                     .SingleInstance();
+
+            _builder.RegisterType<AuthLogic>()
+                  .As<IAuthLogic>()
+                  .SingleInstance();
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Svg.Forms;
+using HackTruda.BusinessLogic.Interfaces;
+using HackTruda.DataModels.Requests;
 using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
 using HackTruda.Extensions;
@@ -36,8 +38,12 @@ namespace HackTruda.ViewModels.Authorization
 
         public ICommand ChangeFormCommand { get; }
 
-        public AuthViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService) : base(navigationService, dialogService, debuggerService)
+        public IAuthLogic _authLogic { get; }
+
+        public AuthViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IAuthLogic authLogic) 
+            : base(navigationService, dialogService, debuggerService)
         {
+            _authLogic = authLogic;
             SocialAuthCommand = BuildPageVmCommand<string>(
                 async (scheme) =>
                 {
@@ -64,7 +70,23 @@ namespace HackTruda.ViewModels.Authorization
 
             LoginCommand = BuildPageVmCommand(() => Task.Delay(1000).ContinueWith(t => NavigationService.SetRootPage(TabbedPageType.MainPage)));
 
-            RegisterCommand = BuildPageVmCommand(() => Task.Delay(1000).ContinueWith(t => NavigationService.SetRootPage(TabbedPageType.MainPage)));
+            RegisterCommand = BuildPageVmCommand(
+                async () =>
+                {
+                    bool success = await ExceptionHandler.PerformCatchableTask(
+                        new ViewModelPerformableAction(async () =>
+                        {
+                          var authResult = 
+                            await _authLogic.Register(new RegisterRequest() { Password = NewPassword, Phone = NewPhoneNumber, UserName = NewUsername}, CancellationToken);
+                        }));
+
+                    if (success)
+                    {
+                        NavigationService.SetRootPage(TabbedPageType.MainPage);
+                    }
+                });
+
+          //  RegisterCommand = BuildPageVmCommand(() => Task.Delay(1000).ContinueWith(t => NavigationService.SetRootPage(TabbedPageType.MainPage)));
 
             PasswordVisibilityCommand = BuildPageVmCommand(() =>
             {
