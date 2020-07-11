@@ -78,17 +78,13 @@ namespace HackTruda.ViewModels.Messages
                 return;
             }
 
-           var p = await ExceptionHandler.PerformCatchableTask(
-                new ViewModelPerformableAction(
-                    async () => await _postsLogic.GetUser(new System.Threading.CancellationToken()))
-                .IfChangePageState(false)
-                .IfShowSnackbar(true)); ;
 
-            //await ExceptionHandler.PerformCatchableTask(
-            //    new ViewModelPerformableAction(
-            //        async () => await _hubConnection.StartAsync(CancellationToken))
-            //    .IfChangePageState(false)
-            //    .IfShowSnackbar(true));
+
+            await ExceptionHandler.PerformCatchableTask(
+                new ViewModelPerformableAction(
+                    async () => await _hubConnection.StartAsync(CancellationToken))
+                .IfChangePageState(false)
+                .IfShowSnackbar(true));
 
             OnPropertyChanged(nameof(IsChatEntryVisible));
 

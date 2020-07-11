@@ -24,11 +24,10 @@ namespace HackTruda.BusinessLogic
             new RestRequest(Route + $"/feed/{id}", Method.GET)
                   .AddParameter("page", page)
                   ,token);
-
-        public Task<ClaimsPrincipal> GetUser( CancellationToken ctoken) =>
-         ExecuteAsync<ClaimsPrincipal>(
-         new RestRequest("auth/check", Method.GET)
-               , ctoken);
+        public Task<IEnumerable<FeedResponse>> GetUserPosts(int id, CancellationToken token) =>
+          ExecuteAsync<IEnumerable<FeedResponse>>(
+          new RestRequest(Route + $"/user/{id}", Method.GET)
+                , token);
 
     }
 }

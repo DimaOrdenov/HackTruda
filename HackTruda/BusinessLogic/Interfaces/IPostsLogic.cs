@@ -11,6 +11,6 @@ namespace HackTruda.BusinessLogic.Interfaces
     {
         
         public Task<IEnumerable<FeedResponse>> GetFeed(int id, int page, CancellationToken token);
-        Task<ClaimsPrincipal> GetUser (CancellationToken ctoken);
+        public Task<IEnumerable<FeedResponse>> GetUserPosts(int id, CancellationToken token);
     }
 }
