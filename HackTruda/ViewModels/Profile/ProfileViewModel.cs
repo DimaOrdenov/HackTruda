@@ -113,8 +113,9 @@ namespace HackTruda.ViewModels.Profile
                     async () =>
                     {
                         result =
-                            (await _postsLogic.GetFeed(2, 1, CancellationToken))
+                            (await _postsLogic.GetUserPosts(2, CancellationToken))
                             .ToList()
+                            .OrderByDescending(x=>x.Date)
                             .Select(x => new ProfileFeedItemViewModel(x));
                     }));
 

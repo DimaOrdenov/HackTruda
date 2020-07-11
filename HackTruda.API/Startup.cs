@@ -1,17 +1,26 @@
+using AspNet.Security.OAuth.Vkontakte;
 using AutoMapper;
 
 using HackTruda.API.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
+using System.Security.Claims;
+using System.Text.Json;
 
 namespace HackTruda.API
 {
@@ -29,6 +38,11 @@ namespace HackTruda.API
         {
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
+            services.AddDbContext<IdentityContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
+
+            services.AddIdentity<AuthUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>();
 
             services.AddSwaggerGen(c =>
             {
@@ -49,15 +63,17 @@ namespace HackTruda.API
                 .AddAuthentication(options =>
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = VkontakteAuthenticationDefaults.AuthenticationScheme;
+                    
                 })
-                .AddVkontakte("vk", options =>
+                .AddVkontakte(options =>
                 {
                     options.SaveTokens = true;
-                    options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
-                    options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                   // options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                    //options.TokenEndpoint = "https://oauth.vk.com/access_token";
                     options.ClientId = Configuration["VkClientId"];
                     options.ClientSecret = Configuration["VkClientSecret"];
-                    options.Scope.Add("email");
+                   // options.Scope.Add("email");
                 })
                 .AddCookie();
         }

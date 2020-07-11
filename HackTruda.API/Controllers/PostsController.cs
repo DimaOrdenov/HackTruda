@@ -68,7 +68,7 @@ namespace HackTruda.API.Controllers
         }
 
         // PUT: api/Posts/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        //Class.cs To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPost(int id, PostRequest post)
