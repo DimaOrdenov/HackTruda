@@ -173,6 +173,12 @@
     <BundleResource Include="Resources\ic_bell_active.png" />
     <BundleResource Include="Resources\ic_bell_active%402x.png" />
     <BundleResource Include="Resources\ic_bell_active%403x.png" />
+    <BundleResource Include="Resources\launcher_foreground.png" />
+    <BundleResource Include="Resources\launcher_foreground%402x.png" />
+    <BundleResource Include="Resources\launcher_foreground%403x.png" />
+    <BundleResource Include="Resources\ic_logo.png" />
+    <BundleResource Include="Resources\ic_logo%402x.png" />
+    <BundleResource Include="Resources\ic_logo%403x.png" />
     <BundleResource Include="Resources\ic_settings.svg" />
     <BundleResource Include="Resources\ic_camera.svg" />
     <BundleResource Include="Resources\ic_idea.svg" />
@@ -181,6 +187,14 @@
     <BundleResource Include="Resources\ic_send.svg" />
     <BundleResource Include="Resources\ic_message_circle.svg" />
     <BundleResource Include="Resources\ic_plus.svg" />
+    <BundleResource Include="Resources\ic_heart_active.svg" />
+    <BundleResource Include="Resources\ic_heart_inactive.svg" />
+    <BundleResource Include="Resources\ic_vk.svg" />
+    <BundleResource Include="Resources\ic_ok.svg" />
+    <BundleResource Include="Resources\ic_fb.svg" />
+    <BundleResource Include="Resources\ic_google.svg" />
+    <BundleResource Include="Resources\ic_eye.svg" />
+    <BundleResource Include="Resources\ic_eye_off.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -273,6 +287,7 @@
       <Version>1.1.0</Version>
     </PackageReference>
     <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin" Version="6.5.5" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.4.0.991864" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -282,13 +297,5 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_heart_active.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_heart_inactive.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_message.svg" />
-  </ItemGroup>
+  
 </Project>

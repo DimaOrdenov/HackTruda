@@ -1,6 +1,8 @@
-﻿using HackTruda.ViewControls;
+﻿using HackTruda.Extensions;
+using HackTruda.ViewControls;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace HackTruda.Views.Feed
 {
@@ -9,6 +11,13 @@ namespace HackTruda.Views.Feed
         public FeedPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            icAddStory.SetStrokeTintColor(AppColors.Primary);
         }
 
         private void SKCanvasViewPaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)

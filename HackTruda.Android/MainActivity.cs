@@ -7,6 +7,7 @@ using HackTruda.Containers;
 using HackTruda.Droid.DependencyServices;
 using Plugin.CurrentActivity;
 using Android.Content;
+using Android;
 
 namespace HackTruda.Droid
 {
@@ -21,7 +22,7 @@ namespace HackTruda.Droid
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public static readonly string NotificationChannelId = CrossCurrentActivity.Current.AppContext.PackageName;
-      
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -42,6 +43,13 @@ namespace HackTruda.Droid
             base.OnResume();
 
             Xamarin.Essentials.Platform.OnResume();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            //this.ApplicationContext.ApplicationInfo.MetaData
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -75,6 +83,8 @@ namespace HackTruda.Droid
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
             Crashlytics.Crashlytics.HandleManagedExceptions();
 
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
+
             LoadApplication(new App());
 
             CreateNotificationChannel();
@@ -99,17 +109,5 @@ namespace HackTruda.Droid
 
             notificationManager?.CreateNotificationChannel(channel);
         }
-
-     
     }
-
-
-    [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop)]
-    [IntentFilter(new[] { Android.Content.Intent.ActionView },
-        Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
-        DataScheme = "hacktruda")]
-    public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
-    {
-    }
-
 }

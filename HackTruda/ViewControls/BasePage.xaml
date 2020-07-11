@@ -30,7 +30,8 @@
                                     HeightRequest="28" />
             </ContentView>
 
-            <ContentView x:Name="titleViewContent">
+            <ContentView x:Name="titleViewContent"
+                         HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding Title, Source={x:Reference this}}"
                            FontFamily="{x:Static local:AppFontFamily.NunitoBold}"

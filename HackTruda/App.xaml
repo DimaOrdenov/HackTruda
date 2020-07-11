@@ -51,6 +51,11 @@
                 <Setter Property="FontFamily"
                         Value="{x:Static local:AppFontFamily.NunitoRegular}" />
             </Style>
+            <Style TargetType="Button"
+                   ApplyToDerivedTypes="True">
+                <Setter Property="FontFamily"
+                        Value="{x:Static local:AppFontFamily.NunitoBold}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FFImageLoading.Forms;
-using HackTruda.BusinessLogic;
 using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.DataModels.Responses;
 using HackTruda.Definitions;
@@ -19,6 +19,9 @@ namespace HackTruda.ViewModels.Profile
     public class ProfileViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;
+        private readonly IPostsLogic _postsLogic;
+
+        private ObservableCollection<ProfileFeedItemViewModel> _feeds;
 
         public ICommand ChooseAvatarCommand { get; }
 
@@ -28,18 +31,16 @@ namespace HackTruda.ViewModels.Profile
 
         public ICommand FabTapCommand { get; }
 
-        private UserContext _userContext { get; set; }
         public ProfileViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
             IUsersLogic usersLogic,
-            UserContext userContext)
+            IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
-            State = PageStateType.Default;
-
             _usersLogic = usersLogic;
+            _postsLogic = postsLogic;
 
             ChooseAvatarCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Выбираю фото", "Ок"));
 
@@ -64,23 +65,6 @@ namespace HackTruda.ViewModels.Profile
 
             FabTapCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Создаю пост", "Ок"));
 
-            // TODO Temp solution to test auth
-            FabTapCommand = BuildPageVmCommand(
-                async () =>
-                {
-                    await ExceptionHandler.PerformCatchableTask(
-                        new ViewModelPerformableAction(async () =>
-                        {
-                            WebAuthenticatorResult result =
-                                await WebAuthenticator.AuthenticateAsync(
-                                    new Uri("http://hacktrudaapi-env-1.eba-j4m8mgch.us-east-2.elasticbeanstalk.com/api/auth/Vkontakte"),
-                                    new Uri("hacktruda://"));
-                      
-                            var accessToken = result?.AccessToken;
-                            userContext.Token = accessToken;
-                        }));
-                });
-
             CachedImage icSettings = new CachedImage
             {
                 Source = AppImages.IcSettings,
@@ -98,27 +82,43 @@ namespace HackTruda.ViewModels.Profile
             };
         }
 
-        //public override async Task OnAppearing()
-        //{
-        //    if (PageDidAppear)
-        //    {
-        //        return;
-        //    }
+        public ObservableCollection<ProfileFeedItemViewModel> Feeds
+        {
+            get => _feeds;
+            set => SetProperty(ref _feeds, value);
+        }
 
-        //    State = PageStateType.Loading;
+        public override async Task OnAppearing()
+        {
+            if (PageDidAppear)
+            {
+                return;
+            }
 
-        //    IEnumerable<UserResponse> users = null;
+            State = PageStateType.Loading;
 
-        //    await ExceptionHandler.PerformCatchableTask(
-        //        new ViewModelPerformableAction(
-        //            async () =>
-        //            {
-        //                users = await _usersLogic.Get(CancellationToken);
-        //            }));
+            Feeds = new ObservableCollection<ProfileFeedItemViewModel>(await LoadFeed());
 
-        //    State = PageStateType.Default;
+            State = PageStateType.Default;
 
-        //    await base.OnAppearing();
-        //}
+            await base.OnAppearing();
+        }
+
+        private async Task<IEnumerable<ProfileFeedItemViewModel>> LoadFeed()
+        {
+            IEnumerable<ProfileFeedItemViewModel> result = null;
+
+            await ExceptionHandler.PerformCatchableTask(
+                new ViewModelPerformableAction(
+                    async () =>
+                    {
+                        result =
+                            (await _postsLogic.GetFeed(2, 1, CancellationToken))
+                            .ToList()
+                            .Select(x => new ProfileFeedItemViewModel(x));
+                    }));
+
+            return result ?? new List<ProfileFeedItemViewModel>();
+        }
     }
 }

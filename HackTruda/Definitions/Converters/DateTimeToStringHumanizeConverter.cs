@@ -1,9 +1,6 @@
 ﻿using Humanizer;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
-using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,21 +8,23 @@ namespace HackTruda.Definitions.Converters
 {
     public class DateTimeToStringHumanizeConverter : IValueConverter, IMarkupExtension
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            
             string humanizedString = null;
-            if (value != null)
+
+            if (value is DateTime dateTime)
             {
-                humanizedString = ((DateTime)value).Humanize();
+                humanizedString = dateTime.Humanize();
+                //humanizedString = ((DateTime)value).Humanize(culture: new CultureInfo("ru-RU"));
             }
+
             return humanizedString;
         }
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
 
-        public object ProvideValue(IServiceProvider serviceProvider) => this;
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) =>
+            value;
+
+        public object ProvideValue(IServiceProvider serviceProvider) =>
+            this;
     }
 }

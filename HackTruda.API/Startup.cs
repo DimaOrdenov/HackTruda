@@ -60,16 +60,15 @@ namespace HackTruda.API
                     options.DefaultChallengeScheme = VkontakteAuthenticationDefaults.AuthenticationScheme;
                     
                 })
-                  .AddVkontakte(options=>
-                  {
-                      options.SaveTokens = true;
-                      options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
-                      options.TokenEndpoint = "https://oauth.vk.com/access_token";
-                      options.ClientId = "7535503";
-                      options.ClientSecret = "Y9hC57OxQVRj9ftUZVcJ";
-                      options.Scope.Add("email");
-                      options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-                  })
+                .AddVkontakte("vk", options =>
+                {
+                    options.SaveTokens = true;
+                    options.AuthorizationEndpoint = "https://oauth.vk.com/authorize";
+                    options.TokenEndpoint = "https://oauth.vk.com/access_token";
+                    options.ClientId = Configuration["VkClientId"];
+                    options.ClientSecret = Configuration["VkClientSecret"];
+                    options.Scope.Add("email");
+                })
                 .AddCookie();
         }
 

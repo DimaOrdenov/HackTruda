@@ -1,11 +1,13 @@
 ﻿using System;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using HackTruda.Droid.CustomRenderers;
 using HackTruda.ViewControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-//[assembly: ExportRenderer(typeof(ShadowFrame), typeof(ShadowFrameRender))]
+[assembly: ExportRenderer(typeof(ShadowFrame), typeof(ShadowFrameRender))]
 namespace HackTruda.Droid.CustomRenderers
 {
     public class ShadowFrameRender : Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer
@@ -25,18 +27,17 @@ namespace HackTruda.Droid.CustomRenderers
 
             if (shadowFrame.HasShadow)
             {
-                CardElevation = shadowFrame.ShadowBlur;
+                //float shadowRadius =
+                //    shadowFrame.CornerRadius > 0 ?
+                //    shadowFrame.CornerRadius :
+                //    ((shadowFrame.Content as Frame)?.CornerRadius ?? 0);
 
-                try
-                {
+                //GradientDrawable shape = new GradientDrawable();
+                //shape.SetShape(ShapeType.Rectangle);
+                //shape.SetCornerRadius(shadowRadius);
+                //shape.SetColor(Context.GetColorStateList(Resource.Color.colorShadow));
 
-                    SetOutlineAmbientShadowColor(shadowFrame.ShadowColor.ToAndroid());
-                    SetOutlineSpotShadowColor(shadowFrame.ShadowColor.ToAndroid());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Frame Error: {ex}");
-                }
+                //Control.SetBackground(shape);
             }
         }
     }

@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="5.2.0" />
-    <PackageReference Include="Humanizer.Core.ru" Version="2.7.2" />
+    <PackageReference Include="Humanizer.Core.ru" Version="2.8.26" />
     <PackageReference Include="RestSharp" Version="106.11.4" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
@@ -43,6 +43,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.4.0.991864" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -69,6 +70,9 @@
     <Folder Include="ViewControls\State\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Definitions\VmLink\" />
+    <Folder Include="ViewModels\Authorization\" />
+    <Folder Include="Views\Authorization\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="secrets.json">

@@ -4,6 +4,7 @@
                        xmlns:local="clr-namespace:HackTruda"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:self="clr-namespace:HackTruda.Views.Profile"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
                        x:Class="HackTruda.Views.Profile.ProfilePage"
@@ -14,7 +15,7 @@
 
             <ScrollView AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <StackLayout Padding="24,36,24,40">
+                <StackLayout Padding="24,36,24,90">
 
                     <StackLayout Orientation="Horizontal"
                                  Spacing="24">
@@ -269,6 +270,18 @@
 
                         </StackLayout>
                     </ScrollView>
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding Feeds}"
+                                 Spacing="24"
+                                 Margin="0,24,0,0">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <self:ProfileFeedView />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </StackLayout>
 
                 </StackLayout>
             </ScrollView>

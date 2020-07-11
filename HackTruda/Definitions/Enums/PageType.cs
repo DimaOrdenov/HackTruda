@@ -4,6 +4,10 @@
     {
         None,
 
+        // Auth
+
+        AuthPage,
+
         // Feed
 
         FeedPage,

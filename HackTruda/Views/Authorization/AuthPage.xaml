@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:HackTruda"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
+                       xmlns:behaviors="clr-namespace:HackTruda.Behaviors"
+                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       NavigationPage.HasNavigationBar="False"
+                       x:Class="HackTruda.Views.Authorization.AuthPage">
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+
+            <ScrollView>
+                <StackLayout Padding="24,24,24,40">
+
+                    <ffimage:CachedImage Source="{x:Static local:AppImages.IcLogo}"
+                                         HorizontalOptions="Center" />
+
+                    <Grid Margin="-24,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ContentView Padding="24,20"
+                                     xameff:Commands.Tap="{Binding ChangeFormCommand}"
+                                     xameff:Commands.TapParameter="0"
+                                     xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                            <Label Text="Авторизация"
+                                   FontSize="20"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                   TextColor="{x:Static local:AppColors.Primary}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center">
+
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsAuthProcess}"
+                                                 Value="False">
+                                        <Setter Property="TextColor"
+                                                Value="{x:Static local:AppColors.Grey}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+
+                            </Label>
+                        </ContentView>
+
+                        <ContentView Grid.Column="1"
+                                     Padding="24,20"
+                                     xameff:Commands.Tap="{Binding ChangeFormCommand}"
+                                     xameff:Commands.TapParameter="1"
+                                     xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                            <Label Text="Регистрация"
+                                   FontSize="20"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                   TextColor="{x:Static local:AppColors.Grey}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center">
+
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsAuthProcess}"
+                                                 Value="False">
+                                        <Setter Property="TextColor"
+                                                Value="{x:Static local:AppColors.Primary}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+
+                            </Label>
+                        </ContentView>
+
+                    </Grid>
+
+                    <StackLayout Margin="0,30,0,0"
+                                 IsVisible="{Binding IsAuthProcess}">
+                        <StackLayout Spacing="16">
+
+                            <Label Text="Телефон"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark}"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}" />
+
+                            <viewControls:ShadowFrame>
+                                <Frame CornerRadius="28"
+                                       Padding="20,16"
+                                       BackgroundColor="{x:Static local:AppColors.White}">
+                                    <viewControls:BaseEntry Text="{Binding PhoneNumber}"
+                                                            Placeholder="Введите телефон"
+                                                            Keyboard="Numeric"
+                                                            PlaceholderColor="{x:Static local:AppColors.Grey80}"
+                                                            FontSize="14">
+
+                                        <viewControls:BaseEntry.Behaviors>
+                                            <behaviors:MaskedBehavior MaskTemplate="+X XXX XXX-XX-XX" />
+                                        </viewControls:BaseEntry.Behaviors>
+
+                                    </viewControls:BaseEntry>
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+
+                        <StackLayout Margin="0,36,0,0"
+                                     Spacing="16">
+
+                            <Label Text="Пароль"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark}"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}" />
+
+                            <viewControls:ShadowFrame>
+                                <Frame CornerRadius="28"
+                                       BackgroundColor="{x:Static local:AppColors.White}">
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="56" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <viewControls:BaseEntry Margin="20,16,0,16"
+                                                                Text="{Binding Password}"
+                                                                Placeholder="Введите пароль"
+                                                                PlaceholderColor="{x:Static local:AppColors.Grey80}"
+                                                                IsPassword="{Binding IsPasswordVisibile, Converter={converter:BoolToNegativeConverter}}"
+                                                                FontSize="14" />
+
+                                        <ContentView Grid.Column="1"
+                                                     Padding="0,0,20,0"
+                                                     xameff:Commands.Tap="{Binding PasswordVisibilityCommand}"
+                                                     xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                                            <svg:SvgCachedImage Source="{Binding PasswordVisibilityImage}"
+                                                                WidthRequest="24"
+                                                                HeightRequest="24"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="Center"
+                                                                FadeAnimationEnabled="False" />
+                                        </ContentView>
+                                    </Grid>
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+
+                        <ContentView Margin="0,8,0,0"
+                                     Padding="20,16,0,16"
+                                     HorizontalOptions="End"
+                                     xameff:Commands.Tap="{Binding ForgotPasswordCommand}"
+                                     xameff:TouchEffect.Color="{x:Static local:AppColors.Screen}">
+
+                            <Label Text="Забыли пароль?"
+                                   FontSize="14"
+                                   TextColor="{x:Static local:AppColors.Dark80}" />
+
+                        </ContentView>
+
+                        <Button Text="Войти"
+                                TextColor="{x:Static local:AppColors.White}"
+                                BackgroundColor="{x:Static local:AppColors.Primary}"
+                                CornerRadius="28"
+                                FontSize="18"
+                                Padding="0,16"
+                                Margin="0,14,0,0"
+                                Command="{Binding LoginCommand}" />
+
+                        <Grid ColumnSpacing="16"
+                              Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <BoxView HeightRequest="1"
+                                     Color="{x:Static local:AppColors.Grey60}"
+                                     VerticalOptions="Center" />
+
+                            <Label Grid.Column="1"
+                                   Text="Или войдите через соцсети"
+                                   TextColor="{x:Static local:AppColors.Dark80}"
+                                   FontSize="14"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+
+                            <BoxView Grid.Column="2"
+                                     HeightRequest="1"
+                                     Color="{x:Static local:AppColors.Grey60}"
+                                     VerticalOptions="Center" />
+
+                        </Grid>
+
+                        <FlexLayout x:Name="socials"
+                                    JustifyContent="SpaceBetween"
+                                    AlignContent="Stretch"
+                                    AlignItems="Stretch"
+                                    Margin="0,20,0,0"
+                                    BindableLayout.ItemsSource="{Binding Socials}">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <viewControls:ShadowFrame>
+                                        <Frame CornerRadius="27"
+                                               WidthRequest="54"
+                                               HeightRequest="54">
+                                            <ContentView BackgroundColor="{x:Static local:AppColors.White}"
+                                                         xameff:Commands.Tap="{Binding Source={x:Reference socials}, Path=BindingContext.SocialAuthCommand}"
+                                                         xameff:Commands.TapParameter="{Binding Scheme}"
+                                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                                <svg:SvgCachedImage Source="{Binding Image}"
+                                                                    HeightRequest="24"
+                                                                    WidthRequest="24"
+                                                                    VerticalOptions="Center"
+                                                                    HorizontalOptions="Center" />
+                                            </ContentView>
+                                        </Frame>
+                                    </viewControls:ShadowFrame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </FlexLayout>
+
+                    </StackLayout>
+
+                    <StackLayout Margin="0,30,0,0"
+                                 IsVisible="{Binding IsAuthProcess, Converter={converter:BoolToNegativeConverter}}">
+
+                        <StackLayout Spacing="16">
+
+                            <Label Text="Имя пользователя"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark}"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}" />
+
+                            <viewControls:ShadowFrame>
+                                <Frame CornerRadius="28"
+                                       Padding="20,16"
+                                       BackgroundColor="{x:Static local:AppColors.White}">
+                                    <viewControls:BaseEntry Text="{Binding NewUsername}"
+                                                            Placeholder="Введите имя пользователя"
+                                                            Keyboard="Text"
+                                                            PlaceholderColor="{x:Static local:AppColors.Grey80}"
+                                                            FontSize="14" />
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+
+                        <StackLayout Spacing="16"
+                                     Margin="0,36,0,0">
+
+                            <Label Text="Телефон"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark}"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}" />
+
+                            <viewControls:ShadowFrame>
+                                <Frame CornerRadius="28"
+                                       Padding="20,16"
+                                       BackgroundColor="{x:Static local:AppColors.White}">
+                                    <viewControls:BaseEntry Text="{Binding NewPhoneNumber}"
+                                                            Placeholder="Введите телефон"
+                                                            Keyboard="Numeric"
+                                                            PlaceholderColor="{x:Static local:AppColors.Grey80}"
+                                                            FontSize="14">
+
+                                        <viewControls:BaseEntry.Behaviors>
+                                            <behaviors:MaskedBehavior MaskTemplate="+X XXX XXX-XX-XX" />
+                                        </viewControls:BaseEntry.Behaviors>
+
+                                    </viewControls:BaseEntry>
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+
+                        <StackLayout Margin="0,36,0,0"
+                                     Spacing="16">
+
+                            <Label Text="Пароль"
+                                   FontSize="16"
+                                   TextColor="{x:Static local:AppColors.Dark}"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}" />
+
+                            <viewControls:ShadowFrame>
+                                <Frame CornerRadius="28"
+                                       BackgroundColor="{x:Static local:AppColors.White}">
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="56" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <viewControls:BaseEntry Margin="20,16,0,16"
+                                                                Text="{Binding NewPassword}"
+                                                                Placeholder="Введите пароль"
+                                                                PlaceholderColor="{x:Static local:AppColors.Grey80}"
+                                                                IsPassword="{Binding IsNewPasswordVisibile, Converter={converter:BoolToNegativeConverter}}"
+                                                                FontSize="14" />
+
+                                        <ContentView Grid.Column="1"
+                                                     Padding="0,0,20,0"
+                                                     xameff:Commands.Tap="{Binding NewPasswordVisibilityCommand}"
+                                                     xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                                            <svg:SvgCachedImage Source="{Binding NewPasswordVisibilityImage}"
+                                                                WidthRequest="24"
+                                                                HeightRequest="24"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="Center"
+                                                                FadeAnimationEnabled="False" />
+                                        </ContentView>
+                                    </Grid>
+                                </Frame>
+                            </viewControls:ShadowFrame>
+
+                        </StackLayout>
+
+                        <Button Text="Зарегистрироваться"
+                                TextColor="{x:Static local:AppColors.White}"
+                                BackgroundColor="{x:Static local:AppColors.Primary}"
+                                CornerRadius="28"
+                                FontSize="18"
+                                Padding="0,16"
+                                Margin="0,50,0,0"
+                                Command="{Binding RegisterCommand}" />
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>

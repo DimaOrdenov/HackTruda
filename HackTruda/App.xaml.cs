@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using HackTruda.Definitions.Enums;
 using HackTruda.Containers;
 using Autofac;
-using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace HackTruda
@@ -50,7 +49,7 @@ namespace HackTruda
 
         private void PushMainPage()
         {
-            _navigationService.SetRootPage(TabbedPageType.MainPage);
+            _navigationService.SetRootPage(PageType.AuthPage);
         }
 
         //private void SetupHub()

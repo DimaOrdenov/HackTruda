@@ -33,5 +33,7 @@ namespace HackTruda
         public static ImageSource IcBell => ImageSource.FromFile("ic_bell.png");
 
         public static ImageSource IcBellActive => ImageSource.FromFile("ic_bell_active.png");
+
+        public static ImageSource IcLogo => ImageSource.FromFile("ic_logo.png");
     }
 }

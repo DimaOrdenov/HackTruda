@@ -8,6 +8,11 @@ namespace HackTruda.Views.Profile
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
             icIdea.SetTintColor(AppColors.Primary);
         }

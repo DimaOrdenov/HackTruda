@@ -7,6 +7,8 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<!-- For fingerprint plugin for samsung -->
 	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 	<application android:label="HackTruda" android:icon="@mipmap/icon" android:roundIcon="@mipmap/icon_round">
@@ -24,5 +26,7 @@
 			</intent-filter>
 		</receiver>
 		<!--		<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/icon" />-->
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBoyFz3nIJ2OGuGZK1G1w5tCRBwlufY8eY" />
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
 	</application>
 </manifest>
