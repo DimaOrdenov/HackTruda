@@ -21,5 +21,7 @@ namespace HackTruda.API.Models
         public DbSet<HackTruda.API.Models.Post> Post { get; set; }
 
         public DbSet<HackTruda.API.Models.Notification> Notification { get; set; }
+
+        public DbSet<HackTruda.API.Models.Games> Games { get; set; }
     }
 }
