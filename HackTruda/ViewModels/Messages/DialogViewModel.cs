@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using HackTruda.BusinessLogic.Interfaces;
 using HackTruda.Definitions;
 using HackTruda.Definitions.VmLink;
 using HackTruda.Services.Interfaces;
@@ -16,16 +17,18 @@ namespace HackTruda.ViewModels.Messages
         private string _chatMessage;
 
         public ICommand SendMessageCommand { get; }
+        private IPostsLogic _postsLogic { get; set; }
 
         public DialogViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
-            HubConnection hubConnection)
+            HubConnection hubConnection,
+            IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             _hubConnection = hubConnection;
-
+            _postsLogic = postsLogic;
             SendMessageCommand = BuildPageVmCommand<string>(
                 message =>
                     ExceptionHandler.PerformCatchableTask(
@@ -74,6 +77,8 @@ namespace HackTruda.ViewModels.Messages
             {
                 return;
             }
+
+
 
             await ExceptionHandler.PerformCatchableTask(
                 new ViewModelPerformableAction(

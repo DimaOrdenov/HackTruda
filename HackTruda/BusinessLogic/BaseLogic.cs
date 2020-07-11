@@ -97,7 +97,7 @@ namespace HackTruda.BusinessLogic
 
         protected async Task<bool> ExecuteAsync(IRestRequest request, CancellationToken token)
         {
-            //AddDefaultHeader(request);
+            AddDefaultHeader(request);
             request.Timeout = Timeout;
 
 #if DEBUG
@@ -122,7 +122,7 @@ namespace HackTruda.BusinessLogic
 
         protected async Task<TOut> ExecuteAsync<TOut>(IRestRequest request, CancellationToken token)
         {
-            //AddDefaultHeader(request);
+            AddDefaultHeader(request);
             request.Timeout = Timeout;
 
 #if DEBUG
@@ -258,20 +258,22 @@ namespace HackTruda.BusinessLogic
             }
         }
 
-        //private void AddDefaultHeader(RestRequest request)
-        //{
-        //    if (_userContext.IsAuthenticated)
-        //    {
-        //        request.AddHeader("Authorization", "Bearer " + _userContext.Token);
-        //    }
-        //    else
-        //    {
-        //        request.AddHeader("Authorization", "Bearer " + _userContext.DefaultToken);
-        //    }
-        //    if (_userContext.GenuineLogin != null)
-        //    {
-        //        request.AddHeader("GenuineLogin", _userContext.GenuineLogin);
-        //    }
-        //}
+        private void AddDefaultHeader(IRestRequest request)
+        {
+            //    if (_userContext.IsAuthenticated)
+            {
+                request.AddCookie("access_token", _userContext.Token);
+                request.AddHeader("Authorization", "Bearer " + _userContext.Token);
+                //        }
+                //        else
+                //        {
+                //            request.AddHeader("Authorization", "Bearer " + _userContext.DefaultToken);
+                //        }
+                //        if (_userContext.GenuineLogin != null)
+                //        {
+                //            request.AddHeader("GenuineLogin", _userContext.GenuineLogin);
+                //        }
+            }
+        }
     }
 }

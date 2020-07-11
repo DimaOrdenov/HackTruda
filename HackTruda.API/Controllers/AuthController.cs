@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using HackTruda.API.Models;
+using HackTruda.DataModels.Requests;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HackTruda.API.Controllers
@@ -13,6 +17,16 @@ namespace HackTruda.API.Controllers
     public class AuthController : ControllerBase
     {
         private const string _callbackScheme = "hacktruda";
+        private readonly UserManager<AuthUser> _userManager;
+        private readonly SignInManager<AuthUser> _signInManager;
+        private readonly IdentityContext _context;
+
+        public AuthController(UserManager<AuthUser> userManager, SignInManager<AuthUser> signInManager, IdentityContext context)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _context = context;
+        }
 
         [HttpGet("{scheme}")]
         public async Task Get(string scheme)
@@ -52,6 +66,66 @@ namespace HackTruda.API.Controllers
                 // Redirect to final url
                 Request.HttpContext.Response.Redirect(url);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                AuthUser user = new AuthUser { UserName = request.UserName, PhoneNumber=request.Phone};
+                // добавляем пользователя
+                var result = await _userManager.CreateAsync(user, request.Password);
+                if (result.Succeeded)
+                {
+                    // установка куки
+                    await _signInManager.SignInAsync(user, false);
+                
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.Users
+                    .Where(x => x.PhoneNumber == request.Phone)
+                    .FirstOrDefault();
+
+                if (user==null)
+                {
+                    return NotFound();
+                }
+
+                var result =
+                    await _signInManager.PasswordSignInAsync(user, request.Password,true, false);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            // удаляем аутентификационные куки
+            await _signInManager.SignOutAsync();
+            return Ok();
         }
     }
 }

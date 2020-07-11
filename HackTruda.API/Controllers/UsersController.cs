@@ -104,6 +104,8 @@ namespace HackTruda.API.Controllers
             return _mapper.Map<UserResponse>(user);
         }
 
+       
+
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.UserId == id);
