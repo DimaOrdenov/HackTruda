@@ -2,74 +2,78 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HackTruda"
+             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
              xmlns:converters="clr-namespace:HackTruda.Definitions.Converters"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="HackTruda.Views.Profile.ProfileFeedView">
 
-    <Frame BackgroundColor="{x:Static local:AppColors.White}"
-           CornerRadius="15"
-           Padding="20">
-        <StackLayout Spacing="20">
+    <viewControls:ShadowFrame>
+        <Frame Padding="20"
+               CornerRadius="16"
+               BackgroundColor="{x:Static local:AppColors.White}">
+            <StackLayout Spacing="20">
 
-            <Label Text="{Binding Feed.Content}"
-                   FontSize="14"
-                   FontFamily="{x:Static local:AppFontFamily.NunitoRegular}"
-                   TextColor="{x:Static local:AppColors.Dark80}"
-                   VerticalOptions="Center" />
-
-            <Frame CornerRadius="10"
-                   HorizontalOptions="FillAndExpand">
-
-                <Image Source="{Binding Feed.Image, Converter={converters:ByteArrayToImageSourceConverter}}"
-                       Aspect="AspectFill" />
-
-            </Frame>
-
-            <StackLayout Orientation="Horizontal">
-
-                <ContentView xameff:Commands.Tap="{Binding LikeTapCommand}"
-                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
-                    <svg:SvgCachedImage Grid.Column="1"
-                                        x:Name="icHeart"
-                                        Source="{Binding HeartImage}"
-                                        WidthRequest="24"
-                                        HeightRequest="24"
-                                        VerticalOptions="Center" />
-                </ContentView>
-
-                <Label VerticalOptions="Center"
-                       Text="{Binding Feed.LikedCount}"
-                       FontSize="14"
-                       FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
-                       TextColor="{x:Static local:AppColors.Dark80}"
-                       Margin="10,0,0,0" />
-
-                <svg:SvgCachedImage Grid.Column="1"
-                                    x:Name="icMessage"
-                                    Source="{x:Static local:AppSvgImages.IcMessageCircle}"
-                                    WidthRequest="24"
-                                    HeightRequest="24"
-                                    VerticalOptions="Center"
-                                    Margin="24,0,0,0" />
-
-                <Label VerticalOptions="Center"
-                       Text="{Binding Feed.CommentsCount}"
-                       FontSize="14"
-                       FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
-                       TextColor="{x:Static local:AppColors.Dark80}"
-                       Margin="10,0,0,0" />
-
-                <Label VerticalOptions="Center"
-                       HorizontalOptions="EndAndExpand"
-                       Text="{Binding Feed.Date, Converter={converters:DateTimeToStringHumanizeConverter}}"
+                <Label Text="{Binding Feed.Content}"
                        FontSize="14"
                        FontFamily="{x:Static local:AppFontFamily.NunitoRegular}"
-                       TextColor="{x:Static local:AppColors.Grey}" />
+                       TextColor="{x:Static local:AppColors.Dark80}"
+                       VerticalOptions="Center" />
+
+                <Frame CornerRadius="10"
+                       HorizontalOptions="FillAndExpand">
+
+                    <Image Source="{Binding Feed.Image, Converter={converters:ByteArrayToImageSourceConverter}}"
+                           Aspect="AspectFill" />
+
+                </Frame>
+
+                <StackLayout Orientation="Horizontal">
+
+                    <ContentView xameff:Commands.Tap="{Binding LikeTapCommand}"
+                                 xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                        <svg:SvgCachedImage Grid.Column="1"
+                                            x:Name="icHeart"
+                                            Source="{Binding HeartImage}"
+                                            WidthRequest="24"
+                                            HeightRequest="24"
+                                            VerticalOptions="Center"
+                                            FadeAnimationEnabled="False" />
+                    </ContentView>
+
+                    <Label VerticalOptions="Center"
+                           Text="{Binding Feed.LikedCount}"
+                           FontSize="14"
+                           FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
+                           TextColor="{x:Static local:AppColors.Dark80}"
+                           Margin="10,0,0,0" />
+
+                    <svg:SvgCachedImage Grid.Column="1"
+                                        x:Name="icMessage"
+                                        Source="{x:Static local:AppSvgImages.IcMessageCircle}"
+                                        WidthRequest="24"
+                                        HeightRequest="24"
+                                        VerticalOptions="Center"
+                                        Margin="24,0,0,0" />
+
+                    <Label VerticalOptions="Center"
+                           Text="{Binding Feed.CommentsCount}"
+                           FontSize="14"
+                           FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
+                           TextColor="{x:Static local:AppColors.Dark80}"
+                           Margin="10,0,0,0" />
+
+                    <Label VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           Text="{Binding Feed.Date, Converter={converters:DateTimeToStringHumanizeConverter}}"
+                           FontSize="14"
+                           FontFamily="{x:Static local:AppFontFamily.NunitoRegular}"
+                           TextColor="{x:Static local:AppColors.Grey}" />
+
+                </StackLayout>
 
             </StackLayout>
-
-        </StackLayout>
-    </Frame>
+        </Frame>
+    </viewControls:ShadowFrame>
 
 </ContentView>

@@ -23,5 +23,17 @@ namespace HackTruda
         public static SvgImageSource IcHeartInactive => SvgImageSource.FromFile("ic_heart_inactive.svg");
 
         public static SvgImageSource IcHeartActive => SvgImageSource.FromFile("ic_heart_active.svg");
+
+        public static SvgImageSource IcVk => SvgImageSource.FromFile("ic_vk.svg");
+
+        public static SvgImageSource IcOk => SvgImageSource.FromFile("ic_ok.svg");
+
+        public static SvgImageSource IcFb => SvgImageSource.FromFile("ic_fb.svg");
+
+        public static SvgImageSource IcGoogle => SvgImageSource.FromFile("ic_google.svg");
+
+        public static SvgImageSource IcEye => SvgImageSource.FromFile("ic_eye.svg");
+
+        public static SvgImageSource IcEyeOff => SvgImageSource.FromFile("ic_eye_off.svg");
     }
 }

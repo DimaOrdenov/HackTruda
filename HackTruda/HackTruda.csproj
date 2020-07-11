@@ -73,6 +73,7 @@
     <Folder Include="Definitions\VmLink\" />
     <Folder Include="ViewModels\Authorization\" />
     <Folder Include="Views\Authorization\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="secrets.json">

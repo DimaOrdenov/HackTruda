@@ -17,11 +17,11 @@
                          Command="{Binding RefreshCommand}">
 
                 <ScrollView>
-                    <StackLayout Spacing="30">
+                    <StackLayout Spacing="6">
 
                         <ScrollView Orientation="Horizontal"
                                     HorizontalScrollBarVisibility="Never">
-                            <StackLayout Padding="24,24,24,0"
+                            <StackLayout Padding="24"
                                          Spacing="24"
                                          Orientation="Horizontal">
 

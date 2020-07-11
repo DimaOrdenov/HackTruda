@@ -27,6 +27,7 @@
                                      Placeholder="{Binding Placeholder, Source={x:Reference this}}"
                                      AutoSize="TextChanges"
                                      MaxHeightRequest="110"
+                                     Keyboard="Chat"
                                      BackgroundColor="{x:Static local:AppColors.White}" />
 
             <ContentView Grid.Column="1"

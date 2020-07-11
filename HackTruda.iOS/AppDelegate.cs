@@ -45,7 +45,7 @@ namespace HackTruda.iOS
             //    },
             //    UIControlState.Selected);
 
-            UINavigationBar.Appearance.TintColor = UIColor.Black;
+            //UINavigationBar.Appearance.TintColor = UIColor.Black;
 
             Rg.Plugins.Popup.Popup.Init();
 
