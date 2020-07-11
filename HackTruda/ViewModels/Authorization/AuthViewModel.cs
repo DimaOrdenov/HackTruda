@@ -54,7 +54,10 @@ namespace HackTruda.ViewModels.Authorization
 
                     await DialogService.DisplayAlert(null, (success ? "Успешная " : "Неуспешная  ") + $"авторизация через {scheme}", "Ок");
 
-                    NavigationService.SetRootPage(TabbedPageType.MainPage);
+                    if (success)
+                    {
+                        NavigationService.SetRootPage(TabbedPageType.MainPage);
+                    }
                 });
 
             ForgotPasswordCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Восстанавливаю пароль", "Ок"));
