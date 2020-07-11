@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,11 @@ namespace HackTruda.API
         {
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
+            services.AddDbContext<IdentityContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
+
+            services.AddIdentity<AuthUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>();
 
             services.AddSwaggerGen(c =>
             {
