@@ -17,18 +17,17 @@ namespace HackTruda.ViewModels.Messages
         private string _chatMessage;
 
         public ICommand SendMessageCommand { get; }
-        private IPostsLogic _postsLogic { get; set; }
-
+      
         public DialogViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
             HubConnection hubConnection,
-            IPostsLogic postsLogic)
+            IAuthLogic logic)
             : base(navigationService, dialogService, debuggerService)
         {
             _hubConnection = hubConnection;
-            _postsLogic = postsLogic;
+
             SendMessageCommand = BuildPageVmCommand<string>(
                 message =>
                     ExceptionHandler.PerformCatchableTask(
