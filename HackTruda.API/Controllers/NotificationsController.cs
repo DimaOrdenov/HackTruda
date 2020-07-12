@@ -12,6 +12,9 @@ using HackTruda.DataModels.Responses;
 
 namespace HackTruda.API.Controllers
 {
+    /// <summary>
+    /// Уведомления
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class NotificationsController : ControllerBase

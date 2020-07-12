@@ -12,6 +12,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM раздела Поиск
+    /// </summary>
     public class SearchViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;

@@ -14,6 +14,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Profile
 {
+    /// <summary>
+    /// VM для страницы Профиль
+    /// </summary>
     public class ProfileViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;

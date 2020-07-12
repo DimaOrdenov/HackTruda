@@ -15,6 +15,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Feed
 {
+    /// <summary>
+    /// VM страницы лента
+    /// </summary>
     public class FeedViewModel : PageViewModel
     {
         private readonly IPostsLogic _postsLogic;
