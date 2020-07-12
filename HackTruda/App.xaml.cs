@@ -23,11 +23,11 @@ namespace HackTruda
             MainPage = new ContentPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             InitLocalServices();
 
-            PushMainPage();
+            await PushMainPage();
 
             //SetupHub();
         }
@@ -47,9 +47,23 @@ namespace HackTruda
             _hubConnection = IocInitializer.Container.Resolve<HubConnection>();
         }
 
-        private void PushMainPage()
+        private async Task PushMainPage()
         {
-            _navigationService.SetRootPage(PageType.AuthPage);
+            if (App.Current.Properties.ContainsKey("IsFirstLaunch") &&
+                App.Current.Properties["IsFirstLaunch"] as bool? == false)
+            {
+                _navigationService.SetRootPage(PageType.AuthPage);
+            }
+            else
+            {
+                if (!App.Current.Properties.ContainsKey("IsFirstLaunch"))
+                {
+                    App.Current.Properties.Add("IsFirstLaunch", true);
+                    await App.Current.SavePropertiesAsync();
+                }
+
+                _navigationService.SetRootPage(PageType.OnboardingPage);
+            }
         }
 
         //private void SetupHub()

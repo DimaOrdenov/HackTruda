@@ -1,92 +1,108 @@
 {
   "images": [
     {
+      "filename": "ic-iPhone-Notification@2x-1.png",
       "size": "20x20",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone-Notification@3x-1.png",
       "size": "20x20",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone@2x-1.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone@3x-1.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone-Spotlight@2x-1.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone-Spotlight@3x-1.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone-App@2x-1.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPhone-App@3x-1.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "ic-iPad-Notifications@1x-1.png",
       "size": "20x20",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-iPad-Notifications@2x-1.png",
       "size": "20x20",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-iPad-Settings@1x-1.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-iPad-Settings@2x-1.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-1x-40pt-1.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-2x-80pt-1.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-2x-167pt-1.png",
       "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-1x-76pt-1.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "ic-1x-152pt-1.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon1024.png",
       "size": "1024x1024",
       "scale": "1x",
       "idiom": "ios-marketing"

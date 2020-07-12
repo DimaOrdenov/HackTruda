@@ -12,9 +12,9 @@ using Android;
 namespace HackTruda.Droid
 {
     [Activity(
-        Label = "HackTruda",
-        Icon = "@mipmap/icon",
-        RoundIcon = "@mipmap/icon_round",
+        Label = "МигРу",
+        Icon = "@mipmap/ic_launcher",
+        RoundIcon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme",
         MainLauncher = false,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
@@ -84,6 +84,8 @@ namespace HackTruda.Droid
             Crashlytics.Crashlytics.HandleManagedExceptions();
 
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+
+            PanCardView.Droid.CardsViewRenderer.Preserve();
 
             LoadApplication(new App());
 

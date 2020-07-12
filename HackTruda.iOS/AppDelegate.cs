@@ -75,6 +75,8 @@ namespace HackTruda.iOS
 
             Xamarin.FormsMaps.Init();
 
+            PanCardView.iOS.CardsViewRenderer.Preserve();
+
             LoadApplication(new App());
 
             //RegisterForNotifications();

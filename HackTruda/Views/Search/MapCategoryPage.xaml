@@ -16,7 +16,8 @@
 
             <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness"
-                            iOS="8,0" />
+                            iOS="8,0"
+                            Android="0,0,16,0" />
             </StackLayout.Padding>
 
             <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"

@@ -7,9 +7,9 @@ using Android.OS;
 namespace HackTruda.Droid
 {
     [Activity(
-        Label = "HackTruda",
-        Icon = "@mipmap/icon",
-        RoundIcon = "@mipmap/icon_round",
+        Label = "МигРу",
+        Icon = "@mipmap/ic_launcher",
+        RoundIcon = "@mipmap/ic_launcher",
         Theme = "@style/Theme.Splash",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,

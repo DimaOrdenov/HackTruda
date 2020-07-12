@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>HackTruda</string>
+	<string>МигРу</string>
 	<key>CFBundleIdentifier</key>
 	<string>ru.notrycatch.HackTruda</string>
 	<key>CFBundleVersion</key>

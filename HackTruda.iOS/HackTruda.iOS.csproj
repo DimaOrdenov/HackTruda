@@ -83,9 +83,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <BundleResource Include="Resources\Nunito-Bold.ttf" />
     <BundleResource Include="Resources\Nunito-SemiBold.ttf" />
     <BundleResource Include="Resources\Nunito-Regular.ttf" />
@@ -190,6 +187,15 @@
     <BundleResource Include="Resources\map_pin_blue.png" />
     <BundleResource Include="Resources\map_pin_blue%402x.png" />
     <BundleResource Include="Resources\map_pin_blue%403x.png" />
+    <BundleResource Include="Resources\onboarding1.png" />
+    <BundleResource Include="Resources\onboarding1%402x.png" />
+    <BundleResource Include="Resources\onboarding1%403x.png" />
+    <BundleResource Include="Resources\onboarding2.png" />
+    <BundleResource Include="Resources\onboarding2%402x.png" />
+    <BundleResource Include="Resources\onboarding2%403x.png" />
+    <BundleResource Include="Resources\onboarding3.png" />
+    <BundleResource Include="Resources\onboarding3%402x.png" />
+    <BundleResource Include="Resources\onboarding3%403x.png" />
     <BundleResource Include="Resources\ic_settings.svg" />
     <BundleResource Include="Resources\ic_camera.svg" />
     <BundleResource Include="Resources\ic_idea.svg" />
@@ -215,6 +221,23 @@
     <BundleResource Include="Resources\image_search_games.svg" />
     <BundleResource Include="Resources\image_search_podcasts.svg" />
     <BundleResource Include="Resources\image_search_recipes.svg" /> -->
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-Notification%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-Notification%403x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone%403x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-Spotlight%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-Spotlight%403x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-App%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPhone-App%403x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPad-Notifications%401x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPad-Notifications%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPad-Settings%401x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-iPad-Settings%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-1x-40pt-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-2x-80pt-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-1x-76pt-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-1x-152pt-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ic-2x-167pt-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -308,6 +331,7 @@
     </PackageReference>
     <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin" Version="6.5.5" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="4.4.0.991864" />
+    <PackageReference Include="CardsView" Version="2.6.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

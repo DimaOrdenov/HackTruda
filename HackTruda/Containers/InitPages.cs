@@ -16,6 +16,13 @@ namespace HackTruda.Containers
                     typeof(Views.WebViewPage),
                     typeof(ViewModels.WebViewPViewModel)));
 
+            // Onboarding
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.OnboardingPage,
+                    typeof(Views.Onboarding.OnboardingPage),
+                    typeof(ViewModels.Onboarding.OnboardingViewModel)));
+
             // Auth
             _pageBuilder.Configure(
                 new PageStack(

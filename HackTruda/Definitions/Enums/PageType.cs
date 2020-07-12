@@ -8,6 +8,10 @@
 
         WebViewPage,
 
+        // Onboarding
+
+        OnboardingPage,
+
         // Auth
 
         AuthPage,

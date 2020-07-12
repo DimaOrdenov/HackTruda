@@ -61,5 +61,11 @@ namespace HackTruda
         public static ImageSource Placeholder5 => ImageSource.FromFile("placeholder_5.png");
 
         public static ImageSource Placeholder6 => ImageSource.FromFile("placeholder_6.png");
+
+        public static ImageSource Onboarding1 => ImageSource.FromFile("onboarding1.png");
+
+        public static ImageSource Onboarding2 => ImageSource.FromFile("onboarding2.png");
+
+        public static ImageSource Onboarding3 => ImageSource.FromFile("onboarding3.png");
     }
 }

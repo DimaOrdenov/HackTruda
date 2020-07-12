@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:HackTruda"
+                       xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
+                       xmlns:self="clr-namespace:HackTruda.Views.Profile"
+                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       xmlns:pancard="clr-namespace:PanCardView;assembly=PanCardView"
+                       xmlns:pancardControls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
+                       x:Class="HackTruda.Views.Onboarding.OnboardingPage"
+                       NavigationPage.HasNavigationBar="False">
+
+    <viewControls:BasePage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ActiveIndicator"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static local:AppColors.Primary}" />
+            </Style>
+            <Style x:Key="InactiveIndicator"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static local:AppColors.Grey40}" />
+            </Style>
+        </ResourceDictionary>
+    </viewControls:BasePage.Resources>
+
+    <viewControls:BaseLayout>
+        <viewControls:BaseLayout.Content>
+            <StackLayout Padding="0,20,0,40"
+                         VerticalOptions="FillAndExpand">
+
+                <pancard:CarouselView x:Name="carousel"
+                                      IsCyclical="False"
+                                      ItemsSource="{Binding Items}"
+                                      VerticalOptions="FillAndExpand">
+
+                    <pancard:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="34"
+                                         VerticalOptions="StartAndExpand">
+
+                                <Image Source="{Binding Image}" />
+
+                                <ContentView Padding="24,0">
+                                    <Label Text="{Binding Text}"
+                                           FontSize="21"
+                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                           HorizontalTextAlignment="Center" />
+                                </ContentView>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </pancard:CarouselView.ItemTemplate>
+
+                    <pancardControls:IndicatorsControl SelectedIndicatorStyle="{StaticResource ActiveIndicator}"
+                                                       UnselectedIndicatorStyle="{StaticResource InactiveIndicator}" />
+
+                </pancard:CarouselView>
+
+                <ContentView Padding="24,0"
+                             Margin="0,30,0,0">
+                    <Button Text="Пропустить"
+                            TextColor="{x:Static local:AppColors.White}"
+                            BackgroundColor="{x:Static local:AppColors.Primary}"
+                            CornerRadius="28"
+                            FontSize="18"
+                            Padding="0,16"
+                            Command="{Binding SkipCommand}">
+
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference carousel}, Path=SelectedIndex}"
+                                         Value="2">
+                                <Setter Property="Text"
+                                        Value="Далее" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </ContentView>
+
+            </StackLayout>
+        </viewControls:BaseLayout.Content>
+    </viewControls:BaseLayout>
+
+</viewControls:BasePage>
