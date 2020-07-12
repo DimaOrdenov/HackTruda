@@ -144,7 +144,7 @@ namespace HackTruda.API.Controllers
             // TODO: добавить загрузку постов друзей и подписок
             var users = await _context.Users
                 .AsNoTracking()
-                .Where(x=>x.UserId==id)
+             //   .Where(x=>x.UserId==id)
                 .Select(x=>x.UserId)
                 .ToListAsync();
 
@@ -155,14 +155,23 @@ namespace HackTruda.API.Controllers
 
             var posts = await _context.Post
                    .AsNoTracking()
-                   .Where(x => users.Contains(x.UserId))
+                   .Where(x => users.Contains(x.UserId) && x.IsStory == false)
                    .Include(u => u.User)
                    .OrderByDescending(x=>x.Date)
                    .Take(10)
                    .Skip((page - 1) * 10)
                    .ToListAsync();
 
-            return new JsonResult(_mapper.Map<IEnumerable<FeedResponse>>(posts));
+            var stories = await _context.Post
+                 .AsNoTracking()
+                   .Where(x => x.UserId!=id && x.IsStory == true)
+                   .Include(u => u.User)
+                   .OrderByDescending(x => x.Date)
+                   .Take(10)
+                   .Skip((page - 1) * 10)
+                   .ToListAsync();
+
+            return new JsonResult(_mapper.Map<IEnumerable<FeedResponse>>(posts.Union(stories)));
         }
     }
 }

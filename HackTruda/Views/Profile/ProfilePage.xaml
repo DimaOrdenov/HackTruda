@@ -7,6 +7,7 @@
                        xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
                        xmlns:self="clr-namespace:HackTruda.Views.Profile"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                       
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
                        x:Class="HackTruda.Views.Profile.ProfilePage"
                        Title="Профиль">
@@ -227,55 +228,29 @@
                                 HorizontalScrollBarVisibility="Never">
                         <StackLayout Orientation="Horizontal"
                                      Padding="24,0"
+                                     BindableLayout.ItemsSource="{Binding Stories}"
                                      Spacing="24">
 
-                            <viewControls:ShadowFrame WidthRequest="110"
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <viewControls:ShadowFrame WidthRequest="110"
                                                       HeightRequest="110">
-                                <Frame CornerRadius="10"
+                                        <Frame CornerRadius="10"
                                        BackgroundColor="{x:Static local:AppColors.Primary}">
 
-                                    <Image Source="{x:Static local:AppImages.IcMail}"
+                                            <Image Source="{Binding Feed.Image, Converter={converter:ByteArrayToImageSourceConverter}}"
+                                                   Aspect="Fill"
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center" />
 
-                                </Frame>
-                            </viewControls:ShadowFrame>
+                                        </Frame>
+                                    </viewControls:ShadowFrame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
 
-                            <viewControls:ShadowFrame WidthRequest="110"
-                                                      HeightRequest="110">
-                                <Frame CornerRadius="10"
-                                       BackgroundColor="{x:Static local:AppColors.Primary}">
+                           
 
-                                    <Image Source="{x:Static local:AppImages.IcMail}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center" />
-
-                                </Frame>
-                            </viewControls:ShadowFrame>
-
-                            <viewControls:ShadowFrame WidthRequest="110"
-                                                      HeightRequest="110">
-                                <Frame CornerRadius="10"
-                                       BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                    <Image Source="{x:Static local:AppImages.IcMail}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center" />
-
-                                </Frame>
-                            </viewControls:ShadowFrame>
-
-                            <viewControls:ShadowFrame WidthRequest="110"
-                                                      HeightRequest="110">
-                                <Frame CornerRadius="10"
-                                       BackgroundColor="{x:Static local:AppColors.Primary}">
-
-                                    <Image Source="{x:Static local:AppImages.IcMail}"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center" />
-
-                                </Frame>
-                            </viewControls:ShadowFrame>
+                        
 
                         </StackLayout>
                     </ScrollView>

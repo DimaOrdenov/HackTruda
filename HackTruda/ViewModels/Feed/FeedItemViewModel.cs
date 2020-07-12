@@ -10,17 +10,39 @@ namespace HackTruda.ViewModels.Feed
     public class FeedItemViewModel : BaseViewModel
     {
         private bool _isLiked;
+        private int _likesCount;
 
         public ICommand LikeTapCommand { get; }
 
         public FeedItemViewModel(FeedResponse feed)
         {
             Feed = feed;
+            _likesCount = feed.LikedCount;
+            LikeTapCommand = new Command(() =>
+            {
+                IsLiked = !_isLiked;
+                if (IsLiked)
+                {
+                    LikesCount = LikesCount + 1;
 
-            LikeTapCommand = new Command(() => IsLiked = !_isLiked);
+                }
+                else
+                {
+                    LikesCount = LikesCount - 1;
+                }
+                });
         }
 
-        public FeedResponse Feed { get; }
+        public FeedResponse Feed { get;  }
+
+        public int LikesCount
+        {
+            get => _likesCount;
+            set
+            {
+                SetProperty(ref _likesCount, value);
+            }
+        }
 
         public bool IsLiked
         {
@@ -28,7 +50,6 @@ namespace HackTruda.ViewModels.Feed
             set
             {
                 SetProperty(ref _isLiked, value);
-
                 OnPropertyChanged(nameof(HeartImage));
             }
         }
@@ -41,7 +62,6 @@ namespace HackTruda.ViewModels.Feed
                 {
                     return AppSvgImages.IcHeartActive;
                 }
-
                 SvgImageSource icHeart = AppSvgImages.IcHeartInactive;
                 icHeart.SetStrokeTintColor(AppColors.Dark80);
 

@@ -11,7 +11,8 @@ namespace HackTruda.DataModels.Responses
         public string Content { get; set; }
         public int UserId { get; set; }
         public List<int> LikedUsersId { get; set; }
-        public int LikedCount => new Random().Next(1,1000);
+        public int LikedCount { get; set; } = new Random().Next(1, 1000);
         public int CommentsCount => new Random().Next(1, 200);
+        public bool IsStory { get; set; }
     }
 }

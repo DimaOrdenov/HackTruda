@@ -22,6 +22,7 @@ namespace HackTruda.ViewModels.Feed
         public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
         bool isRefreshing;
         private ObservableCollection<FeedItemViewModel> items;
+        private ObservableCollection<FeedItemViewModel> stories;
 
         public FeedViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IPostsLogic postsLogic)
             : base(navigationService, dialogService, debuggerService)
@@ -40,6 +41,12 @@ namespace HackTruda.ViewModels.Feed
         {
             get => items;
             set => SetProperty(ref items, value);
+        }
+
+        public ObservableCollection<FeedItemViewModel> Stories
+        {
+            get => stories;
+            set => SetProperty(ref stories, value);
         }
 
         public CachedImage IcMore { get; }
@@ -63,7 +70,9 @@ namespace HackTruda.ViewModels.Feed
 
             State = PageStateType.Loading;
 
-            Items = new ObservableCollection<FeedItemViewModel>(await LoadFeed());
+            var feed = await LoadFeed();
+            Items = new ObservableCollection<FeedItemViewModel>(feed.Where(x => x.Feed.IsStory == false).ToList());
+            Stories = new ObservableCollection<FeedItemViewModel>(feed.Where(x => x.Feed.IsStory == true).ToList());
 
             State = PageStateType.Default;
 
@@ -90,7 +99,9 @@ namespace HackTruda.ViewModels.Feed
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
-            Items = new ObservableCollection<FeedItemViewModel>(await LoadFeed());
+            var feed = await LoadFeed();
+            Items = new ObservableCollection<FeedItemViewModel>(feed.Where(x=>x.Feed.IsStory == false).ToList());
+            Stories = new ObservableCollection<FeedItemViewModel>(feed.Where(x => x.Feed.IsStory == true).ToList());
             IsRefreshing = false;
         }
     }
