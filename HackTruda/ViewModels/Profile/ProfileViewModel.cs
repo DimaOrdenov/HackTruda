@@ -21,6 +21,7 @@ namespace HackTruda.ViewModels.Profile
 
         private ObservableCollection<ProfileFeedItemViewModel> _feeds;
         private UserResponse _user;
+        private ObservableCollection<ProfileFeedItemViewModel> _stories;
 
         public ICommand ChooseAvatarCommand { get; }
 
@@ -93,6 +94,13 @@ namespace HackTruda.ViewModels.Profile
             set => SetProperty(ref _feeds, value);
         }
 
+        public ObservableCollection<ProfileFeedItemViewModel> Stories
+        {
+            get => _stories;
+            set => SetProperty(ref _stories, value);
+        }
+
+
         public override async Task OnAppearing()
         {
             if (PageDidAppear)
@@ -101,8 +109,10 @@ namespace HackTruda.ViewModels.Profile
             }
 
             State = PageStateType.Loading;
-
-            Feeds = new ObservableCollection<ProfileFeedItemViewModel>(await LoadFeed());
+            var feed = await LoadFeed();
+           
+            Stories = new ObservableCollection<ProfileFeedItemViewModel>(feed.Where(x => x.Feed.IsStory == true).ToList());
+            Feeds = new ObservableCollection<ProfileFeedItemViewModel>(feed.Where(x => x.Feed.IsStory == false).ToList());
 
             State = PageStateType.Default;
 

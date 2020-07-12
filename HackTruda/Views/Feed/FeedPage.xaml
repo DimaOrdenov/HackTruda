@@ -24,7 +24,7 @@
                             <StackLayout Padding="24"
                                          Spacing="24"
                                          Orientation="Horizontal">
-
+                                <StackLayout>
                                 <pancakeView:PancakeView BorderColor="{x:Static local:AppColors.Primary}"
                                                          BorderIsDashed="True"
                                                          BorderDashPattern="8,8"
@@ -40,15 +40,28 @@
                                                             VerticalOptions="Center"
                                                             HorizontalOptions="Center" />
                                     </ContentView>
+                                  
                                 </pancakeView:PancakeView>
+                                    <Label Text="История"
+                                             FontSize="13"   
+               FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" 
+            Padding="0,10,0,0" 
+               WidthRequest="56"  
+               LineBreakMode = "TailTruncation"></Label>
+                                </StackLayout>
+                                <StackLayout
+                                     Orientation="Horizontal"
+                                     BindableLayout.ItemsSource="{Binding Stories}"
+                                    
+                                     Spacing="24">
 
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
-                                <self:StoriesFrameView />
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <self:StoriesFrameView />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+
+                                </StackLayout>
                             </StackLayout>
                         </ScrollView>
 

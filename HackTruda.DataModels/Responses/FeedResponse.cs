@@ -9,5 +9,7 @@ namespace HackTruda.DataModels.Responses
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public byte[] UserImage { get; set; }
+
+        
     }
 }

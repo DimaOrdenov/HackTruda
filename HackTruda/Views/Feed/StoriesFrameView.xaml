@@ -4,19 +4,34 @@
              xmlns:local="clr-namespace:HackTruda"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:converters="clr-namespace:HackTruda.Definitions.Converters"
              xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
              mc:Ignorable="d"
+              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="HackTruda.Views.Feed.StoriesFrameView">
-
-    <Frame BorderColor="{x:Static local:AppColors.Primary}"
-           CornerRadius="10"
-           WidthRequest="56"
-           HeightRequest="56">
-        <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
-            <Image Source=""
+    <StackLayout>
+        <pancakeView:PancakeView BorderColor="{x:Static local:AppColors.Primary}"
+                                                         BorderThickness="2"
+                                                         CornerRadius="10"
+                                                         WidthRequest="56"
+                                                         HeightRequest="56">
+            <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                <Image Source="{Binding Feed.UserImage, Converter={converters:ByteArrayToImageSourceConverter}}"
                    VerticalOptions="Center"
                    HorizontalOptions="Center" />
-        </ContentView>
-    </Frame>
 
+            </ContentView>
+
+        </pancakeView:PancakeView>
+        <Label Padding="0,10,0,0" 
+               FontSize="13"   
+               FontFamily="{x:Static local:AppFontFamily.NunitoRegular}" 
+               Text="{Binding Feed.FirstName}" 
+               WidthRequest="56"  
+               LineBreakMode = "TailTruncation">
+            
+        </Label>
+    </StackLayout>
+   
+  
 </ContentView>

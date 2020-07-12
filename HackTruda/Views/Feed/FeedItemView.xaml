@@ -81,7 +81,7 @@
                     </ContentView>
 
                     <Label VerticalOptions="Center"
-                           Text="{Binding Feed.LikedCount}"
+                           Text="{Binding LikesCount}"
                            FontSize="14"
                            FontFamily="{x:Static local:AppFontFamily.NunitoSemiBold}"
                            TextColor="{x:Static local:AppColors.Dark80}"

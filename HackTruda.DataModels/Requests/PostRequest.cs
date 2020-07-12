@@ -10,5 +10,7 @@ namespace HackTruda.DataModels.Requests
         public DateTime Date { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
+
+        public bool IsStory { get; set; }
     }
 }
