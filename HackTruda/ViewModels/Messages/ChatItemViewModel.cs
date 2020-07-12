@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using HackTruda.Definitions.Models;
+using HackTruda.DataModels.Responses;
 
 namespace HackTruda.ViewModels.Messages
 {
@@ -9,12 +8,12 @@ namespace HackTruda.ViewModels.Messages
     {
         private IEnumerable<ChatMessageItemViewModel> _messages;
 
-        public ChatItemViewModel(UserModel user)
+        public ChatItemViewModel(UserResponse user)
         {
             User = user;
         }
 
-        public UserModel User { get; }
+        public UserResponse User { get; }
 
         public IEnumerable<ChatMessageItemViewModel> Messages
         {

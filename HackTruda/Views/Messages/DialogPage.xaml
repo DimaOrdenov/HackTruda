@@ -5,8 +5,7 @@
                        xmlns:self="clr-namespace:HackTruda.Views.Messages"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
-                       xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-                       xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+                       xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
                        x:Class="HackTruda.Views.Messages.DialogPage">
 
     <viewControls:BasePage.TitleViewContent>
@@ -22,11 +21,8 @@
 
             <Frame CornerRadius="20"
                    WidthRequest="40"
-                   HeightRequest="40"
-                   BackgroundColor="{x:Static local:AppColors.Primary}">
-                <Image Source="{Binding DialogItem.User.ImageSrc}"
-                       VerticalOptions="Center"
-                       WidthRequest="24" />
+                   HeightRequest="40">
+                <Image Source="{Binding DialogItem.User.Image, Converter={converter:ByteArrayToImageSourceConverter}}" />
             </Frame>
 
             <Label Grid.Column="1"

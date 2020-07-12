@@ -87,21 +87,21 @@ namespace HackTruda.ViewModels.Profile
                     }),
             };
 
-            CachedImage icMore = new CachedImage
-            {
-                Source = AppImages.IcMoreVertical,
-            };
+            //CachedImage icMore = new CachedImage
+            //{
+            //    Source = AppImages.IcMoreVertical,
+            //};
 
-            icMore.SetTintColor(Color.Black);
+            //icMore.SetTintColor(Color.Black);
 
-            ToolbarItems = new ObservableCollection<ToolbarItem>
-            {
-                new ToolbarItem
-                {
-                    IconImageSource = icMore.Source,
-                    Command = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "lol kek ..?", "cheburek")),
-                }
-            };
+            //ToolbarItems = new ObservableCollection<ToolbarItem>
+            //{
+            //    new ToolbarItem
+            //    {
+            //        IconImageSource = icMore.Source,
+            //        Command = BuildPageVmCommand(() => DialogService.DisplayAlert()),
+            //    }
+            //};
         }
 
         public IEnumerable<ProfileSettingsGroupViewModel> Settings { get; }

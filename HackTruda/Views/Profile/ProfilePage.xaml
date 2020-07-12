@@ -4,6 +4,7 @@
                        xmlns:local="clr-namespace:HackTruda"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        xmlns:commonViews="clr-namespace:HackTruda.Views.Common"
+                       xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
                        xmlns:self="clr-namespace:HackTruda.Views.Profile"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
@@ -29,7 +30,7 @@
 
                                 <ContentView xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}"
                                              xameff:Commands.Tap="{Binding ChooseAvatarCommand}">
-                                    <Image Source=""
+                                    <Image Source="{Binding User.Image, Converter={converter:ByteArrayToImageSourceConverter}}"
                                            VerticalOptions="Center"
                                            HorizontalOptions="Center" />
                                 </ContentView>
@@ -59,9 +60,16 @@
 
                         <StackLayout Spacing="8">
 
-                            <Label Text="Иванов Иван Иванович"
-                                   FontSize="20"
-                                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+                            <Label FontSize="20"
+                                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding User.FirstName}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding User.LastName}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
                             <Label Text="Живем один раз, поехали!"
                                    FontSize="16"
@@ -72,8 +80,9 @@
 
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Москва, из " />
-                                        <Span Text="России"
+                                        <Span Text="{Binding User.City}" />
+                                        <Span Text=", из " />
+                                        <Span Text="{Binding User.Country}"
                                               TextColor="{x:Static local:AppColors.Primary}">
                                             <Span.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding CountryTapCommand}" />

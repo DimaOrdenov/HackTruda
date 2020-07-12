@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HackTruda"
+             xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="HackTruda.Views.Search.SubCategoryItemView"
+             xameff:Commands.Tap="{Binding TapCommand}"
+             xameff:Commands.TapParameter="{Binding .}"
+             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+
+    <StackLayout Orientation="Horizontal"
+                 Padding="24,16"
+                 Spacing="16">
+
+        <Frame CornerRadius="26">
+            <Image Source="{Binding Image}"
+                   WidthRequest="52"
+                   HeightRequest="52" />
+        </Frame>
+
+        <StackLayout VerticalOptions="Center"
+                     Spacing="6">
+
+            <Label Text="{Binding Title}"
+                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                   FontSize="16" />
+
+            <Label Text="{Binding Description}"
+                   FontSize="14"
+                   TextColor="{x:Static local:AppColors.Dark60}" />
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentView>

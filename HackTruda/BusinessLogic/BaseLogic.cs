@@ -70,10 +70,9 @@ namespace HackTruda.BusinessLogic
         public virtual Task<IEnumerable<T>> Get(CancellationToken token) =>
             ExecuteAsync<IEnumerable<T>>(new RestRequest(Route, Method.GET), token);
 
-        public virtual Task<T> Get(int id, CancellationToken token) =>
+        public virtual Task<T> Get(string id, CancellationToken token) =>
             ExecuteAsync<T>(
-                new RestRequest(Route, Method.GET)
-                    .AddParameter("id", id),
+                new RestRequest(Route + $"/{id}", Method.GET),
                 token);
 
         public virtual Task<bool> Post<TRequest>(TRequest requestModel, CancellationToken token) =>
@@ -89,7 +88,7 @@ namespace HackTruda.BusinessLogic
                     .AddJsonBody(requestModel),
                 token);
 
-        public virtual Task<bool> Delete(int id, CancellationToken token) =>
+        public virtual Task<bool> Delete(string id, CancellationToken token) =>
             ExecuteAsync(
                 new RestRequest(Route, Method.DELETE)
                     .AddParameter("id", id),

@@ -9,6 +9,13 @@ namespace HackTruda.Containers
     {
         private static void InitPages()
         {
+            // Common
+            _pageBuilder.Configure(
+                new PageStack(
+                    PageType.WebViewPage,
+                    typeof(Views.WebViewPage),
+                    typeof(ViewModels.WebViewPViewModel)));
+
             // Auth
             _pageBuilder.Configure(
                 new PageStack(

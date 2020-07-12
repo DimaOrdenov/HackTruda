@@ -1,5 +1,4 @@
-﻿using System;
-using HackTruda.Definitions.Enums;
+﻿using HackTruda.Definitions.Enums;
 
 namespace HackTruda.ViewModels.Search
 {

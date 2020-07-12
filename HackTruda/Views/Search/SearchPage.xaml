@@ -2,38 +2,76 @@
 <viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:local="clr-namespace:HackTruda"
+                       xmlns:self="clr-namespace:HackTruda.Views.Search"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
+                       xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
-                       xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                        x:Class="HackTruda.Views.Search.SearchPage"
                        Title="Поиск"
                        x:Name="searchPage">
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal"
-                     Spacing="20"
-                     BackgroundColor="{x:Static local:AppColors.Screen}">
+        <StackLayout BackgroundColor="{x:Static local:AppColors.Screen}">
 
             <StackLayout.Padding>
                 <OnPlatform x:TypeArguments="Thickness"
-                            iOS="8,0" />
+                            iOS="8,0"
+                            Android="0,0,16,0" />
             </StackLayout.Padding>
 
-            <Label Text="{Binding Title, Source={x:Reference searchPage}}"
-                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
-                   FontSize="28"
-                   VerticalTextAlignment="Center"
-                   HorizontalOptions="StartAndExpand" />
+            <StackLayout Orientation="Horizontal"
+                         Spacing="20"
+                         VerticalOptions="FillAndExpand"
+                         IsVisible="{Binding IsSearchMode, Converter={converter:BoolToNegativeConverter}}">
 
-            <ContentView Padding="2"
-                         HorizontalOptions="End"
-                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
-                <svg:SvgCachedImage x:Name="icSearch"
-                                    Source="{x:Static local:AppSvgImages.IcSearch}"
-                                    WidthRequest="24"
-                                    HeightRequest="24" />
-            </ContentView>
+                <Label Text="{Binding Title, Source={x:Reference searchPage}}"
+                       FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                       FontSize="28"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="StartAndExpand" />
+
+                <ContentView x:Name="icSearch1Block"
+                             Padding="2"
+                             HorizontalOptions="End"
+                             xameff:Commands.Tap="{Binding SearchTapCommand}"
+                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                    <svg:SvgCachedImage x:Name="icSearch1"
+                                        Source="{x:Static local:AppSvgImages.IcSearch}"
+                                        WidthRequest="24"
+                                        HeightRequest="24" />
+                </ContentView>
+
+            </StackLayout>
+
+            <StackLayout VerticalOptions="EndAndExpand"
+                         Spacing="10"
+                         IsVisible="{Binding IsSearchMode}">
+
+                <StackLayout Orientation="Horizontal"
+                             Spacing="16">
+
+                    <ContentView x:Name="icSearch2Block"
+                                 Padding="2"
+                                 xameff:Commands.Tap="{Binding SearchTapCommand}"
+                                 xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                        <svg:SvgCachedImage x:Name="icSearch2"
+                                            Source="{x:Static local:AppSvgImages.IcSearch}"
+                                            WidthRequest="24"
+                                            HeightRequest="24" />
+                    </ContentView>
+
+                    <viewControls:BaseEntry Text="{Binding SearchText}"
+                                            Placeholder="Поиск..."
+                                            PlaceholderColor="{x:Static local:AppColors.Grey}"
+                                            HorizontalOptions="FillAndExpand" />
+
+                </StackLayout>
+
+                <BoxView HeightRequest="1"
+                         Color="{x:Static local:AppColors.Grey40}" />
+
+            </StackLayout>
 
         </StackLayout>
     </NavigationPage.TitleView>
@@ -41,45 +79,94 @@
     <viewControls:BaseLayout>
         <viewControls:BaseLayout.Content>
 
-            <ScrollView>
-                <StackLayout x:Name="categories"
-                             Padding="0,30,0,40"
-                             BindableLayout.ItemsSource="{Binding Categories}">
+            <StackLayout>
+                <ScrollView IsVisible="{Binding SearchText, Converter={converter:IsNullConverter}}">
+                    <StackLayout x:Name="categories"
+                                 Padding="0,30,0,40"
+                                 BindableLayout.ItemsSource="{Binding Categories}">
 
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
 
-                            <StackLayout Padding="24,20"
-                                         Orientation="Horizontal"
-                                         Spacing="24"
-                                         xameff:Commands.Tap="{Binding Source={x:Reference categories}, Path=BindingContext.CategoryTapCommand}"
-                                         xameff:Commands.TapParameter="{Binding .}"
-                                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
+                                <StackLayout Padding="24,20"
+                                             Orientation="Horizontal"
+                                             Spacing="24"
+                                             xameff:Commands.Tap="{Binding Source={x:Reference categories}, Path=BindingContext.CategoryTapCommand}"
+                                             xameff:Commands.TapParameter="{Binding .}"
+                                             xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectBlack}">
 
-                                <Image Source="{Binding Image}"
-                                       WidthRequest="82"
-                                       HeightRequest="82" />
+                                    <Image Source="{Binding Image}"
+                                           WidthRequest="82"
+                                           HeightRequest="82" />
 
-                                <StackLayout VerticalOptions="Center"
-                                             Spacing="6">
+                                    <StackLayout VerticalOptions="Center"
+                                                 Spacing="6">
 
-                                    <Label Text="{Binding Title}"
-                                           FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
-                                           FontSize="16" />
+                                        <Label Text="{Binding Title}"
+                                               FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                                               FontSize="16" />
 
-                                    <Label Text="{Binding Description}"
-                                           FontSize="14"
-                                           TextColor="{x:Static local:AppColors.Grey}" />
+                                        <Label Text="{Binding Description}"
+                                               FontSize="14"
+                                               TextColor="{x:Static local:AppColors.Grey}" />
+
+                                    </StackLayout>
 
                                 </StackLayout>
 
-                            </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
 
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
 
-                </StackLayout>
-            </ScrollView>
+                <ScrollView IsVisible="False">
+                    <ScrollView.Triggers>
+                        <DataTrigger TargetType="ScrollView"
+                                     Binding="{Binding SearchText, Converter={converter:IsNullConverter}}"
+                                     Value="False">
+                            <Setter Property="IsVisible"
+                                    Value="True" />
+                        </DataTrigger>
+                    </ScrollView.Triggers>
+
+                    <StackLayout Padding="0,30,0,40"
+                                 Spacing="40"
+                                 BindableLayout.ItemsSource="{Binding SearchResultsGroups}">
+
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+
+                                    <StackLayout Padding="24,0">
+
+                                        <Label Text="{Binding Category}"
+                                               FontSize="16"
+                                               FontFamily="{x:Static local:AppFontFamily.NunitoBold}" />
+
+                                        <Label Text="{Binding Count, StringFormat='{0} результатов поиска'}"
+                                               FontSize="14"
+                                               TextColor="{x:Static local:AppColors.Grey}" />
+
+                                    </StackLayout>
+
+                                    <StackLayout BindableLayout.ItemsSource="{Binding .}"
+                                                 Margin="0,24,0,0">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <self:SubCategoryItemView />
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+
+                    </StackLayout>
+
+                </ScrollView>
+            </StackLayout>
 
         </viewControls:BaseLayout.Content>
     </viewControls:BaseLayout>

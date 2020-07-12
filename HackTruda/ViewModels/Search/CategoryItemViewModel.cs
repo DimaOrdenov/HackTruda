@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using HackTruda.Definitions.Enums;
 using HackTruda.Extensions;
 using Xamarin.Forms;
@@ -9,6 +10,8 @@ namespace HackTruda.ViewModels.Search
 {
     public class CategoryItemViewModel : BaseViewModel
     {
+        public ICommand TapCommand { get; set; }
+
         public CategoryItemViewModel(CategoryType type, IEnumerable<SubCategoryItemViewModel> subCategoryItems = null)
         {
             Type = type;
@@ -26,7 +29,7 @@ namespace HackTruda.ViewModels.Search
 
         public string Description { get; protected set; }
 
-        public ImageSource Image { get; }
+        public ImageSource Image { get; protected set; }
 
         private string GetDescription()
         {

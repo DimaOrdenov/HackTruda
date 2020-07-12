@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HackTruda.DataModels.Responses;
 using HackTruda.Definitions.Models;
 using HackTruda.Services.Interfaces;
 
@@ -17,7 +18,7 @@ namespace HackTruda.ViewModels.Notifications
                 new NotificationGroupViewModel("Сегодня")
                 {
                     new NotificationItemViewModel(
-                        new UserModel
+                        new UserResponse
                         {
                             FirstName = "Иван",
                             LastName = "Иванов",
@@ -25,7 +26,7 @@ namespace HackTruda.ViewModels.Notifications
                         "ответил на ваш комментарий: \"Класс! Мне бы так!\".",
                         "1 мин"),
                     new NotificationItemViewModel(
-                        new UserModel
+                        new UserResponse
                         {
                             FirstName = "Мария",
                             LastName = "Иванова",
@@ -41,7 +42,7 @@ namespace HackTruda.ViewModels.Notifications
                 new NotificationGroupViewModel("На этой неделе")
                 {
                     new NotificationItemViewModel(
-                        new UserModel
+                        new UserResponse
                         {
                             FirstName = "Иван",
                             LastName = "Иванов",
@@ -49,7 +50,7 @@ namespace HackTruda.ViewModels.Notifications
                         "ответил на ваш комментарий: \"Может быт да, а может быть и нет...\".",
                         "Вс"),
                     new NotificationItemViewModel(
-                        new UserModel
+                        new UserResponse
                         {
                             FirstName = "Мария",
                             LastName = "Иванова",

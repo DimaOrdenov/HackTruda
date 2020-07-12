@@ -16,7 +16,7 @@ namespace HackTruda
         private MapperConfiguration GetMapperConfiguration() =>
             new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<UserResponse, UserModel>();
+                //cfg.CreateMap<UserResponse, UserModel>();
             });
     }
 }

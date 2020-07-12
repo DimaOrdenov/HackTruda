@@ -2,20 +2,77 @@
 <viewControls:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:local="clr-namespace:HackTruda"
+                       xmlns:self="clr-namespace:HackTruda.Views.Search"
                        xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
                        xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
                        xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
-                       xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                        x:Class="HackTruda.Views.Search.MapCategoryPage"
                        Title="{Binding PageTitle}">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Spacing="20"
+                     BackgroundColor="{x:Static local:AppColors.Screen}">
+
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="8,0" />
+            </StackLayout.Padding>
+
+            <ContentView xameff:Commands.Tap="{Binding NavigateBackCommand}"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                <svg:SvgCachedImage x:Name="icArrowBackIcon"
+                                    Source="{x:Static local:AppSvgImages.IcArrowLeft}"
+                                    WidthRequest="28"
+                                    HeightRequest="28" />
+            </ContentView>
+
+            <Label Text="{Binding PageTitle}"
+                   FontFamily="{x:Static local:AppFontFamily.NunitoBold}"
+                   FontSize="28"
+                   VerticalTextAlignment="Center"
+                   HorizontalOptions="StartAndExpand" />
+
+            <ContentView Padding="2"
+                         HorizontalOptions="End"
+                         xameff:TouchEffect.Color="{x:Static local:AppColors.RippleEffectWhite}">
+                <svg:SvgCachedImage x:Name="icSearch"
+                                    Source="{x:Static local:AppSvgImages.IcSearch}"
+                                    WidthRequest="24"
+                                    HeightRequest="24" />
+            </ContentView>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <viewControls:BaseLayout>
         <viewControls:BaseLayout.Content>
             <AbsoluteLayout>
 
-                <ContentView AbsoluteLayout.LayoutBounds="0,0,1,1"
-                             AbsoluteLayout.LayoutFlags="All"
-                             Content="{Binding PlacesMap}" />
+                <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+                      AbsoluteLayout.LayoutFlags="All">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="4*" />
+                    </Grid.RowDefinitions>
+
+                    <ContentView Content="{Binding PlacesMap}" />
+
+                    <ScrollView Grid.Row="1">
+                        <StackLayout Padding="0,30,0,40"
+                                     BindableLayout.ItemsSource="{Binding CategoryItem.SubCategoryItems}">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <self:SubCategoryItemView />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                </Grid>
 
                 <ScrollView x:Name="filtersScroll"
                             AbsoluteLayout.LayoutBounds="0,0,1,-1"

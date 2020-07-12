@@ -4,6 +4,10 @@
     {
         None,
 
+        // Common
+
+        WebViewPage,
+
         // Auth
 
         AuthPage,

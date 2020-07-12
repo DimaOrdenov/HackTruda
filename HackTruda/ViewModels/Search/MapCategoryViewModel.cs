@@ -98,7 +98,7 @@ namespace HackTruda.ViewModels.Search
             PlacesMap.MoveToRegion(
                 MapSpan.FromCenterAndRadius(
                     new Position(locationToMove.Latitude, locationToMove.Longitude),
-                    Distance.FromKilometers(4)));
+                    Distance.FromKilometers(8)));
 
             return new Position(locationToMove.Latitude, locationToMove.Longitude);
         }

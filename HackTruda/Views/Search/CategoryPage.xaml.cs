@@ -1,4 +1,5 @@
-﻿using HackTruda.ViewControls;
+﻿using HackTruda.Extensions;
+using HackTruda.ViewControls;
 
 namespace HackTruda.Views.Search
 {
@@ -7,6 +8,14 @@ namespace HackTruda.Views.Search
         public CategoryPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            icArrowBackIcon.SetStrokeTintColor(AppColors.Dark);
+            icSearch.SetStrokeTintColor(AppColors.Dark);
         }
     }
 }

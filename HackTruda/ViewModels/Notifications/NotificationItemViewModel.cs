@@ -1,5 +1,5 @@
-﻿using System;
-using HackTruda.Definitions.Models;
+﻿using System.IO;
+using HackTruda.DataModels.Responses;
 using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Notifications
@@ -15,8 +15,12 @@ namespace HackTruda.ViewModels.Notifications
             NotificatedAt = notificatedAt;
         }
 
-        public NotificationItemViewModel(UserModel user, string notificationAction, string notificatedAt)
-            : this(user.ImageSrc?.Value, $"{user.FirstName} {user.LastName}", notificationAction, notificatedAt)
+        public NotificationItemViewModel(UserResponse user, string notificationAction, string notificatedAt)
+            : this(
+                  user.Image != null ? ImageSource.FromStream(() => new MemoryStream(user.Image)) : null,
+                  $"{user.FirstName} {user.LastName}",
+                  notificationAction,
+                  notificatedAt)
         {
         }
 

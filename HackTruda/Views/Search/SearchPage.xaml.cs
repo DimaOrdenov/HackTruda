@@ -14,7 +14,8 @@ namespace HackTruda.Views.Search
         {
             base.OnAppearing();
 
-            icSearch.SetStrokeTintColor(AppColors.Dark);
+            icSearch1.SetStrokeTintColor(AppColors.Dark);
+            icSearch2.SetStrokeTintColor(AppColors.Dark);
         }
     }
 }

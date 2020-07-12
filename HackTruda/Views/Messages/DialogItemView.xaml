@@ -2,8 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HackTruda"
-             xmlns:viewControls="clr-namespace:HackTruda.ViewControls"
-             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:converter="clr-namespace:HackTruda.Definitions.Converters"
              xmlns:xameff="clr-namespace:XamEffects;assembly=XamEffects"
              x:Class="HackTruda.Views.Messages.DialogItemView">
 
@@ -25,11 +24,8 @@
         <Frame CornerRadius="26"
                WidthRequest="52"
                HeightRequest="52"
-               VerticalOptions="Center"
-               BackgroundColor="{x:Static local:AppColors.Primary}">
-            <Image Source="{Binding User.ImageSrc}"
-                   VerticalOptions="Center"
-                   WidthRequest="24" />
+               VerticalOptions="Center">
+            <Image Source="{Binding User.Image, Converter={converter:ByteArrayToImageSourceConverter}}" />
         </Frame>
 
         <StackLayout Grid.Column="1"

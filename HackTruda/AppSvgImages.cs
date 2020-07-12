@@ -1,4 +1,5 @@
 ﻿using FFImageLoading.Svg.Forms;
+using Xamarin.Essentials;
 
 namespace HackTruda
 {
@@ -36,7 +37,8 @@ namespace HackTruda
 
         public static SvgImageSource IcEyeOff => SvgImageSource.FromFile("ic_eye_off.svg");
 
-        public static SvgImageSource IcSearch => SvgImageSource.FromFile("ic_search.svg");
+        // Android broken svg
+        public static SvgImageSource IcSearch => DeviceInfo.Platform == DevicePlatform.iOS ? SvgImageSource.FromFile("ic_search.svg") : SvgImageSource.FromFile("ic_search_icon.svg");
 
         public static SvgImageSource IcChevronBottom => SvgImageSource.FromFile("ic_chevron_bottom.svg");
     }

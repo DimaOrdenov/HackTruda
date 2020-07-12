@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,34 +8,90 @@ using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
 using HackTruda.Extensions;
 using HackTruda.Services.Interfaces;
+using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Search
 {
     public class SearchViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;
+        private readonly IGamesLogic _gamesLogic;
 
         private ObservableCollection<CategoryItemViewModel> _categories;
+        public ObservableCollection<SubCategorySearchGroupViewModel> _searchResultsGroups = new ObservableCollection<SubCategorySearchGroupViewModel>();
+        private IEnumerable<CategoryItemViewModel> _cacheCategories;
+        private bool _isSearchMode;
+        private string _searchText;
 
         public ICommand CategoryTapCommand { get; }
+
+        public ICommand SearchTapCommand { get; }
 
         public SearchViewModel(
             INavigationService navigationService,
             IDialogService dialogService,
             IDebuggerService debuggerService,
-            IUsersLogic usersLogic)
+            IUsersLogic usersLogic,
+            IGamesLogic gamesLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             _usersLogic = usersLogic;
+            _gamesLogic = gamesLogic;
 
             CategoryTapCommand = BuildPageVmCommand<CategoryItemViewModel>(item =>
                 NavigationService.NavigateAsync(item.Type == CategoryType.Places ? PageType.MapCategoryPage : PageType.CategoryPage, item));
+
+            SearchTapCommand = BuildPageVmCommand(
+                () =>
+                {
+                    IsSearchMode = !_isSearchMode;
+
+                    return Task.CompletedTask;
+                });
         }
 
         public ObservableCollection<CategoryItemViewModel> Categories
         {
             get => _categories;
             set => SetProperty(ref _categories, value);
+        }
+
+        public ObservableCollection<SubCategorySearchGroupViewModel> SearchResultsGroups
+        {
+            get => _searchResultsGroups;
+            set => SetProperty(ref _searchResultsGroups, value);
+        }
+
+        public bool IsSearchMode
+        {
+            get => _isSearchMode;
+            set
+            {
+                SetProperty(ref _isSearchMode, value);
+
+                if (!value)
+                {
+                    SearchText = null;
+                }
+            }
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                SetProperty(ref _searchText, value);
+
+                if (!string.IsNullOrEmpty(_searchText))
+                {
+                    SearchByCategories();
+                }
+                else
+                {
+                    SearchResultsGroups.Clear();
+                }
+            }
         }
 
         public override async Task OnAppearing()
@@ -52,7 +107,7 @@ namespace HackTruda.ViewModels.Search
                 new ViewModelPerformableAction(
                     async () =>
                     {
-                        ObservableCollection<CategoryItemViewModel> categories = new ObservableCollection<CategoryItemViewModel>();
+                        List<CategoryItemViewModel> categories = new List<CategoryItemViewModel>();
 
                         foreach (CategoryType category in
                             new List<CategoryType>
@@ -69,13 +124,50 @@ namespace HackTruda.ViewModels.Search
                             categories.Add(new CategoryItemViewModel(category, await GetSubCategories(category)));
                         }
 
-                        Categories = categories;
+                        Categories = new ObservableCollection<CategoryItemViewModel>(categories);
+                        _cacheCategories = categories.ToList();
                     }));
 
             State = PageStateType.Default;
 
             await base.OnAppearing();
         }
+
+        public override Task OnDisappearing()
+        {
+            IsSearchMode = false;
+
+            return base.OnDisappearing();
+        }
+
+        private Task SearchByCategories() =>
+            Task.Run(
+                async () =>
+                {
+                    await Task.Delay(10);
+
+                    IEnumerable<SubCategoryItemViewModel> searchRes =
+                        _cacheCategories
+                            .ToList()
+                            .SelectMany(x => x.SubCategoryItems)
+                            .Where(x => x.Title.ToLowerInvariant().Contains(_searchText) || x.Description.ToLowerInvariant().Contains(_searchText));
+
+                    ObservableCollection<SubCategorySearchGroupViewModel> searchCol = new ObservableCollection<SubCategorySearchGroupViewModel>();
+
+                    foreach (var grouping in searchRes.GroupBy(x => x.ParenType))
+                    {
+                        SubCategorySearchGroupViewModel newGroup = new SubCategorySearchGroupViewModel();
+
+                        foreach (SubCategoryItemViewModel subCategoryItem in grouping)
+                        {
+                            newGroup.Add(subCategoryItem);
+                        }
+
+                        searchCol.Add(newGroup);
+                    }
+
+                    SearchResultsGroups = new ObservableCollection<SubCategorySearchGroupViewModel>(searchCol);
+                });
 
         private async Task<IEnumerable<SubCategoryItemViewModel>> GetSubCategories(CategoryType parentCategory)
         {
@@ -87,18 +179,23 @@ namespace HackTruda.ViewModels.Search
             switch (parentCategory)
             {
                 case CategoryType.People:
-                    titles = (await _usersLogic.Get(CancellationToken))
-                        .Select(x => $"{x.FirstName} {x.LastName}")
-                        .ToList();
+                    //titles = (await _usersLogic.Get(CancellationToken))
+                    //    .Select(x => $"{x.FirstName} {x.LastName}")
+                    //    .ToList();
 
-                    for (int i = 0; i < titles.Count; i++)
-                    {
-                        result.Add(new SubCategoryItemViewModel(
-                            i % 2 == 0 ? CategoryType.PeopleCity : CategoryType.PeopleCountry,
-                            parentCategory,
-                            titles.ElementAtOrDefault(i),
-                            (i % 2 == 0 ? "Таганрог" : "Новосибирск") + ", из России"));
-                    }
+                    //for (int i = 0; i < titles.Count; i++)
+                    //{
+                    //    result.Add(new SubCategoryPeopleItemViewModel(
+                    //        i % 2 == 0 ? CategoryType.PeopleCity : CategoryType.PeopleCountry,
+                    //        parentCategory,
+                    //        titles.ElementAtOrDefault(i),
+                    //        (i % 2 == 0 ? "Таганрог" : "Новосибирск") + ", из России"));
+                    //}
+
+                    result.AddRange(
+                        (await _usersLogic.Get(CancellationToken))
+                            .Select(x => new SubCategoryPeopleItemViewModel(x))
+                            .ToList());
 
                     break;
                 case CategoryType.Places:
@@ -214,35 +311,45 @@ namespace HackTruda.ViewModels.Search
 
                     break;
                 case CategoryType.Games:
-                    titles = new List<string>
-                    {
-                        "Марио",
-                        "Гонки",
-                        "Гонки 2 часть",
-                        "Counter-Strike",
 
-                        "Зарядка для мозга",
-                        "Кроссворды",
-                        "Викторина для всей компании",
+                    result.AddRange(
+                        (await _gamesLogic.Get(CancellationToken))
+                        .Select(x => new SubCategoryGameItemViewModel(x)
+                        {
+                            TapCommand = BuildPageVmCommand<SubCategoryGameItemViewModel>(item =>
+                                NavigationService.NavigateAsync(PageType.WebViewPage, new UrlWebViewSource { Url = item.GameItem.Link, })),
+                        })
+                        .ToList());
 
-                        "Шарики и квадратики",
-                        "На логику",
-                        "Детектив",
-                    };
+                    //titles = new List<string>
+                    //{
+                    //    "Марио",
+                    //    "Гонки",
+                    //    "Гонки 2 часть",
+                    //    "Counter-Strike",
 
-                    for (int i = 0; i < titles.Count; i++)
-                    {
-                        CategoryType category =
-                            i < 4 ? CategoryType.GamesArcade :
-                                i < 7 ? CategoryType.GamesQuiz :
-                                    CategoryType.GamesPuzzle;
+                    //    "Зарядка для мозга",
+                    //    "Кроссворды",
+                    //    "Викторина для всей компании",
 
-                        result.Add(new SubCategoryItemViewModel(
-                            category,
-                            parentCategory,
-                            titles.ElementAtOrDefault(i),
-                            category.GetEnumDescription()));
-                    }
+                    //    "Шарики и квадратики",
+                    //    "На логику",
+                    //    "Детектив",
+                    //};
+
+                    //for (int i = 0; i < titles.Count; i++)
+                    //{
+                    //    CategoryType category =
+                    //        i < 4 ? CategoryType.GamesArcade :
+                    //            i < 7 ? CategoryType.GamesQuiz :
+                    //                CategoryType.GamesPuzzle;
+
+                    //    result.Add(new SubCategoryItemViewModel(
+                    //        category,
+                    //        parentCategory,
+                    //        titles.ElementAtOrDefault(i),
+                    //        category.GetEnumDescription()));
+                    //}
 
                     break;
                 case CategoryType.Podcasts:

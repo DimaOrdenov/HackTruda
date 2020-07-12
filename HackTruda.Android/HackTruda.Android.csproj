@@ -1162,7 +1162,7 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ic_search.svg">
+    <AndroidResource Include="Resources\drawable\ic_search_icon.svg">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

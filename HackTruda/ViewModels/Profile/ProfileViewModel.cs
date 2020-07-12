@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +10,6 @@ using HackTruda.Definitions;
 using HackTruda.Definitions.Enums;
 using HackTruda.Extensions;
 using HackTruda.Services.Interfaces;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Profile
@@ -22,6 +20,7 @@ namespace HackTruda.ViewModels.Profile
         private readonly IPostsLogic _postsLogic;
 
         private ObservableCollection<ProfileFeedItemViewModel> _feeds;
+        private UserResponse _user;
 
         public ICommand ChooseAvatarCommand { get; }
 
@@ -82,6 +81,12 @@ namespace HackTruda.ViewModels.Profile
             };
         }
 
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
         public ObservableCollection<ProfileFeedItemViewModel> Feeds
         {
             get => _feeds;
@@ -112,10 +117,12 @@ namespace HackTruda.ViewModels.Profile
                 new ViewModelPerformableAction(
                     async () =>
                     {
+                        User = await _usersLogic.Get("2", CancellationToken);
+
                         result =
                             (await _postsLogic.GetUserPosts(2, CancellationToken))
                             .ToList()
-                            .OrderByDescending(x=>x.Date)
+                            .OrderByDescending(x => x.Date)
                             .Select(x => new ProfileFeedItemViewModel(x));
                     }));
 

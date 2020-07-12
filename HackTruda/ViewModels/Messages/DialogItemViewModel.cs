@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using HackTruda.Definitions.Models;
+using HackTruda.DataModels.Responses;
 
 namespace HackTruda.ViewModels.Messages
 {
@@ -11,12 +11,12 @@ namespace HackTruda.ViewModels.Messages
 
         public ICommand TapCommand { get; set; }
 
-        public DialogItemViewModel(UserModel user)
+        public DialogItemViewModel(UserResponse user)
         {
             User = user;
         }
 
-        public UserModel User { get; }
+        public UserResponse User { get; }
 
         public ObservableCollection<ChatMessageItemViewModel> Messages
         {

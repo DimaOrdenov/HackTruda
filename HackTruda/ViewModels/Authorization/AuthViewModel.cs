@@ -15,6 +15,8 @@ namespace HackTruda.ViewModels.Authorization
 {
     public class AuthViewModel : PageViewModel
     {
+        private readonly IAuthLogic _authLogic;
+
         private string _newUserName;
         private string _newPhoneNumber;
         private string _newPassword;
@@ -38,12 +40,11 @@ namespace HackTruda.ViewModels.Authorization
 
         public ICommand ChangeFormCommand { get; }
 
-        public IAuthLogic _authLogic { get; }
-
-        public AuthViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IAuthLogic authLogic) 
+        public AuthViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService, IAuthLogic authLogic)
             : base(navigationService, dialogService, debuggerService)
         {
             _authLogic = authLogic;
+
             SocialAuthCommand = BuildPageVmCommand<string>(
                 async (scheme) =>
                 {
@@ -76,8 +77,7 @@ namespace HackTruda.ViewModels.Authorization
                     bool success = await ExceptionHandler.PerformCatchableTask(
                         new ViewModelPerformableAction(async () =>
                         {
-                          var authResult = 
-                            await _authLogic.Register(new RegisterRequest() { Password = NewPassword, Phone = NewPhoneNumber, UserName = NewUsername}, CancellationToken);
+                            var authResult = await _authLogic.Register(new RegisterRequest() { Password = NewPassword, Phone = NewPhoneNumber, UserName = NewUsername }, CancellationToken);
                         }));
 
                     if (success)
@@ -85,8 +85,6 @@ namespace HackTruda.ViewModels.Authorization
                         NavigationService.SetRootPage(TabbedPageType.MainPage);
                     }
                 });
-
-          //  RegisterCommand = BuildPageVmCommand(() => Task.Delay(1000).ContinueWith(t => NavigationService.SetRootPage(TabbedPageType.MainPage)));
 
             PasswordVisibilityCommand = BuildPageVmCommand(() =>
             {

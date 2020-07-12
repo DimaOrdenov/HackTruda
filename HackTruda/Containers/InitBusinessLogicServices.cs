@@ -28,6 +28,10 @@ namespace HackTruda.Containers
             _builder.RegisterType<AuthLogic>()
                   .As<IAuthLogic>()
                   .SingleInstance();
+
+            _builder.RegisterType<GamesLogic>()
+                  .As<IGamesLogic>()
+                  .SingleInstance();
         }
     }
 }
