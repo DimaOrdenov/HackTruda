@@ -5,6 +5,9 @@ using HackTruda.DataModels.Responses;
 
 namespace HackTruda.ViewModels.Messages
 {
+    /// <summary>
+    /// VM для айтема диалога.
+    /// </summary>
     public class DialogItemViewModel : BaseViewModel
     {
         private ObservableCollection<ChatMessageItemViewModel> _messages = new ObservableCollection<ChatMessageItemViewModel>();

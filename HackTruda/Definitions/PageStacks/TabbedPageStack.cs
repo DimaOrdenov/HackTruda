@@ -5,6 +5,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Definitions.PageStacks
 {
+    /// <summary>
+    /// Класс для связки таб-страница и VM с указанием типа страницы, дочерних страниц, их иконок и названий в баре.
+    /// </summary>
     public class TabbedPageStack : BasePageStack
     {
         public TabbedPageStack(

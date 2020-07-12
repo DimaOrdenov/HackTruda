@@ -13,6 +13,9 @@ namespace HackTruda.Containers
 {
     public partial class IocInitializer
     {
+        /// <summary>
+        /// Регистрация VM.
+        /// </summary>
         private static void InitViewModels()
         {
             _builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

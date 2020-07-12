@@ -3,6 +3,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels
 {
+    /// <summary>
+    /// Базовая VM для попап-страницы.
+    /// </summary>
     public abstract class PopupPageViewModel : PageViewModel
     {
         protected PopupPageViewModel(

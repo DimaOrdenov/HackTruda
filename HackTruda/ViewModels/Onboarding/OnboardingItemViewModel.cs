@@ -2,6 +2,9 @@
 
 namespace HackTruda.ViewModels.Onboarding
 {
+    /// <summary>
+    /// VM для айтема онбоардинга.
+    /// </summary>
     public class OnboardingItemViewModel : BaseViewModel
     {
         public OnboardingItemViewModel(string text, ImageSource image)

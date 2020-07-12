@@ -2,6 +2,9 @@
 
 namespace HackTruda
 {
+    /// <summary>
+    /// Цвета.
+    /// </summary>
     public static class AppColors
     {
         public static Color Primary => Color.FromHex("#5A88FF");

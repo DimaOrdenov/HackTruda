@@ -1,5 +1,8 @@
 ﻿namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для фильтров категорий.
+    /// </summary>
     public class CategoryFilterItemViewModel : BaseViewModel
     {
         private bool _isSelected;

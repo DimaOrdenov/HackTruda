@@ -2,6 +2,9 @@
 
 namespace HackTruda
 {
+    /// <summary>
+    /// Растровые изображения.
+    /// </summary>
     public static class AppImages
     {
         // change

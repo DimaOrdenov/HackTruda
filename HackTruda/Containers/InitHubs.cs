@@ -6,6 +6,9 @@ namespace HackTruda.Containers
 {
     public partial class IocInitializer
     {
+        /// <summary>
+        /// Регистрация хабов для SignalR.
+        /// </summary>
         private static void InitHubs()
         {
             _builder

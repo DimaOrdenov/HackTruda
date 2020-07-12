@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HackTruda.Extensions
 {
+    /// <summary>
+    /// Расширения для коллекций.
+    /// </summary>
     public static class ICollectionExtension
     {
         public static bool TryRemove<T>(this ICollection<T> list, T item)

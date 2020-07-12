@@ -8,6 +8,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для айтема категории.
+    /// </summary>
     public class CategoryItemViewModel : BaseViewModel
     {
         public ICommand TapCommand { get; set; }

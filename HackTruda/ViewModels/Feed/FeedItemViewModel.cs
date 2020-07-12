@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Feed
 {
+    /// <summary>
+    /// VM для поста в Ленте.
+    /// </summary>
     public class FeedItemViewModel : BaseViewModel
     {
         private bool _isLiked;
@@ -21,6 +24,7 @@ namespace HackTruda.ViewModels.Feed
             LikeTapCommand = new Command(() =>
             {
                 IsLiked = !_isLiked;
+
                 if (IsLiked)
                 {
                     LikesCount = LikesCount + 1;
@@ -30,18 +34,15 @@ namespace HackTruda.ViewModels.Feed
                 {
                     LikesCount = LikesCount - 1;
                 }
-                });
+            });
         }
 
-        public FeedResponse Feed { get;  }
+        public FeedResponse Feed { get; }
 
         public int LikesCount
         {
             get => _likesCount;
-            set
-            {
-                SetProperty(ref _likesCount, value);
-            }
+            set => SetProperty(ref _likesCount, value);
         }
 
         public bool IsLiked

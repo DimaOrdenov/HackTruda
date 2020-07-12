@@ -7,6 +7,9 @@ namespace HackTruda.Containers
 {
     public partial class IocInitializer
     {
+        /// <summary>
+        /// Регистрация BL.
+        /// </summary>
         private static void InitBusinessLogicServices()
         {
             _builder.Register(c => new RestClient(Config.BaseApiUrl + "api/"))

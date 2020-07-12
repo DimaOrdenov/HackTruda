@@ -2,6 +2,9 @@
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для айтема подкатегории.
+    /// </summary>
     public class SubCategoryItemViewModel : CategoryItemViewModel
     {
         public SubCategoryItemViewModel(CategoryType type, CategoryType parenType, string title, string description)

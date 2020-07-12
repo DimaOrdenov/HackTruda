@@ -4,6 +4,9 @@ using Xamarin.Essentials;
 
 namespace HackTruda.Extensions
 {
+    /// <summary>
+    /// Расширения для запроса разрешений.
+    /// </summary>
     public static class CrossPermissionsExtension
     {
         public static async Task<PermissionStatus> CheckAndRequestPermissionIfNeeded(this Permissions.BasePermission permission)

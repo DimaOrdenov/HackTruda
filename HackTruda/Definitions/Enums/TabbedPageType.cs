@@ -1,6 +1,8 @@
-﻿using System;
-namespace HackTruda.Definitions.Enums
+﻿namespace HackTruda.Definitions.Enums
 {
+    /// <summary>
+    /// Перечисление используемыых таб-страниц.
+    /// </summary>
     public enum TabbedPageType
     {
         None,

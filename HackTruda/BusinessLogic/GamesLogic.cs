@@ -5,6 +5,9 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// BL для игр.
+    /// </summary>
     public class GamesLogic : BaseLogic<GamesResponse>, IGamesLogic
     {
         public GamesLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)

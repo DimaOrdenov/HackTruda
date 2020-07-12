@@ -7,6 +7,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для сраницы категории.
+    /// </summary>
     public class CategoryViewModel : PageViewModel
     {
         public ICommand FilterTapCommand { get; }

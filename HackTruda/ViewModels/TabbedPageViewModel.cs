@@ -4,6 +4,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels
 {
+    /// <summary>
+    /// Базовая VM для таб-страниц.
+    /// </summary>
     public abstract class TabbedPageViewModel : PageViewModel
     {
         public int TabPagesCount;

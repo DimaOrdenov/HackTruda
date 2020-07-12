@@ -7,6 +7,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Хэндлер исключений.
+    /// </summary>
     public class ExceptionHandler : IExceptionHandler
     {
         private readonly IDebuggerService _debuggerService;

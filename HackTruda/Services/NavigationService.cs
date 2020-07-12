@@ -11,6 +11,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Сервис навигации.
+    /// </summary>
     public class NavigationService : INavigationService
     {
         private readonly IPageBuilder _pageBuilder;
@@ -20,7 +23,6 @@ namespace HackTruda.Services
             _pageBuilder = pageBuilder;
         }
 
-        /// <inheritdoc />
         public async Task NavigateBackAsync(bool animated = true)
         {
             if (PopupNavigation.Instance.PopupStack?.Count > 0)
@@ -45,7 +47,6 @@ namespace HackTruda.Services
             }
         }
 
-        /// <inheritdoc />
         public async Task NavigateBackToRoot(bool animated = true)
         {
             var navigationStack = GetCurrentPage().Navigation;
@@ -58,13 +59,11 @@ namespace HackTruda.Services
             await GetCurrentPage().Navigation.PopToRootAsync(animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateModalAsync(PageType pageKey, bool animated = true)
         {
             await NavigateModalAsync(pageKey, null, animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateModalAsync(PageType pageKey, object parameter, bool animated = true)
         {
             var page = _pageBuilder.BuildPage(pageKey, parameter);
@@ -79,13 +78,11 @@ namespace HackTruda.Services
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateModalAsync(Page page, bool animated = true)
         {
             await NavigateModalAsync(page, null, animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateModalAsync(Page page, object parameter, bool animated = true)
         {
             NavigationPage.SetHasNavigationBar(page, false);
@@ -98,13 +95,11 @@ namespace HackTruda.Services
             await GetCurrentPage().Navigation.PushModalAsync(page, animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateAsync(PageType pageKey, bool aboveTabs = true, bool animated = true)
         {
             await NavigateAsync(pageKey, null, aboveTabs, animated);
         }
 
-        /// <inheritdoc />
         public async Task NavigateAsync(PageType pageKey, object parameter, bool aboveTabs = true, bool animated = true)
         {
             Page pageToNavigate = await Task.Run(() => _pageBuilder.BuildPage(pageKey, parameter));
@@ -119,11 +114,9 @@ namespace HackTruda.Services
                 GetCurrentPage()).Navigation.PushAsync(pageToNavigate, animated);
         }
 
-        /// <inheritdoc />
         public Task NavigatePopupAsync(PageType pageKey, bool animated = true) =>
             NavigatePopupAsync(pageKey, null, animated);
 
-        /// <inheritdoc />
         public async Task NavigatePopupAsync(PageType pageKey, object parameter, bool animated = true)
         {
             PopupPage page = _pageBuilder.BuildPage(pageKey, parameter) as PopupPage;
@@ -131,7 +124,6 @@ namespace HackTruda.Services
             await PopupNavigation.Instance.PushAsync(page, animated);
         }
 
-        /// <inheritdoc />
         public void SetRootPage(PageType pageKey)
         {
             var mainPage = new ExtendedNavigationPage(_pageBuilder.BuildPage(pageKey));
@@ -139,7 +131,6 @@ namespace HackTruda.Services
             SetMainPage(mainPage);
         }
 
-        /// <inheritdoc />
         public void SetRootPage(TabbedPageType tabPageKey)
         {
             var mainPage = new ExtendedNavigationPage(_pageBuilder.BuildTabbedPage(tabPageKey, null, null, 0));
@@ -147,7 +138,6 @@ namespace HackTruda.Services
             SetMainPage(mainPage);
         }
 
-        /// <inheritdoc />
         public Page GetCurrentPage()
         {
             Page currentNavigationPage = Application.Current.MainPage;
@@ -162,7 +152,6 @@ namespace HackTruda.Services
             return currentNavigationPage ?? Application.Current.MainPage;
         }
 
-        /// <inheritdoc />
         public Page GetCurrentNavigationPage(Page page)
         {
             Page currentNavigationPage = page;
@@ -184,7 +173,6 @@ namespace HackTruda.Services
             return currentNavigationPage;
         }
 
-        /// <inheritdoc />
         public Page GetCurrentTabbedPage()
         {
             Page currentTabbedPage = Application.Current.MainPage;

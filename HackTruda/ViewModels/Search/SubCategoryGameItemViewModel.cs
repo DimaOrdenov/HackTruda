@@ -3,6 +3,9 @@ using HackTruda.Definitions.Enums;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для айтема подкатегории игры.
+    /// </summary>
     public class SubCategoryGameItemViewModel : SubCategoryItemViewModel
     {
         public SubCategoryGameItemViewModel(GamesResponse game)

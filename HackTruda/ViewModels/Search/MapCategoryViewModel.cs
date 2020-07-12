@@ -10,6 +10,9 @@ using Xamarin.Forms.Maps;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для страницы категории с картой.
+    /// </summary>
     public class MapCategoryViewModel : CategoryViewModel
     {
         public MapCategoryViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService)

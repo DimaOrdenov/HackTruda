@@ -2,6 +2,9 @@
 
 namespace HackTruda.ViewModels.Messages
 {
+    /// <summary>
+    /// VM для сообщения в диалоге.
+    /// </summary>
     public class ChatMessageItemViewModel : BaseViewModel
     {
         private bool _isNew;

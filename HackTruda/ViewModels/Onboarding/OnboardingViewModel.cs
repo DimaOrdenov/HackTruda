@@ -6,6 +6,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels.Onboarding
 {
+    /// <summary>
+    /// VM для онбоардинга.
+    /// </summary>
     public class OnboardingViewModel : PageViewModel
     {
         public ICommand SkipCommand { get; }

@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace HackTruda.Definitions
 {
+    /// <summary>
+    /// Класс для описания действия с возможным исключением.
+    /// </summary>
     public class PerformableAction
     {
         public PerformableAction(Func<Task> actionToPerform) =>

@@ -3,6 +3,9 @@ using Xamarin.Essentials;
 
 namespace HackTruda
 {
+    /// <summary>
+    /// Шрифты.
+    /// </summary>
     public static class AppFontFamily
     {
         public static string NunitoBold =>

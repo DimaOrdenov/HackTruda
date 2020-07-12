@@ -7,6 +7,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.Containers
 {
+    /// <summary>
+    /// Ioc контейнер приложения для регистрации зависимостей.
+    /// </summary>
     public partial class IocInitializer
     {
         private static ContainerBuilder _builder;

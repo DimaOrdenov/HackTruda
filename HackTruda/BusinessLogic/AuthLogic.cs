@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// BL для авторизации.
+    /// </summary>
     public class AuthLogic : BaseLogic<AuthResponse>, IAuthLogic
     {
         public AuthLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)

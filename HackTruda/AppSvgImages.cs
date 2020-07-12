@@ -3,6 +3,9 @@ using Xamarin.Essentials;
 
 namespace HackTruda
 {
+    /// <summary>
+    /// Векторные изображения.
+    /// </summary>
     public static class AppSvgImages
     {
         public static SvgImageSource IcSettings => SvgImageSource.FromFile("ic_settings.svg");

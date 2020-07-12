@@ -3,6 +3,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels
 {
+    /// <summary>
+    /// VM для страницы с <see cref="WebView"/>.
+    /// </summary>
     public class WebViewPViewModel : PageViewModel
     {
         public WebViewPViewModel(INavigationService navigationService, IDialogService dialogService, IDebuggerService debuggerService)

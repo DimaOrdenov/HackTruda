@@ -2,6 +2,9 @@
 
 namespace HackTruda.Definitions.Enums
 {
+    /// <summary>
+    /// Типы категорий и подкатегорий.
+    /// </summary>
     public enum CategoryType
     {
         // Main

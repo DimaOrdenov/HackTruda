@@ -7,6 +7,9 @@ namespace HackTruda.Containers
 {
     public partial class IocInitializer
     {
+        /// <summary>
+        /// Регистрация страниц с привязкой к перечислению и VM.
+        /// </summary>
         private static void InitPages()
         {
             // Common

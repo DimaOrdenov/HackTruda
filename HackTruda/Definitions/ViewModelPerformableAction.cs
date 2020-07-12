@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 
 namespace HackTruda.Definitions
 {
+    /// <summary>
+    /// Класс для описания действия с возможным исключением.
+    /// Расширен для VM для дополнительной обработки.
+    /// </summary>
     public class ViewModelPerformableAction : PerformableAction
     {
         public ViewModelPerformableAction(Func<Task> actionToPerform)

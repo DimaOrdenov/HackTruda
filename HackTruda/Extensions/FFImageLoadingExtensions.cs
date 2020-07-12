@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Extensions
 {
+    /// <summary>
+    /// Расширения для <see cref="FFImageLoading"/>.
+    /// </summary>
     public static class FFImageLoadingExtension
     {
         public static void SetTintColor(this SvgCachedImage svgCachedImage, Color color) =>

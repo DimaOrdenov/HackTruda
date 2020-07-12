@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HackTruda.Definitions.Converters
 {
+    /// <summary>
+    /// Конвертер byte[] в <see cref="ImageSource"/>.
+    /// </summary>
     public class ByteArrayToImageSourceConverter : IValueConverter, IMarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

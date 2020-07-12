@@ -6,6 +6,9 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// BL для пользователей.
+    /// </summary>
     public class UsersLogic : BaseLogic<UserResponse>, IUsersLogic
     {
         public UsersLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)

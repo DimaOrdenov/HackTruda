@@ -5,6 +5,9 @@ using HackTruda.ViewModels;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Хэлпер для обработчика исключений для работы с VM.
+    /// </summary>
     public class ExceptionHandlerHelper
     {
         private readonly IDialogService _dialogService;

@@ -15,6 +15,10 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// Базовая BL.
+    /// </summary>
+    /// <typeparam name="T">Тип сущности-ответа от сервера.</typeparam>
     public abstract class BaseLogic<T> : IBaseLogic<T>
     {
         private readonly IRestClient _client;

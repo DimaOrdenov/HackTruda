@@ -8,6 +8,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Хэлпер для навигации.
+    /// </summary>
     public class NavigationExtensions
     {
         private readonly INavigationService _navigationService;

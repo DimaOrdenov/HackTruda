@@ -7,6 +7,9 @@ namespace HackTruda.Containers
 {
     public partial class IocInitializer
     {
+        /// <summary>
+        /// Регистрация сервисов.
+        /// </summary>
         private static void InitServices()
         {
             _builder.RegisterInstance(new Mapper().Build());

@@ -3,6 +3,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Extensions
 {
+    /// <summary>
+    /// Расширения для <see cref="Color"/>.
+    /// </summary>
     public static class ColorExtensions
     {
         public static string GetHex(this Color color)

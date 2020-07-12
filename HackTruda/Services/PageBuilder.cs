@@ -13,6 +13,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Билдер страниц.
+    /// </summary>
     public class PageBuilder : IPageBuilder
     {
         private readonly Dictionary<PageType, PageStack> _pageStacks = new Dictionary<PageType, PageStack>();

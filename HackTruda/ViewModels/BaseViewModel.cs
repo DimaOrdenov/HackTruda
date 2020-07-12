@@ -6,6 +6,9 @@ using System.Runtime.CompilerServices;
 
 namespace HackTruda.ViewModels
 {
+    /// <summary>
+    /// Базовая VM.
+    /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,6 +6,9 @@ using Xamarin.Forms.Xaml;
 
 namespace HackTruda.Definitions.Converters
 {
+    /// <summary>
+    /// Конвертер <see cref="DateTime"/> в human-формат.
+    /// </summary>
     public class DateTimeToStringHumanizeConverter : IValueConverter, IMarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

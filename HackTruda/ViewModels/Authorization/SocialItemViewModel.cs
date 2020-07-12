@@ -5,6 +5,9 @@ using HackTruda.Extensions;
 
 namespace HackTruda.ViewModels.Authorization
 {
+    /// <summary>
+    /// VM для айтема социальной сети.
+    /// </summary>
     public class SocialItemViewModel : BaseViewModel
     {
         public SocialItemViewModel(SocialAuthType type)

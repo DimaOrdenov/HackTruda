@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.SignalR.Client;
 
 namespace HackTruda.ViewModels.Messages
 {
+    /// <summary>
+    /// VM для диалога
+    /// </summary>
     public class DialogViewModel : PageViewModel
     {
         private readonly HubConnection _hubConnection;
@@ -17,7 +20,7 @@ namespace HackTruda.ViewModels.Messages
         private string _chatMessage;
 
         public ICommand SendMessageCommand { get; }
-      
+
         public DialogViewModel(
             INavigationService navigationService,
             IDialogService dialogService,

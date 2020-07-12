@@ -1,5 +1,8 @@
 ﻿namespace HackTruda.Definitions.Enums
 {
+    /// <summary>
+    /// Перечисление используемых страниц.
+    /// </summary>
     public enum PageType
     {
         None,

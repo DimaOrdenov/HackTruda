@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HackTruda.BusinessLogic.Interfaces;
@@ -10,6 +8,9 @@ using RestSharp;
 
 namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// BL для постов.
+    /// </summary>
     public class PostsLogic : BaseLogic<PostResponse>, IPostsLogic
     {
         public PostsLogic(IRestClient client, UserContext context, IDebuggerService debuggerService)
@@ -23,7 +24,7 @@ namespace HackTruda.BusinessLogic
             ExecuteAsync<IEnumerable<FeedResponse>>(
             new RestRequest(Route + $"/feed/{id}", Method.GET)
                   .AddParameter("page", page)
-                  ,token);
+                  , token);
         public Task<IEnumerable<FeedResponse>> GetUserPosts(int id, CancellationToken token) =>
           ExecuteAsync<IEnumerable<FeedResponse>>(
           new RestRequest(Route + $"/user/{id}", Method.GET)

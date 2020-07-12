@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace HackTruda.Extensions
 {
+    /// <summary>
+    /// Расширения для перечислений.
+    /// </summary>
     public static class EnumExtensions
     {
         public static string GetEnumDescription(this Enum value)

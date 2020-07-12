@@ -1,16 +1,10 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-
-namespace HackTruda.BusinessLogic
+﻿namespace HackTruda.BusinessLogic
 {
+    /// <summary>
+    /// Контекст пользователя.
+    /// </summary>
     public class UserContext
     {
-        public UserContext()
-        {
-            
-        }
-
-
         public string Token { get; set; }
     }
 }

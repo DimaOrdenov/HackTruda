@@ -10,6 +10,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Profile
 {
+    /// <summary>
+    /// VM для настроек профиля.
+    /// </summary>
     public class ProfileSettingsViewModel : PageViewModel
     {
         private const string SETTINGS_ITEM_PERSONAL_INFO = "Личная жизнь";

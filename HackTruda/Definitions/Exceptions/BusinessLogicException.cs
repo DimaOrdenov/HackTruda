@@ -3,6 +3,9 @@ using HackTruda.Definitions.Enums;
 
 namespace HackTruda.Definitions.Exceptions
 {
+    /// <summary>
+    /// Исключение BL.
+    /// </summary>
     public class BusinessLogicException : TypedException
     {
         public BusinessLogicException()

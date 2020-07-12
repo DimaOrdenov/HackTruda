@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace HackTruda.Behaviors
 {
+    /// <summary>
+    /// Behavior для маски ввода.
+    /// </summary>
     public class MaskedBehavior : Behavior<Entry>
     {
         private IDictionary<int, char> _positions;
 
         public static readonly BindableProperty MaskTemplateProperty = BindableProperty.Create(
-          nameof(MaskTemplate),
-          typeof(string),
-          typeof(MaskedBehavior),
-          propertyChanged: OnMaskTemplatePropertyChanged,
-          defaultBindingMode: BindingMode.TwoWay);
+            nameof(MaskTemplate),
+            typeof(string),
+            typeof(MaskedBehavior),
+            propertyChanged: OnMaskTemplatePropertyChanged,
+            defaultBindingMode: BindingMode.TwoWay);
 
+        /// <summary>
+        /// Маска ввода.
+        /// <example>
+        /// +X XXX XXX-XX-XX
+        /// </example>
+        /// </summary>
         public string MaskTemplate
         {
             get => (string)GetValue(MaskTemplateProperty);

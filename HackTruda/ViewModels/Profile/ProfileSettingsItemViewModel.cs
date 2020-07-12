@@ -4,6 +4,9 @@ using HackTruda.Definitions.Enums;
 
 namespace HackTruda.ViewModels.Profile
 {
+    /// <summary>
+    /// VM для айтема настройки в профиле.
+    /// </summary>
     public class ProfileSettingsItemViewModel : BaseViewModel
     {
         private bool _isToggled;

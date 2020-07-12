@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FFImageLoading.Svg.Forms;
 using HackTruda.Definitions.Enums;
 using HackTruda.Services.Interfaces;
 using Xamarin.Forms;
 
 namespace HackTruda.ViewModels
 {
+    /// <summary>
+    /// Базовая VM для страницы.
+    /// </summary>
     public abstract class PageViewModel : BaseViewModel
     {
         private bool _isLoading;

@@ -5,6 +5,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.Services
 {
+    /// <summary>
+    /// Сервис для логирования.
+    /// </summary>
     public class DebuggerService : IDebuggerService
     {
         public void Log(Exception e, [CallerMemberName] object sender = null) =>

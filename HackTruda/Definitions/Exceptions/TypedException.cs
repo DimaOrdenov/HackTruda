@@ -1,6 +1,9 @@
 ﻿using System;
 namespace HackTruda.Definitions.Exceptions
 {
+    /// <summary>
+    /// Абстрактный класс исключения с возможностью привязаться к перечислению.
+    /// </summary>
     public abstract class TypedException : Exception
     {
         protected TypedException(Enum type, Exception exception, string message = "")

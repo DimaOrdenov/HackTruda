@@ -6,6 +6,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Search
 {
+    /// <summary>
+    /// VM для айтема подкатегории люди.
+    /// </summary>
     public class SubCategoryPeopleItemViewModel : SubCategoryItemViewModel
     {
         public SubCategoryPeopleItemViewModel(CategoryType type, CategoryType parenType, string title, string description)

@@ -2,6 +2,9 @@
 
 namespace HackTruda.Definitions.PageStacks
 {
+    /// <summary>
+    /// Абстрактный класс для связки страница-VM.
+    /// </summary>
     public abstract class BasePageStack
     {
         public BasePageStack(Type pageClassType, Type viewModelClassType)

@@ -4,6 +4,9 @@ using Xamarin.Forms;
 
 namespace HackTruda.ViewModels.Notifications
 {
+    /// <summary>
+    /// Айтем уведомления.
+    /// </summary>
     public class NotificationItemViewModel : BaseViewModel
     {
         public NotificationItemViewModel(ImageSource image, string notificationReporter, string notificationAction, string notificatedAt)
