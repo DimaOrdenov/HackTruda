@@ -106,7 +106,6 @@ namespace HackTruda.API.Controllers
         }
 
         [HttpPost("login")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (ModelState.IsValid)
@@ -132,7 +131,6 @@ namespace HackTruda.API.Controllers
         }
 
         [HttpPost("logout")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
