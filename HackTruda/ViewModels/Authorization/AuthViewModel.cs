@@ -45,27 +45,29 @@ namespace HackTruda.ViewModels.Authorization
         {
             _authLogic = authLogic;
 
-            SocialAuthCommand = BuildPageVmCommand<string>(
-                async (scheme) =>
-                {
-                    bool success = await ExceptionHandler.PerformCatchableTask(
-                        new ViewModelPerformableAction(async () =>
-                        {
-                            WebAuthenticatorResult result =
-                                await WebAuthenticator.AuthenticateAsync(
-                                    new Uri(Config.BaseApiUrl + $"api/auth/{scheme}"),
-                                    new Uri("hacktruda://"));
+            //SocialAuthCommand = BuildPageVmCommand<string>(
+            //    async (scheme) =>
+            //    {
+            //        bool success = await ExceptionHandler.PerformCatchableTask(
+            //            new ViewModelPerformableAction(async () =>
+            //            {
+            //                WebAuthenticatorResult result =
+            //                    await WebAuthenticator.AuthenticateAsync(
+            //                        new Uri(Config.BaseApiUrl + $"api/auth/{scheme}"),
+            //                        new Uri("hacktruda://"));
 
-                            var accessToken = result?.AccessToken;
-                        }));
+            //                var accessToken = result?.AccessToken;
+            //            }));
 
-                    await DialogService.DisplayAlert(null, (success ? "Успешная " : "Неуспешная  ") + $"авторизация через {scheme}", "Ок");
+            //        await DialogService.DisplayAlert(null, (success ? "Успешная " : "Неуспешная  ") + $"авторизация через {scheme}", "Ок");
 
-                    if (success)
-                    {
-                        NavigationService.SetRootPage(TabbedPageType.MainPage);
-                    }
-                });
+            //        if (success)
+            //        {
+            //            NavigationService.SetRootPage(TabbedPageType.MainPage);
+            //        }
+            //    });
+
+            SocialAuthCommand = BuildPageVmCommand(() => Task.Delay(1000).ContinueWith(t => NavigationService.SetRootPage(TabbedPageType.MainPage)));
 
             ForgotPasswordCommand = BuildPageVmCommand(() => DialogService.DisplayAlert(null, "Восстанавливаю пароль", "Ок"));
 
