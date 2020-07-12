@@ -36,6 +36,7 @@ namespace HackTruda.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Это контекст данных
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MainDatabase")));
             services.AddDbContext<IdentityContext>(options =>
@@ -44,6 +45,7 @@ namespace HackTruda.API
             services.AddIdentity<AuthUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
 
+            // OpenAPI документация
             services.AddSwaggerGen(c =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -66,6 +68,7 @@ namespace HackTruda.API
                     options.DefaultChallengeScheme = VkontakteAuthenticationDefaults.AuthenticationScheme;
                     
                 })
+                // авторизация ВК
                 .AddVkontakte(options =>
                 {
                     options.SaveTokens = true;
@@ -101,7 +104,9 @@ namespace HackTruda.API
 
             app.UseEndpoints(endpoints =>
             {
+                // REST API
                 endpoints.MapControllers();
+                // чаты
                 endpoints.MapHub<ChatHub>("/chat");
             });
         }

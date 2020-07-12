@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HackTruda.API.Controllers
 {
+    /// <summary>
+    /// Авторизация
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -22,6 +25,7 @@ namespace HackTruda.API.Controllers
         private readonly SignInManager<AuthUser> _signInManager;
         private readonly IdentityContext _context;
 
+        
         public AuthController(UserManager<AuthUser> userManager, SignInManager<AuthUser> signInManager, IdentityContext context)
         {
             _userManager = userManager;
@@ -29,6 +33,11 @@ namespace HackTruda.API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Авторизация через сторонних провайдеров (соцсети)
+        /// </summary>
+        /// <param name="scheme"></param>
+        /// <returns></returns>
         [HttpGet("{scheme}")]
         public async Task Get(string scheme)
         {
@@ -76,6 +85,11 @@ namespace HackTruda.API.Controllers
             return User.Identity.Name;
         }
 
+        /// <summary>
+        /// Регистрация
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
@@ -105,6 +119,11 @@ namespace HackTruda.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Вход
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
@@ -130,6 +149,10 @@ namespace HackTruda.API.Controllers
             return BadRequest();
         }
 
+        /// <summary>
+        /// Выход
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {

@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace HackTruda.API
 {
+    /// <summary>
+    /// Real-time хаб для чатов
+    /// </summary>
     public class ChatHub : Hub
     {
         public Task SendMessage(int userId, string message)

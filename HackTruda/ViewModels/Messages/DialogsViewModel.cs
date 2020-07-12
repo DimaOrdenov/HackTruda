@@ -11,6 +11,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels.Messages
 {
+    /// <summary>
+    /// VM для диалогов
+    /// </summary>
     public class DialogsViewModel : PageViewModel
     {
         private readonly IUsersLogic _usersLogic;

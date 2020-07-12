@@ -13,6 +13,9 @@ using Xamarin.Essentials;
 
 namespace HackTruda.ViewModels.Authorization
 {
+    /// <summary>
+    /// VM страницы авторизации
+    /// </summary>
     public class AuthViewModel : PageViewModel
     {
         private readonly IAuthLogic _authLogic;

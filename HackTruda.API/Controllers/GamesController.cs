@@ -11,6 +11,9 @@ using AutoMapper;
 
 namespace HackTruda.API.Controllers
 {
+    /// <summary>
+    ///  HTML5 игры и приложения
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class GamesController : ControllerBase

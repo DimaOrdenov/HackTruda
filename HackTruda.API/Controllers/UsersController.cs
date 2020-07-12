@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace HackTruda.API.Controllers
 {
+    /// <summary>
+    /// Пользователи и сообщества
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase

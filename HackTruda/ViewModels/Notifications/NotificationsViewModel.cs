@@ -6,6 +6,9 @@ using HackTruda.Services.Interfaces;
 
 namespace HackTruda.ViewModels.Notifications
 {
+    /// <summary>
+    /// VM для страницы уведомлений
+    /// </summary>
     public class NotificationsViewModel : PageViewModel
     {
         private IEnumerable<NotificationGroupViewModel> _notificationsGroups;
